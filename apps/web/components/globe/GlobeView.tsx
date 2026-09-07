@@ -18,7 +18,7 @@ export function GlobeView({
   planned: PlannedCity[];
 }) {
   const markers = useMemo<GlobeCity[]>(() => [...cities, ...planned], [cities, planned]);
-  return <WorldGlobe cities={markers} />;
+  return <WorldGlobe cities={markers} year={2026} />;
 }
 
 export default GlobeView;

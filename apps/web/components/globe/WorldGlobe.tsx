@@ -4,12 +4,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-
-/**
- * Placeholder basemap. Phase 2 replaces this with our own PMTiles on R2 —
- * until then we borrow the MapLibre demo tiles and repaint them.
- */
-const DEMO_STYLE = 'https://demotiles.maplibre.org/style.json';
+import { buildGlobeStyle } from '@/lib/ohm';
 
 const HOME = { center: [24, 28] as [number, number], zoom: 1.7 };
 /** Degrees of longitude per idle step, and how long each step eases for. */
@@ -24,7 +19,7 @@ export interface GlobeCity {
   href?: string;
 }
 
-export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
+export function WorldGlobe({ cities, year }: { cities: GlobeCity[]; year: number }) {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [descending, setDescending] = useState(false);
@@ -40,7 +35,7 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
     try {
       map = new maplibregl.Map({
         container,
-        style: DEMO_STYLE,
+        style: buildGlobeStyle(year),
         center: HOME.center,
         zoom: HOME.zoom,
         attributionControl: { compact: true },
@@ -73,27 +68,7 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
       try {
         map.setProjection({ type: 'globe' });
       } catch {
-        // Older renderers fall back to the flat projection, which is fine.
-      }
-
-      // Repaint the demo style into the Antea palette. Demo styles change, so
-      // every layer is attempted independently.
-      for (const layer of map.getStyle().layers ?? []) {
-        try {
-          if (layer.type === 'background') {
-            map.setPaintProperty(layer.id, 'background-color', '#c3d5d3');
-          } else if (layer.type === 'fill') {
-            map.setPaintProperty(layer.id, 'fill-color', '#ded8c8');
-            map.setPaintProperty(layer.id, 'fill-outline-color', '#b9b3a2');
-          } else if (layer.type === 'line') {
-            map.setPaintProperty(layer.id, 'line-color', '#9aa59e');
-            map.setPaintProperty(layer.id, 'line-width', 0.6);
-          } else if (layer.type === 'symbol') {
-            map.setLayoutProperty(layer.id, 'visibility', 'none');
-          }
-        } catch {
-          // This layer is not in the style any more. Leave it.
-        }
+        // Renderers without globe support keep the flat projection.
       }
     });
 
@@ -156,7 +131,7 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
       for (const marker of markers) marker.remove();
       map.remove();
     };
-  }, [cities, router]);
+  }, [cities, router, year]);
 
   return (
     <>
