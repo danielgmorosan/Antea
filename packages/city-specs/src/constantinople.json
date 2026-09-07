@@ -114,7 +114,7 @@
         "populationLabel": "~5,000",
         "populationConfidence": "approximate",
         "ruler": "Megarian colonists",
-        "story": "Greek settlers from Megara, told by the Delphic oracle to build “opposite the land of the blind,” plant a town on the hill at the mouth of the Bosporus. It is little more than an acropolis, a harbor and fishing nets — but it sits on the one strait every grain ship from the Black Sea must pass.",
+        "story": "Greek settlers from Megara, told by the Delphic oracle to settle “opposite the blind men’s country,” plant a town on the hill at the mouth of the Bosporus. It is little more than an acropolis, a harbor and fishing nets — but it sits on the one strait every grain ship from the Black Sea must pass.",
         "seeing": "a temple on the acropolis, a timber palisade, and a scatter of houses above the Golden Horn. Everything west of the hill is still fields.",
         "sourceIds": ["herodotus-histories-4-144", "tacitus-annals-12-63"],
         "unsourcedClaims": ["the population estimate"]
@@ -214,7 +214,7 @@
         "populationLabel": "~450,000",
         "populationConfidence": "approximate",
         "ruler": "Justinian I, Roman Emperor",
-        "story": "Two centuries after Constantine refounded the city, Justinian consecrates the Hagia Sophia — the largest building on Earth. “Solomon, I have outdone thee.” Half a million people live between the Theodosian double walls and the sea, fed by Egyptian grain and defended by the empire's whole navy.",
+        "story": "Two centuries after Constantine refounded the city, Justinian consecrates the Hagia Sophia — the largest building on Earth. Legend has him enter it saying, “Solomon, I have outdone thee.” Hundreds of thousands live between the Theodosian double walls and the sea, fed by Egyptian grain and defended by the empire’s whole navy.",
         "seeing": "the new Hagia Sophia beside the Hippodrome and Great Palace, the Column of Constantine on the main avenue, and the triple land walls far to the west.",
         "sourceIds": [
           "procopius-buildings-1-1",
@@ -436,7 +436,7 @@
         "populationLabel": "~400,000",
         "populationConfidence": "approximate",
         "ruler": "Alexios III Angelos, Byzantine Emperor",
-        "story": "To visiting crusaders it is simply the greatest city in Christendom — “those who had never seen her could not believe.” Trade fills the Golden Horn; the Genoese and Venetian quarters crowd the shore. Four years from now the Fourth Crusade will sack it all, a wound the city never fully heals.",
+        "story": "To visiting crusaders it is simply the greatest city in Christendom. Of its palaces and churches Villehardouin wrote that “no one would have believed it who had not seen it with his eyes.” Trade fills the Golden Horn; the Genoese and Venetian quarters crowd the shore. Four years from now the Fourth Crusade will sack it all, a wound the city never fully heals.",
         "seeing": "the city at its medieval peak, the merchant suburb of Galata growing across the Golden Horn, and harbors busy on every shore.",
         "sourceIds": ["villehardouin-conquete", "mango-constantinople-population"]
       },
@@ -653,15 +653,15 @@
       }
     },
     {
-      "year": 1550,
-      "yearLabel": "AD 1550",
+      "year": 1560,
+      "yearLabel": "AD 1560",
       "name": "Kostantiniyye",
       "dossier": {
         "population": 660000,
         "populationLabel": "~660,000",
         "populationConfidence": "approximate",
         "ruler": "Süleyman the Magnificent, Ottoman Sultan",
-        "story": "A century after the conquest, the city is the largest in Europe again — now facing Mecca. Sinan's domes and minarets remake the skyline; Topkapı Palace spreads over the old acropolis where the Greek colonists first landed two thousand years before. The palimpsest keeps being rewritten.",
+        "story": "A century after the conquest, the city is the largest in Europe again — now facing Mecca. Sinan finished the Süleymaniye three years ago, and his domes and minarets have remade the skyline; Topkapı Palace spreads over the old acropolis where the Greek colonists first landed two thousand years before. The palimpsest keeps being rewritten.",
         "seeing": "minarets rise beside the Hagia Sophia, the Süleymaniye crowns the third hill, the Galata Tower watches the Horn, and Topkapı gardens cover the point.",
         "sourceIds": ["suleymaniye-inscription"],
         "unsourcedClaims": ["the population estimate"]
