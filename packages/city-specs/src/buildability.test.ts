@@ -7,7 +7,7 @@ import {
 import type { CitySpec } from '@antea/schema';
 import * as THREE from 'three';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { constantinople } from './index';
+import { listCities } from './index';
 
 /**
  * Every era must actually build, and build the same way every time.
@@ -18,7 +18,8 @@ import { constantinople } from './index';
  * mid-transition, so it is asserted here on instance counts instead.
  */
 
-const CITIES: CitySpec[] = [constantinople];
+// Every city we ship, so adding one cannot skip validation.
+const CITIES: CitySpec[] = listCities();
 
 function build(spec: CitySpec, eraIndex: number): EraScene {
   const era = spec.eras[eraIndex];

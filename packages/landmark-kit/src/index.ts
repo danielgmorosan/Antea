@@ -12,6 +12,8 @@ export { mulberry32, pick, range, rangeInt } from './rng';
 export {
   blob,
   createTerrainSampler,
+  distanceToPath,
+  distanceToSegment,
   isLand,
   isWater,
   landHeight,

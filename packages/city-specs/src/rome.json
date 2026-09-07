@@ -1,0 +1,662 @@
+{
+  "slug": "rome",
+  "name": "Rome",
+  "location": {
+    "lng": 12.4913,
+    "lat": 41.89
+  },
+  "externalIds": {
+    "pleiades": "423025",
+    "wikidata": "Q220"
+  },
+  "seed": 753,
+  "palette": {
+    "sky": "#ece9e0",
+    "fog": "#e3e0d6",
+    "water": "#a3b9bd",
+    "shore": "#cfc3a2",
+    "grass": "#a3ae86",
+    "rock": "#cabfa8",
+    "houseA": "#d8c9ae",
+    "houseB": "#cbb99c",
+    "houseC": "#e2d5bc",
+    "roof": "#b5643f",
+    "roofB": "#9d5537",
+    "stone": "#d5ccb6",
+    "travertine": "#e8e0cd",
+    "domeLead": "#8b9297",
+    "domeVerd": "#6fa192",
+    "cypress": "#4a6b4e",
+    "wallStone": "#bdb3a0",
+    "wood": "#8a6f52",
+    "sail": "#efe9da",
+    "arena": "#cbbfa3"
+  },
+  "terrain": {
+    "size": {
+      "width": 110,
+      "depth": 80
+    },
+    "segments": {
+      "x": 96,
+      "z": 66
+    },
+    "blobs": [
+      {
+        "cx": 1,
+        "cz": 0,
+        "rx": 34,
+        "rz": 26
+      }
+    ],
+    "hills": [
+      {
+        "cx": 1.5,
+        "cz": -1.0,
+        "height": 1.7,
+        "spread": 8,
+        "maskMode": "sqrt"
+      },
+      {
+        "cx": 4.5,
+        "cz": 2.5,
+        "height": 1.6,
+        "spread": 9,
+        "maskMode": "sqrt"
+      },
+      {
+        "cx": 3.0,
+        "cz": 9.5,
+        "height": 1.4,
+        "spread": 11,
+        "maskMode": "linear"
+      },
+      {
+        "cx": 9.0,
+        "cz": 7.0,
+        "height": 1.3,
+        "spread": 12,
+        "maskMode": "linear"
+      },
+      {
+        "cx": 11.0,
+        "cz": 0.5,
+        "height": 1.5,
+        "spread": 15,
+        "maskMode": "linear"
+      },
+      {
+        "cx": 8.0,
+        "cz": -4.5,
+        "height": 1.2,
+        "spread": 9,
+        "maskMode": "linear"
+      },
+      {
+        "cx": 5.0,
+        "cz": -7.0,
+        "height": 1.3,
+        "spread": 10,
+        "maskMode": "linear"
+      },
+      {
+        "cx": -13.0,
+        "cz": 1.0,
+        "height": 1.8,
+        "spread": 16,
+        "maskMode": "linear"
+      }
+    ],
+    "channels": [
+      {
+        "points": [
+          {
+            "x": -1.5,
+            "z": -26
+          },
+          {
+            "x": -4.5,
+            "z": -13
+          },
+          {
+            "x": -8.0,
+            "z": -3
+          },
+          {
+            "x": -5.5,
+            "z": 7
+          },
+          {
+            "x": -3.0,
+            "z": 17
+          },
+          {
+            "x": -6.5,
+            "z": 28
+          }
+        ],
+        "width": 3.4,
+        "depth": 2.8
+      }
+    ],
+    "heightScale": 2.2,
+    "noise": {
+      "primary": {
+        "amplitude": 0.22,
+        "fx": 0.5,
+        "fz": 0.58
+      },
+      "secondary": {
+        "amplitude": 0.1,
+        "fx": 1.5,
+        "fz": 1.2
+      },
+      "maskInfluence": 2.4
+    },
+    "waterLevel": 0.62,
+    "landThreshold": 0.22,
+    "waterThreshold": 0.12,
+    "bands": {
+      "waterEdge": -0.12,
+      "shoreTop": 0.3,
+      "grassTop": 2.0,
+      "rockLerp": {
+        "from": 0.8,
+        "over": 2.4
+      }
+    },
+    "origin": {
+      "x": 3.5,
+      "z": 0.5
+    },
+    "colours": {
+      "water": "water",
+      "shore": "shore",
+      "grass": "grass",
+      "rock": "rock"
+    }
+  },
+  "camera": {
+    "target": {
+      "x": 4,
+      "y": 2.4,
+      "z": 0.5
+    },
+    "radius": 46,
+    "minRadius": 18,
+    "maxRadius": 78,
+    "theta": 0.95,
+    "phi": 0.92,
+    "panX": [-30, 32],
+    "panZ": [-24, 24]
+  },
+  "eras": [
+    {
+      "year": -753,
+      "yearLabel": "753 BC",
+      "name": "the villages on the hills",
+      "dossier": {
+        "population": null,
+        "populationLabel": "unknown",
+        "populationConfidence": "approximate",
+        "ruler": "Romulus, by tradition",
+        "story": "The traditional founding date. What stands on the Palatine is a cluster of huts inside a ditch and a timber fence — one of several villages scattered across the hills above a ford on the Tiber. Livy, writing seven centuries later, tells the story of Romulus and Remus and admits at the outset that the accounts are poetic rather than historical.",
+        "seeing": "huts on the Palatine behind a timber palisade, the other hills still empty, and the Tiber running below the ford. Nothing here is monumental yet.",
+        "sourceIds": ["livy-1-6-7"],
+        "unsourcedClaims": ["the size of the settlement"]
+      },
+      "landmarks": [
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "palisade",
+            "path": {
+              "kind": "arc",
+              "segments": 26,
+              "from": -3.14159,
+              "to": 3.14159,
+              "angleScale": 1.0,
+              "angleOffset": 0.0,
+              "radiusX": 3.6,
+              "radiusZ": 3.3,
+              "offsetX": 0.4
+            },
+            "height": 0.65,
+            "thickness": 0.085,
+            "stone": "wood"
+          }
+        }
+      ],
+      "houses": {
+        "shape": "radial",
+        "count": 90,
+        "extent": 4.8,
+        "spreadZ": 17,
+        "extentJitter": 1.3,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.72
+      },
+      "trees": {
+        "base": 46,
+        "perExtent": 4,
+        "spreadX": 34,
+        "spreadZ": 24,
+        "offsetX": 6,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [-6, -8],
+          [-7, -4],
+          [-6.5, -1],
+          [-5, 4],
+          [-4, 10],
+          [-3.5, 14],
+          [-5, 20],
+          [-3, -16]
+        ],
+        "count": 2,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    },
+    {
+      "year": 150,
+      "yearLabel": "AD 150",
+      "name": "Roma, caput mundi",
+      "dossier": {
+        "population": null,
+        "populationLabel": "450,000 to 1,000,000",
+        "populationConfidence": "approximate",
+        "ruler": "Antoninus Pius, Roman Emperor",
+        "story": "The city at its height, and famously without a wall: no enemy has come near it in centuries and none is expected. The Colosseum has stood for seventy years, Trajan's column for nearly forty, and Hadrian's Pantheon is a generation old. How many people lived here is genuinely disputed — estimates run from about 450,000 to over a million, and the argument turns on how densely an ancient city could be packed.",
+        "seeing": "the Colosseum east of the Forum, the Pantheon on the flat ground by the river, Trajan's column, the Circus Maximus in the valley between the Palatine and the Aventine, and an aqueduct striding in from the hills. No city wall.",
+        "sourceIds": ["storey-rome-population"]
+      },
+      "landmarks": [
+        {
+          "builder": "temple",
+          "x": 1.5,
+          "z": -1.0,
+          "exclusionRadius": 2.6,
+          "params": {
+            "base": {
+              "w": 2.8,
+              "h": 0.4,
+              "d": 1.9
+            },
+            "columns": 6,
+            "columnSpacing": 0.5,
+            "columnHeight": 1.0,
+            "columnOffsetZ": 0.7,
+            "roof": {
+              "radius": 1.8,
+              "height": 0.7,
+              "scaleZ": 0.6,
+              "y": 1.75
+            },
+            "stone": "travertine",
+            "roofColour": "roof"
+          }
+        },
+        {
+          "builder": "amphitheatre",
+          "x": 8.5,
+          "z": 3.5,
+          "exclusionRadius": 3.6,
+          "params": {
+            "radius": 2.6,
+            "ellipseZ": 0.78,
+            "height": 2.3,
+            "wallThickness": 0.22,
+            "innerHeight": 1.4,
+            "segments": 22,
+            "stone": "travertine",
+            "arena": "arena"
+          }
+        },
+        {
+          "builder": "basilicaDome",
+          "x": 0.0,
+          "z": -6.0,
+          "exclusionRadius": 2.4,
+          "params": {
+            "base": {
+              "w": 2.2,
+              "h": 1.1,
+              "d": 2.2
+            },
+            "dome": {
+              "radius": 1.05,
+              "squash": 0.62,
+              "y": 1.45
+            },
+            "corners": {
+              "w": 0.35,
+              "h": 1.3,
+              "d": 0.35,
+              "offsetX": 1.0,
+              "offsetZ": 1.0
+            },
+            "stone": "travertine",
+            "domeColour": "domeLead"
+          }
+        },
+        {
+          "builder": "column",
+          "x": 3.5,
+          "z": -3.2,
+          "exclusionRadius": 1.0,
+          "params": {
+            "height": 2.8,
+            "radiusTop": 0.17,
+            "radiusBottom": 0.2,
+            "orbRadius": 0.22,
+            "shaft": "travertine",
+            "orb": "domeVerd"
+          }
+        },
+        {
+          "builder": "hippodrome",
+          "x": 4.0,
+          "z": 6.5,
+          "rotationY": 0.18,
+          "exclusionRadius": 3.6,
+          "params": {
+            "track": {
+              "w": 5.2,
+              "h": 0.25,
+              "d": 1.9
+            },
+            "stands": {
+              "w": 4.8,
+              "h": 0.7,
+              "d": 0.35,
+              "offsetX": -0.2,
+              "offsetZ": 1.05
+            },
+            "turn": {
+              "radius": 1.05,
+              "height": 0.7,
+              "scaleZ": 0.9,
+              "x": -2.7
+            },
+            "obelisk": {
+              "width": 0.16,
+              "height": 1.5,
+              "x": 0.4
+            },
+            "track_colour": "arena",
+            "stone": "stone",
+            "marble": "travertine"
+          }
+        },
+        {
+          "builder": "aqueduct",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "points": [
+              {
+                "x": 27,
+                "z": -2.5
+              },
+              {
+                "x": 20,
+                "z": -1.5
+              },
+              {
+                "x": 14.5,
+                "z": 0.0
+              }
+            ],
+            "spacing": 1.5,
+            "pierWidth": 0.32,
+            "pierDepth": 0.5,
+            "height": 1.6,
+            "channelHeight": 0.28,
+            "stone": "stone"
+          }
+        }
+      ],
+      "houses": {
+        "shape": "radial",
+        "count": 900,
+        "extent": 17.5,
+        "spreadZ": 17,
+        "extentJitter": 1.3,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.72
+      },
+      "trees": {
+        "base": 46,
+        "perExtent": 4,
+        "spreadX": 34,
+        "spreadZ": 24,
+        "offsetX": 6,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [-6, -8],
+          [-7, -4],
+          [-6.5, -1],
+          [-5, 4],
+          [-4, 10],
+          [-3.5, 14],
+          [-5, 20],
+          [-3, -16]
+        ],
+        "count": 8,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    },
+    {
+      "year": 800,
+      "yearLabel": "AD 800",
+      "name": "the city of the popes",
+      "dossier": {
+        "population": null,
+        "populationLabel": "a few tens of thousands",
+        "populationConfidence": "approximate",
+        "ruler": "Pope Leo III",
+        "story": "On Christmas Day, Leo III crowns Charlemagne emperor in Old St Peter's. The city that watches is a fraction of the one that built the Colosseum: the Aurelian Walls, thrown up in haste five centuries earlier, now enclose more ruins and gardens than houses, and the living city has drifted into the river bend for its water. Einhard, who knew Charlemagne, claims he would not have entered the church that day had he known what the pope intended. The papal account tells it differently.",
+        "seeing": "the Aurelian circuit far out around a city that no longer fills it, Old St Peter's across the Tiber, and the Colosseum and Pantheon still standing among the gardens.",
+        "sourceIds": ["einhard-vita-karoli", "liber-pontificalis-leo-iii"],
+        "unsourcedClaims": ["the population estimate"]
+      },
+      "landmarks": [
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "curtain",
+            "path": {
+              "kind": "arc",
+              "segments": 44,
+              "from": -3.14159,
+              "to": 3.14159,
+              "angleScale": 1.0,
+              "angleOffset": 0.0,
+              "radiusX": 15.0,
+              "radiusZ": 13.0,
+              "offsetX": 0.0
+            },
+            "height": 1.0,
+            "thickness": 0.45,
+            "towerEvery": 3,
+            "tower": {
+              "size": {
+                "w": 0.7,
+                "h": 1.5,
+                "d": 0.7
+              },
+              "capRadius": 0.5,
+              "capHeight": 0.38
+            },
+            "stone": "wallStone",
+            "capColour": "roofB"
+          }
+        },
+        {
+          "builder": "pavilionCluster",
+          "x": -12.5,
+          "z": -6.5,
+          "exclusionRadius": 3.0,
+          "params": {
+            "blocks": [
+              {
+                "size": {
+                  "w": 3.4,
+                  "h": 1.1,
+                  "d": 1.5
+                },
+                "x": 0,
+                "z": 0,
+                "colour": "stone",
+                "roof": {
+                  "radius": 1.5,
+                  "height": 0.6,
+                  "colour": "roof"
+                }
+              },
+              {
+                "size": {
+                  "w": 1.2,
+                  "h": 0.9,
+                  "d": 2.4
+                },
+                "x": -1.9,
+                "z": 0,
+                "colour": "stone"
+              },
+              {
+                "size": {
+                  "w": 1.0,
+                  "h": 0.7,
+                  "d": 1.0
+                },
+                "x": 2.2,
+                "z": 0.9,
+                "colour": "travertine"
+              }
+            ]
+          }
+        },
+        {
+          "builder": "amphitheatre",
+          "x": 8.5,
+          "z": 3.5,
+          "exclusionRadius": 3.6,
+          "params": {
+            "radius": 2.6,
+            "ellipseZ": 0.78,
+            "height": 1.5,
+            "wallThickness": 0.22,
+            "innerHeight": 0.9,
+            "segments": 22,
+            "stone": "stone",
+            "arena": "arena"
+          }
+        },
+        {
+          "builder": "basilicaDome",
+          "x": 0.0,
+          "z": -6.0,
+          "exclusionRadius": 2.4,
+          "params": {
+            "base": {
+              "w": 2.2,
+              "h": 1.1,
+              "d": 2.2
+            },
+            "dome": {
+              "radius": 1.05,
+              "squash": 0.62,
+              "y": 1.45
+            },
+            "corners": {
+              "w": 0.35,
+              "h": 1.3,
+              "d": 0.35,
+              "offsetX": 1.0,
+              "offsetZ": 1.0
+            },
+            "stone": "travertine",
+            "domeColour": "domeLead"
+          }
+        }
+      ],
+      "houses": {
+        "shape": "radial",
+        "count": 260,
+        "extent": 9.5,
+        "spreadZ": 17,
+        "extentJitter": 1.3,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.72
+      },
+      "trees": {
+        "base": 46,
+        "perExtent": 4,
+        "spreadX": 34,
+        "spreadZ": 24,
+        "offsetX": 6,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [-6, -8],
+          [-7, -4],
+          [-6.5, -1],
+          [-5, 4],
+          [-4, 10],
+          [-3.5, 14],
+          [-5, 20],
+          [-3, -16]
+        ],
+        "count": 4,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    }
+  ],
+  "defaultEraYear": 150,
+  "sources": [
+    {
+      "id": "livy-1-6-7",
+      "citation": "Livy, Ab Urbe Condita 1.6–7",
+      "kind": "later-tradition",
+      "licence": "public-domain",
+      "note": "Written c. 27 BC about a date traditionally set at 753 BC. Livy himself says the traditions of what happened before the city was founded are poetry rather than record."
+    },
+    {
+      "id": "storey-rome-population",
+      "citation": "Glenn R. Storey, “The population of ancient Rome”, Antiquity 71 (1997)",
+      "kind": "modern-scholarship",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/BACD7DF32B0B77609CD6713B8AF88882/S0003598X00085859a.pdf/the-population-of-ancient-rome.pdf",
+      "note": "Sets out the dispute: “Great Rome” estimates of a million or more against “Little Rome” estimates at or below half a million. Storey argues for roughly 450,000."
+    },
+    {
+      "id": "einhard-vita-karoli",
+      "citation": "Einhard, Vita Karoli Magni",
+      "kind": "contemporary",
+      "licence": "public-domain",
+      "note": "Einhard served at Charlemagne's court. His account claims Charlemagne would not have entered St Peter's that day had he known the pope meant to crown him."
+    },
+    {
+      "id": "liber-pontificalis-leo-iii",
+      "citation": "Liber Pontificalis, Life of Leo III",
+      "kind": "contemporary",
+      "licence": "public-domain",
+      "note": "The papal account, which credits Leo with the crowning rather than presenting it as a surprise. It and Einhard disagree, and the disagreement is the point."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "place": "rome",
+  "gazetteer": "pleiades",
+  "source": {
+    "id": "pleiades-423025",
+    "citation": "Pleiades, Roma (423025)",
+    "kind": "modern-scholarship",
+    "url": "https://pleiades.stoa.org/places/423025",
+    "licence": "CC-BY",
+    "note": "Attested name forms and their date ranges. Provenance: Barrington Atlas: BAtlas 43 B2 Roma."
+  },
+  "claims": [
+    {
+      "subject": "name",
+      "statement": "Known as “Roma” (Latin), recorded 750 BC to AD 640.",
+      "confidence": "attested",
+      "startYear": -750,
+      "endYear": 640
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Ῥώμῃ” (ancient Greek), recorded 30 BC to AD 300.",
+      "confidence": "attested",
+      "startYear": -30,
+      "endYear": 300
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Roma” (Italian), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Rome” (English), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Rom” (German), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “罗马市” (Chinese), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Rūme” (Ottoman Turkish).",
+      "confidence": "inferred",
+      "startYear": null,
+      "endYear": null
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “ϩⲣⲱⲙⲏ” (Coptic).",
+      "confidence": "attested",
+      "startYear": null,
+      "endYear": null
+    }
+  ]
+}

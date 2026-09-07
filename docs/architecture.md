@@ -19,10 +19,30 @@ housing density, the moored ships, the editorial prose, the palette — comes fr
 a single JSON city spec validated against `@antea/schema`. No component contains
 a hand-placed mesh, a hard-coded colour, or a sentence of copy.
 
-The payoff is that adding Rome is a data exercise, not a coding one, and that
-the parts most likely to be wrong (terrain placement, determinism, citations)
-are pure functions and plain data that a test can interrogate without booting a
-browser.
+The payoff is that adding a city is mostly a data exercise, and that the parts
+most likely to be wrong (terrain placement, determinism, citations) are pure
+functions and plain data that a test can interrogate without booting a browser.
+
+Adding Rome tested that claim, and it held only partly. Four things turned out
+to be Constantinople's shape hardcoded as everyone's, and each became spec
+data rather than an assumption:
+
+- **Terrain could only add land.** The blob model builds a peninsula out of
+  water; Rome is a plain with a river through it. `TerrainSpec.channels` now
+  carves watercourses after the hills are raised.
+- **Settlements only grew one way.** The house scatter swept west from the
+  origin, which suits a city growing down a peninsula and leaves Rome's eastern
+  hills bare. `HousesParams.shape` is now `sector` or `radial`.
+- **The camera was fixed at the origin.** That frames a peninsula and misses a
+  river plain. `CameraSpec` moved framing into the spec.
+- **The tests only ran on Constantinople.** `CITIES` was a hardcoded array, so
+  a new city was validated by nothing. They iterate `listCities()` now, and a
+  wall assertion written for a coast-to-coast barrier had to learn that a
+  circuit — Rome's Aurelian Walls — never reaches water at all.
+
+Two new builders were needed, `amphitheatre` and `aqueduct`, which is the
+expected kind of growth. The four items above were not: they were the
+abstraction leaking, and they are worth re-checking with the third city.
 
 The constraint this imposes: **the landmark kit may never import Three.js.**
 Three is injected into every builder as an argument, so the placement maths runs

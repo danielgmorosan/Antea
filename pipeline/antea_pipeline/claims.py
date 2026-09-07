@@ -16,6 +16,7 @@ from .pleiades import PleiadesPlace
 LANGUAGES = {
     "ar": "Arabic",
     "arb": "Arabic",
+    "cop": "Coptic",
     "de": "German",
     "en": "English",
     "fr": "French",
@@ -26,6 +27,7 @@ LANGUAGES = {
     "la": "Latin",
     "ota": "Ottoman Turkish",
     "tr": "Turkish",
+    "zh": "Chinese",
 }
 
 # Pleiades is a modern scholarly gazetteer, not a witness.

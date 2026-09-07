@@ -1,3 +1,5 @@
+export { amphitheatre } from './amphitheatre';
+export { aqueduct } from './aqueduct';
 export { basilicaDome } from './basilicaDome';
 export { column } from './column';
 export { hippodrome } from './hippodrome';

@@ -137,6 +137,35 @@ export interface BasilicaDomeParams {
   domeColour: PaletteKey;
 }
 
+/** An elliptical amphitheatre: the Colosseum and its kin. */
+export interface AmphitheatreParams {
+  /** Outer radius on x. `ellipseZ` squashes it into an ellipse. */
+  radius: number;
+  ellipseZ: number;
+  height: number;
+  /** Thickness of the seating ring, as a fraction of `radius`. */
+  wallThickness: number;
+  /** Second, lower ring inside the first, for a tiered silhouette. */
+  innerHeight: number;
+  segments: number;
+  stone: PaletteKey;
+  arena: PaletteKey;
+}
+
+/** A run of arches carrying water: piers with a channel along the top. */
+export interface AqueductParams {
+  /** The line the aqueduct follows, in diorama units. */
+  points: { x: number; z: number }[];
+  /** Distance between piers. */
+  spacing: number;
+  pierWidth: number;
+  pierDepth: number;
+  height: number;
+  /** Depth of the water channel riding on top of the piers. */
+  channelHeight: number;
+  stone: PaletteKey;
+}
+
 export interface HippodromeParams {
   track: Box3;
   stands: Box3 & { offsetZ: number; offsetX: number };
@@ -241,6 +270,15 @@ export interface WallParams {
 
 /** Procedural housing, scattered on land and outside every exclusion circle. */
 export interface HousesParams {
+  /**
+   * How the town spreads from the terrain origin.
+   *
+   * `sector` sweeps in one direction, which is right for a city growing down a
+   * peninsula from its point. `radial` fills a disc, which is right for one
+   * that grew outward in every direction from a river crossing. Cities differ,
+   * so this is spec data rather than an assumption in the builder.
+   */
+  shape: 'sector' | 'radial';
   count: number;
   /** Settlement radius from the terrain origin. */
   extent: number;
@@ -279,6 +317,8 @@ export interface ShipsParams {
 export type LandmarkPlacement = Placed &
   (
     | { builder: 'temple'; params: TempleParams }
+    | { builder: 'amphitheatre'; params: AmphitheatreParams }
+    | { builder: 'aqueduct'; params: AqueductParams }
     | { builder: 'basilicaDome'; params: BasilicaDomeParams }
     | { builder: 'minaret'; params: MinaretParams }
     | { builder: 'hippodrome'; params: HippodromeParams }
@@ -292,6 +332,8 @@ export type BuilderName = LandmarkPlacement['builder'];
 
 export const BUILDER_NAMES = [
   'temple',
+  'amphitheatre',
+  'aqueduct',
   'basilicaDome',
   'minaret',
   'hippodrome',
@@ -329,6 +371,22 @@ export interface TerrainHill {
   maskMode: 'linear' | 'sqrt';
 }
 
+/**
+ * A watercourse cut through the land: a river valley.
+ *
+ * The blob model can only add land, which is enough for a peninsula but not
+ * for an inland city on a river. A channel is subtracted after the hills, so
+ * the Tiber can be cut through the seven hills of Rome.
+ */
+export interface TerrainChannel {
+  /** Polyline the channel follows, in diorama units. */
+  points: { x: number; z: number }[];
+  /** Half-width of the valley. Beyond this the channel has no effect. */
+  width: number;
+  /** How far the ground is lowered at the centre line. */
+  depth: number;
+}
+
 /** Height thresholds the terrain is coloured by. */
 export interface TerrainBands {
   /** Below `waterLevel + waterEdge`, paint water. */
@@ -348,6 +406,8 @@ export interface TerrainSpec {
   /** Elliptical land blobs unioned into the landmask. */
   blobs: TerrainBlob[];
   hills: TerrainHill[];
+  /** Watercourses cut through the land after the hills are raised. */
+  channels?: TerrainChannel[];
   /** Height per unit of landmask. */
   heightScale: number;
   noise: {
@@ -384,6 +444,28 @@ export interface EraSpec {
   ships: ShipsParams;
 }
 
+/**
+ * Where the camera starts and how far it may roam.
+ *
+ * Per city, not global: Constantinople is a peninsula read along its length,
+ * Rome a river plain read across it, and a target hardcoded at the origin
+ * frames one of them well and the other badly.
+ */
+export interface CameraSpec {
+  /** What the camera looks at, in diorama units. */
+  target: { x: number; y: number; z: number };
+  /** Opening distance, and the range the wheel may travel. */
+  radius: number;
+  minRadius: number;
+  maxRadius: number;
+  /** Opening angles: `theta` around, `phi` down from the pole. */
+  theta: number;
+  phi: number;
+  /** How far the target may be panned. */
+  panX: [number, number];
+  panZ: [number, number];
+}
+
 export interface CitySpec {
   /** URL slug, e.g. "constantinople". */
   slug: string;
@@ -406,6 +488,7 @@ export interface CitySpec {
   /** Seeds every `mulberry32` draw so a city looks identical on every load. */
   seed: number;
   terrain: TerrainSpec;
+  camera: CameraSpec;
   eras: EraSpec[];
   /**
    * The era a visitor lands on when they open the city without naming one.

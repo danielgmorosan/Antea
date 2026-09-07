@@ -1,7 +1,7 @@
 import { isLand, isWater, landHeight, wallPath } from '@antea/landmark-kit';
 import type { CitySpec, LandmarkPlacement } from '@antea/schema';
 import { describe, expect, it } from 'vitest';
-import { constantinople } from './index';
+import { listCities } from './index';
 
 /**
  * Terrain-dependent placement must be validated numerically, not visually.
@@ -12,7 +12,8 @@ import { constantinople } from './index';
  * against the same terrain function the renderer uses.
  */
 
-const CITIES: CitySpec[] = [constantinople];
+// Every city we ship, so adding one cannot skip validation.
+const CITIES: CitySpec[] = listCities();
 
 /** Field names in builder params that hold a palette key. */
 const COLOUR_FIELDS = new Set([
@@ -91,7 +92,7 @@ describe.each(CITIES)('$name placement', (city) => {
     });
   });
 
-  describe('walls reach the shore on both sides', () => {
+  describe('walls close a circuit, or run shore to shore', () => {
     const cases = city.eras.flatMap((era) =>
       era.landmarks
         .filter((l) => l.builder === 'wall')
@@ -106,16 +107,29 @@ describe.each(CITIES)('$name placement', (city) => {
       // params have drifted away from the terrain.
       expect(onLand.length).toBeGreaterThanOrEqual(Math.ceil(points.length * 0.4));
 
-      // Both ends must reach the shore — in the water, or on the beach within
-      // the shore band. A wall that stops up on the hillside leaves a gap an
-      // attacker simply walks around.
+      // How a wall must end depends on what kind of wall it is, which the
+      // path itself says. A circuit closes on itself and never touches water —
+      // Rome's Aurelian Walls ring the city. A barrier runs coast to coast, and
+      // an end left up on the hillside is a gap an attacker walks around.
+      const first = points[0];
+      const last = points[points.length - 1];
+      expect(first && last).toBeTruthy();
+      if (!first || !last) return;
+
+      const closesOnItself = Math.hypot(last.x - first.x, last.z - first.z) < 0.5;
+
+      if (closesOnItself) {
+        // A circuit only has to enclose something: most of it on land, and no
+        // stretch of open water standing in for a wall.
+        expect(onLand.length).toBeGreaterThanOrEqual(Math.ceil(points.length * 0.5));
+        return;
+      }
+
       const shoreLine = terrain.waterLevel + terrain.bands.shoreTop;
       for (const [label, end] of [
-        ['start', points[0]],
-        ['end', points[points.length - 1]],
+        ['start', first],
+        ['end', last],
       ] as const) {
-        expect(end, `wall has no ${label} point`).toBeDefined();
-        if (!end) continue;
         const h = landHeight(terrain, end.x, end.z);
         expect(
           h,

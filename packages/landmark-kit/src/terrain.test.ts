@@ -3,6 +3,8 @@ import { describe, expect, it } from 'vitest';
 import {
   blob,
   createTerrainSampler,
+  distanceToPath,
+  distanceToSegment,
   isLand,
   isWater,
   landHeight,
@@ -166,5 +168,90 @@ describe('createTerrainSampler', () => {
     expect(sampler.surfaceY(2, 2)).toBe(surfaceY(flat, 2, 2));
     expect(sampler.waterLevel).toBe(flat.waterLevel);
     expect(sampler.origin).toEqual(flat.origin);
+  });
+});
+
+describe('distanceToSegment', () => {
+  it('measures perpendicular distance to the line', () => {
+    expect(distanceToSegment(0, 5, -10, 0, 10, 0)).toBeCloseTo(5);
+  });
+
+  it('clamps past the ends rather than extending the line', () => {
+    // Beyond the end, the nearest point is the endpoint itself.
+    expect(distanceToSegment(20, 0, -10, 0, 10, 0)).toBeCloseTo(10);
+  });
+
+  it('handles a degenerate segment', () => {
+    expect(distanceToSegment(3, 4, 0, 0, 0, 0)).toBeCloseTo(5);
+  });
+});
+
+describe('distanceToPath', () => {
+  const path = [
+    { x: 0, z: 0 },
+    { x: 10, z: 0 },
+    { x: 10, z: 10 },
+  ];
+
+  it('takes the nearest segment', () => {
+    expect(distanceToPath(5, 2, path)).toBeCloseTo(2);
+    expect(distanceToPath(12, 5, path)).toBeCloseTo(2);
+  });
+
+  it('is zero on the path', () => {
+    expect(distanceToPath(10, 5, path)).toBeCloseTo(0);
+  });
+
+  it('handles a single point, and a path with none', () => {
+    expect(distanceToPath(3, 4, [{ x: 0, z: 0 }])).toBeCloseTo(5);
+    expect(distanceToPath(0, 0, [])).toBe(Infinity);
+  });
+});
+
+describe('channels', () => {
+  /** An island with a river cut straight across it. */
+  const withRiver: TerrainSpec = {
+    ...flat,
+    channels: [
+      {
+        points: [
+          { x: -20, z: 0 },
+          { x: 20, z: 0 },
+        ],
+        width: 2,
+        depth: 3,
+      },
+    ],
+  };
+
+  it('cuts the ground down along its line', () => {
+    expect(landHeight(withRiver, 0, 0)).toBeLessThan(landHeight(flat, 0, 0));
+  });
+
+  it('leaves the land beyond its width untouched', () => {
+    expect(landHeight(withRiver, 0, 6)).toBeCloseTo(landHeight(flat, 0, 6));
+  });
+
+  it('turns the channel into water while the banks stay land', () => {
+    // This is the whole point: an inland city on a river.
+    expect(isWater(withRiver, 0, 0)).toBe(true);
+    expect(isLand(withRiver, 0, 4)).toBe(true);
+  });
+
+  it('never digs below zero', () => {
+    const deep: TerrainSpec = {
+      ...withRiver,
+      channels: [{ ...withRiver.channels![0]!, depth: 999 }],
+    };
+    for (let x = -20; x <= 20; x += 1) {
+      expect(landHeight(deep, x, 0)).toBeGreaterThanOrEqual(0);
+    }
+  });
+
+  it('is deepest at the centre line and shallows outward', () => {
+    const depths = [0, 0.5, 1, 1.5].map((z) => landHeight(withRiver, 0, z));
+    for (let i = 1; i < depths.length; i += 1) {
+      expect(depths[i]!).toBeGreaterThanOrEqual(depths[i - 1]!);
+    }
   });
 });

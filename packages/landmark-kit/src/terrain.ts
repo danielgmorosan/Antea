@@ -10,6 +10,43 @@ import type { TerrainSpec } from '@antea/schema';
  * (peninsula ellipses, hill positions, noise frequencies) lifted into the spec.
  */
 
+/** Shortest distance from a point to a line segment. */
+export function distanceToSegment(
+  x: number,
+  z: number,
+  ax: number,
+  az: number,
+  bx: number,
+  bz: number,
+): number {
+  const dx = bx - ax;
+  const dz = bz - az;
+  const lengthSquared = dx * dx + dz * dz;
+  if (lengthSquared === 0) return Math.hypot(x - ax, z - az);
+  // Projection of the point onto the segment, clamped to its ends.
+  const t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / lengthSquared));
+  return Math.hypot(x - (ax + t * dx), z - (az + t * dz));
+}
+
+/** Shortest distance to a polyline. Infinite for a path with no segments. */
+export function distanceToPath(
+  x: number,
+  z: number,
+  points: readonly { x: number; z: number }[],
+): number {
+  let best = Infinity;
+  for (let i = 1; i < points.length; i += 1) {
+    const a = points[i - 1];
+    const b = points[i];
+    if (!a || !b) continue;
+    best = Math.min(best, distanceToSegment(x, z, a.x, a.z, b.x, b.z));
+  }
+  if (points.length === 1 && points[0]) {
+    best = Math.hypot(x - points[0].x, z - points[0].z);
+  }
+  return best;
+}
+
 /** Smoothstep-falloff elliptical blob, 1 at the centre and 0 at the rim. */
 export function blob(
   x: number,
@@ -49,6 +86,15 @@ export function landHeight(spec: TerrainSpec, x: number, z: number): number {
     const falloff = Math.exp(-((x - hill.cx) ** 2 + (z - hill.cz) ** 2) / hill.spread);
     const weight = hill.maskMode === 'sqrt' ? Math.sqrt(mask) : mask;
     h += hill.height * falloff * weight;
+  }
+
+  // Cut watercourses last, so a river carves through the hills rather than
+  // being buried by them.
+  for (const channel of spec.channels ?? []) {
+    const d = distanceToPath(x, z, channel.points);
+    if (d >= channel.width) continue;
+    const t = 1 - d / channel.width;
+    h -= channel.depth * (t * t * (3 - 2 * t));
   }
 
   return Math.max(0, h);

@@ -11,7 +11,6 @@ export interface PlannedCity {
 }
 
 export const plannedCities: PlannedCity[] = [
-  { name: 'Rome', lng: 12.49, lat: 41.89 },
   { name: 'Babylon', lng: 44.42, lat: 32.54 },
   { name: 'Tenochtitlan', lng: -99.13, lat: 19.43 },
 ];

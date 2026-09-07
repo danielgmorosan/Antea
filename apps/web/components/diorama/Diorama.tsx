@@ -10,19 +10,15 @@ import {
 } from '@antea/landmark-kit';
 import type { EraScene } from '@antea/landmark-kit';
 import type { CitySpec } from '@antea/schema';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { applyOrbit, useOrbitControls } from './useOrbitControls';
 import type { OrbitLimits, OrbitState } from './useOrbitControls';
 
-const LIMITS: OrbitLimits = {
-  phiMin: 0.28,
-  phiMax: 1.28,
-  radiusMin: 16,
-  radiusMax: 70,
-  panX: [-34, 28],
-  panZ: [-20, 20],
-};
+/** Vertical orbit range. The same for every city: below this the camera dips
+ *  under the terrain, above it the diorama flattens into a plan. */
+const PHI_MIN = 0.28;
+const PHI_MAX = 1.28;
 
 /** Seconds an era swap takes. */
 const SWAP_SECONDS = 0.55;
@@ -49,11 +45,25 @@ export function Diorama({ spec, eraIndex, className }: DioramaProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const targetRef = useRef<THREE.Vector3 | null>(null);
   const orbitRef = useRef<OrbitState>({
-    theta: 0.85,
-    phi: 0.98,
-    radius: 42,
+    theta: spec.camera.theta,
+    phi: spec.camera.phi,
+    radius: spec.camera.radius,
     touched: false,
   });
+
+  // Framing is per city: a target fixed at the origin suits a peninsula and
+  // misses a river plain.
+  const limits = useMemo<OrbitLimits>(
+    () => ({
+      phiMin: PHI_MIN,
+      phiMax: PHI_MAX,
+      radiusMin: spec.camera.minRadius,
+      radiusMax: spec.camera.maxRadius,
+      panX: spec.camera.panX,
+      panZ: spec.camera.panZ,
+    }),
+    [spec.camera],
+  );
 
   // The live scene, rebuilt only when the city changes.
   const sceneRef = useRef<{
@@ -66,7 +76,7 @@ export function Diorama({ spec, eraIndex, className }: DioramaProps) {
     swap: Swap | null;
   } | null>(null);
 
-  useOrbitControls(canvasRef, targetRef, orbitRef, LIMITS);
+  useOrbitControls(canvasRef, targetRef, orbitRef, limits);
 
   // Build the scene for a city. Torn down and rebuilt only when the spec changes.
   useEffect(() => {
@@ -86,7 +96,11 @@ export function Diorama({ spec, eraIndex, className }: DioramaProps) {
     scene.fog = new THREE.Fog(palette.colour('fog'), 48, 130);
 
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 400);
-    const target = new THREE.Vector3(0, 2.2, 0);
+    const target = new THREE.Vector3(
+      spec.camera.target.x,
+      spec.camera.target.y,
+      spec.camera.target.z,
+    );
     targetRef.current = target;
 
     scene.add(new THREE.HemisphereLight(0xf2f4ee, 0xb9b2a1, 0.95));

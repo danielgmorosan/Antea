@@ -52,6 +52,13 @@ export function houses(THREE: Three, params: HousesParams, ctx: BuildContext): G
     if (inSuburb && params.suburb) {
       x = params.suburb.x + range(rand, -0.5, 0.5) * params.suburb.spreadX;
       z = params.suburb.z + range(rand, -0.5, 0.5) * params.suburb.spreadZ;
+    } else if (params.shape === 'radial') {
+      // sqrt keeps the sample uniform over the disc rather than crowding the
+      // centre, so the outskirts are as dense as the middle.
+      const angle = rand() * Math.PI * 2;
+      const radius = Math.sqrt(rand()) * params.extent;
+      x = origin.x + Math.cos(angle) * radius;
+      z = origin.z + Math.sin(angle) * radius;
     } else {
       x = origin.x - rand() * (params.extent + 6);
       z = origin.z + range(rand, -0.5, 0.5) * params.spreadZ;

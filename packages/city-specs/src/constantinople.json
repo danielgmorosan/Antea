@@ -108,6 +108,20 @@
       "rock": "rock"
     }
   },
+  "camera": {
+    "target": {
+      "x": 0,
+      "y": 2.2,
+      "z": 0
+    },
+    "radius": 42,
+    "minRadius": 16,
+    "maxRadius": 70,
+    "theta": 0.85,
+    "phi": 0.98,
+    "panX": [-34, 28],
+    "panZ": [-20, 20]
+  },
   "eras": [
     {
       "year": -667,
@@ -173,6 +187,7 @@
         }
       ],
       "houses": {
+        "shape": "sector",
         "count": 130,
         "extent": 6.2,
         "spreadZ": 15,
@@ -394,6 +409,7 @@
         }
       ],
       "houses": {
+        "shape": "sector",
         "count": 640,
         "extent": 14.5,
         "spreadZ": 15,
@@ -612,6 +628,7 @@
         }
       ],
       "houses": {
+        "shape": "sector",
         "count": 800,
         "extent": 16.4,
         "spreadZ": 15,
@@ -851,6 +868,7 @@
         }
       ],
       "houses": {
+        "shape": "sector",
         "count": 880,
         "extent": 17,
         "spreadZ": 15,

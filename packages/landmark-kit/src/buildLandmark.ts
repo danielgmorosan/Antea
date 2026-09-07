@@ -1,5 +1,7 @@
 import type { LandmarkPlacement } from '@antea/schema';
 import {
+  amphitheatre,
+  aqueduct,
   basilicaDome,
   column,
   hippodrome,
@@ -26,6 +28,10 @@ export function buildLandmark(
   switch (placement.builder) {
     case 'temple':
       return temple(THREE, { params: placement.params, at, ctx });
+    case 'amphitheatre':
+      return amphitheatre(THREE, { params: placement.params, at, ctx });
+    case 'aqueduct':
+      return aqueduct(THREE, { params: placement.params, at, ctx });
     case 'basilicaDome':
       return basilicaDome(THREE, { params: placement.params, at, ctx });
     case 'minaret':

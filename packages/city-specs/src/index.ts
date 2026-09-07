@@ -1,12 +1,15 @@
 import type { CitySpec } from '@antea/schema';
 import constantinopleJson from './constantinople.json';
+import romeJson from './rome.json';
 import { parseCitySpec } from './parse';
 
 export const constantinople: CitySpec = parseCitySpec(constantinopleJson);
+export const rome: CitySpec = parseCitySpec(romeJson);
 
 /** Every city we ship, keyed by slug. */
 export const citySpecs: Record<string, CitySpec> = {
   [constantinople.slug]: constantinople,
+  [rome.slug]: rome,
 };
 
 export function getCitySpec(slug: string): CitySpec | undefined {

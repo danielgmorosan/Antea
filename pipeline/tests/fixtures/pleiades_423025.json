@@ -1,0 +1,75 @@
+{
+  "title": "Roma",
+  "uri": "https://pleiades.stoa.org/places/423025",
+  "description": "The capital of the Roman Republic and Empire.",
+  "provenance": "Barrington Atlas: BAtlas 43 B2 Roma",
+  "placeTypes": ["urban", "settlement"],
+  "reprPoint": [12.491258174554883, 41.8899769864849],
+  "rights": "Copyright © The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "names": [
+    {
+      "romanized": "Roma, Rōma",
+      "attested": "Roma",
+      "language": "la",
+      "nameType": "geographic",
+      "start": -750,
+      "end": 640
+    },
+    {
+      "romanized": "Rome",
+      "attested": "Rome",
+      "language": "en",
+      "nameType": "geographic",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "Rhome, Rhṓmē, Rome",
+      "attested": "Ῥώμῃ",
+      "language": "grc",
+      "nameType": "geographic",
+      "start": -30,
+      "end": 300
+    },
+    {
+      "romanized": "Romē",
+      "attested": "ϩⲣⲱⲙⲏ",
+      "language": "cop",
+      "nameType": "geographic",
+      "start": null,
+      "end": null
+    },
+    {
+      "romanized": "Rom",
+      "attested": "Rom",
+      "language": "de",
+      "nameType": "geographic",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "Roma",
+      "attested": "Roma",
+      "language": "it",
+      "nameType": "geographic",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "Rome",
+      "attested": "罗马市",
+      "language": "zh",
+      "nameType": "geographic",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "Rūme",
+      "attested": "",
+      "language": "ota",
+      "nameType": "geographic",
+      "start": null,
+      "end": null
+    }
+  ]
+}

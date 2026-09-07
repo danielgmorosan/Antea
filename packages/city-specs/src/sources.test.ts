@@ -1,6 +1,6 @@
 import { SOURCE_KINDS, type CitySpec } from '@antea/schema';
 import { describe, expect, it } from 'vitest';
-import { constantinople } from './index';
+import { constantinople, listCities } from './index';
 import { parseCitySpec } from './parse';
 
 /**
@@ -10,7 +10,8 @@ import { parseCitySpec } from './parse';
  * invented facts, and that every claim points at a source. These are the
  * checks that keep that true as cities are added.
  */
-const CITIES: CitySpec[] = [constantinople];
+// Every city we ship, so adding one cannot skip validation.
+const CITIES: CitySpec[] = listCities();
 
 describe.each(CITIES)('$name sources', (city) => {
   const ids = new Set(city.sources.map((s) => s.id));

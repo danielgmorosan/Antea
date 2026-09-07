@@ -143,7 +143,6 @@ export function WorldGlobe({ cities, year }: { cities: GlobeCity[]; year: number
     };
     // The year is deliberately absent: it is applied by the effect below,
     // which rewrites filters instead of rebuilding the whole map.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cities, router]);
 
   useEffect(() => {
