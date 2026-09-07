@@ -182,7 +182,12 @@ export function Diorama({ spec, eraIndex, className }: DioramaProps) {
       }
       renderer.dispose();
     };
-  }, [spec]);
+    // Keyed on the city, not on the spec object identity: a re-render that
+    // hands down an equal but new spec must not tear down the WebGL context
+    // and rebuild the terrain. The spec fields read above are immutable for a
+    // given slug, so they cannot go stale.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spec.slug]);
 
   // Swap eras without rebuilding the scene or the terrain.
   useEffect(() => {

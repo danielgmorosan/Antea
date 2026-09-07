@@ -39,6 +39,11 @@ export function parseCitySpec(raw: unknown): CitySpec {
     sources.map((s) => requireString(asRecord(s, 'source')['id'], 'source.id')),
   );
 
+  const defaultEraYear = requireNumber(spec['defaultEraYear'], 'defaultEraYear');
+  if (!eras.some((e) => asRecord(e, 'era')['year'] === defaultEraYear)) {
+    throw new Error(`city spec: defaultEraYear ${defaultEraYear} does not match any era`);
+  }
+
   let previousYear = -Infinity;
   eras.forEach((rawEra, i) => {
     const era = asRecord(rawEra, `eras[${i}]`);

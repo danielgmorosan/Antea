@@ -12,7 +12,7 @@ export function Dossier({ era }: { era: EraSpec }) {
 
   return (
     <article className="glass absolute top-[86px] left-[26px] w-[330px] rounded-panel px-[26px] pt-6 pb-[22px]">
-      <p className="font-display text-[44px] leading-none font-medium tracking-[-0.01em]">
+      <p className="dossier-year font-display text-[44px] leading-none font-medium tracking-[-0.01em]">
         {era.yearLabel}
       </p>
       <p className="mt-1.5 font-display text-[17px] font-medium text-verdigris italic">

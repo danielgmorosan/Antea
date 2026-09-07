@@ -1,29 +1,15 @@
-import { getCitySpec, listCitySlugs } from '@antea/city-specs';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { CityView } from '@/components/diorama/CityView';
+import { defaultEra, eraHref, getCitySpec, listCitySlugs } from '@antea/city-specs';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 export function generateStaticParams() {
   return listCitySlugs().map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const spec = getCitySpec(slug);
-  if (!spec) return {};
-
-  const first = spec.eras[0];
-  const last = spec.eras[spec.eras.length - 1];
-  return {
-    title: spec.name,
-    description: `${spec.name} across ${spec.eras.length} eras, ${first?.yearLabel} to ${last?.yearLabel}.`,
-  };
-}
-
+/**
+ * Every place-era pairing has exactly one URL. A bare city path is an entry
+ * point for hand-typed links, so it redirects to the canonical era rather than
+ * rendering a second copy of it.
+ */
 export default async function CityPage({
   params,
 }: {
@@ -33,5 +19,5 @@ export default async function CityPage({
   const spec = getCitySpec(slug);
   if (!spec) notFound();
 
-  return <CityView spec={spec} initialEra={1} />;
+  permanentRedirect(eraHref(spec, defaultEra(spec)));
 }

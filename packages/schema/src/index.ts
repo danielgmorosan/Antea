@@ -370,5 +370,11 @@ export interface CitySpec {
   seed: number;
   terrain: TerrainSpec;
   eras: EraSpec[];
+  /**
+   * The era a visitor lands on when they open the city without naming one.
+   * Explicit rather than "the biggest era", so editorial can choose the era
+   * that introduces the place best.
+   */
+  defaultEraYear: number;
   sources: Source[];
 }

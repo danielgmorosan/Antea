@@ -21,10 +21,15 @@ export function listCities(): CitySpec[] {
   return Object.values(citySpecs);
 }
 
-/** Finds the era whose `year` matches, for `/city/[slug]/[year]` routes. */
-export function getEra(spec: CitySpec, year: number) {
-  return spec.eras.find((era) => era.year === year);
-}
-
+export {
+  defaultEra,
+  eraHref,
+  eraIndexBySlug,
+  eraSlug,
+  findEraBySlug,
+  parseEraSlug,
+} from './era';
 export { allLandmarks, parseCitySpec } from './parse';
+export { plannedCities } from './planned';
+export type { PlannedCity } from './planned';
 export type { CitySpec };

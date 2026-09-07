@@ -16,7 +16,14 @@ const archivo = Archivo({
   display: 'swap',
 });
 
+/**
+ * Absolute base for canonical and Open Graph URLs. Without it Next emits
+ * relative hrefs, which crawlers and link unfurlers cannot resolve.
+ */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Antea — the atlas of lost cities',
     template: '%s · Antea',

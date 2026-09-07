@@ -2,36 +2,57 @@
 
 import type { EraSpec } from '@antea/schema';
 
-/** The era rail. Keyboard operable: arrow keys step, tab reaches every stop. */
+export interface TimelineStop {
+  era: EraSpec;
+  href: string;
+}
+
+/**
+ * The era rail. Every stop is a real link to that place-era URL, so it is
+ * crawlable and middle-clickable; the click is intercepted for a smooth swap.
+ */
 export function Timeline({
-  eras,
+  stops,
   current,
   onSelect,
 }: {
-  eras: EraSpec[];
+  stops: TimelineStop[];
   current: number;
   onSelect: (index: number) => void;
 }) {
   return (
     <nav
       aria-label="Travel through time"
-      className="glass absolute bottom-[26px] left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-pill py-2.5 pr-[22px] pl-3"
+      className="timeline-rail glass absolute bottom-[26px] left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-pill py-2.5 pr-[22px] pl-3"
     >
       <ol className="flex items-center">
-        {eras.map((era, i) => {
+        {stops.map(({ era, href }, i) => {
           const active = i === current;
           return (
             <li key={era.year}>
-              <button
-                type="button"
-                aria-current={active ? 'step' : undefined}
-                onClick={() => onSelect(i)}
-                className="relative flex w-24 cursor-pointer flex-col items-center gap-[7px] py-1.5"
+              <a
+                href={href}
+                aria-current={active ? 'page' : undefined}
+                onClick={(e) => {
+                  // Let the browser handle new-tab and download intents.
+                  if (
+                    e.metaKey ||
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    e.altKey ||
+                    e.button !== 0
+                  ) {
+                    return;
+                  }
+                  e.preventDefault();
+                  onSelect(i);
+                }}
+                className="timeline-stop relative flex w-24 flex-col items-center gap-[7px] py-1.5 no-underline"
               >
                 {i > 0 ? (
                   <span
                     aria-hidden="true"
-                    className="absolute top-[11px] -left-12 h-0.5 w-24 bg-line"
+                    className="timeline-rule absolute top-[11px] -left-12 h-0.5 w-24 bg-line"
                   />
                 ) : null}
                 <span
@@ -49,7 +70,7 @@ export function Timeline({
                 >
                   {era.yearLabel}
                 </span>
-              </button>
+              </a>
             </li>
           );
         })}
