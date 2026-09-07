@@ -2,7 +2,7 @@
  * The contract every city spec is written against.
  *
  * Phase 1 skeleton: the shapes here are lifted from what
- * `prototype/palimpsest-globe.html` actually needs to render Constantinople.
+ * `prototype/antea-globe.html` actually needs to render Constantinople.
  * Task 2 of Phase 1 fills `packages/city-specs/constantinople.json` against it
  * and moves the prototype's hand-placed meshes into `landmarks`.
  */

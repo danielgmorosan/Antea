@@ -31,5 +31,5 @@ Requires Node >= 20.9 and pnpm 9.
 ## Where things stand
 
 Phase 1, task 1 (scaffold) is done. Task 2 — extracting
-`prototype/palimpsest-globe.html` into `landmark-kit` and `city-specs` — is next.
+`prototype/antea-globe.html` into `landmark-kit` and `city-specs` — is next.
 See `CLAUDE.md` for the full brief and phase order.

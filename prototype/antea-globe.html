@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Palimpsest — from the globe to the city</title>
+<title>Antea — from the globe to the city</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.0/maplibre-gl.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
@@ -214,7 +214,7 @@
 <div class="vignette"></div>
 
 <div class="brand">
-  <h1>Palimpsest</h1>
+  <h1>Antea</h1>
   <span>an atlas of lost cities</span>
 </div>
 <button class="back" id="backBtn">← back to the globe</button>
@@ -261,7 +261,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* ============================================================
-   PALIMPSEST — low-poly Constantinople across four eras
+   ANTEA — low-poly Constantinople across four eras
    ============================================================ */
 (function(){
 "use strict";
@@ -921,7 +921,7 @@ function initGlobe(){
   map.on("error", () => { if(!inCity && !map.loaded()) setView(true); });
   map.on("style.load", () => {
     try{ map.setProjection({type:"globe"}); }catch(_){}
-    /* repaint the demo style into the Palimpsest palette */
+    /* repaint the demo style into the Antea palette */
     for(const l of map.getStyle().layers){
       try{
         if(l.type === "background") map.setPaintProperty(l.id, "background-color", "#c3d5d3");

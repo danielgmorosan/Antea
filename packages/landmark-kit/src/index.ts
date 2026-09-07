@@ -6,6 +6,6 @@
  * hard Three.js dependency and the placement maths stays unit-testable.
  *
  * Phase 1 task 2 ports `terrain.ts` and `builders/` out of
- * `prototype/palimpsest-globe.html` into here.
+ * `prototype/antea-globe.html` into here.
  */
 export { mulberry32, pick, range, rangeInt } from './rng';

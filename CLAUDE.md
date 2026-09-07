@@ -1,10 +1,10 @@
-# CLAUDE.md — Palimpsest
+# CLAUDE.md — Antea
 
 Project context for Claude Code. Read this fully before making changes.
 
 ## What this is
 
-Palimpsest is an atlas of lost cities: a time-aware world map where users spin a
+Antea is an atlas of lost cities: a time-aware world map where users spin a
 globe, descend into flagship historical cities rendered as low-poly 3D dioramas,
 and travel through eras with a timeline — watching Byzantion become
 Constantinople become Kostantiniyye. Each place/era pairing has a "dossier":
@@ -15,10 +15,10 @@ sources), and every place-era being a crawlable URL (SEO is the growth engine).
 
 ## Current state
 
-- `prototype/palimpsest.html` — v1: self-contained Three.js diorama of
+- `prototype/antea.html` — v1 (not in this repo): self-contained Three.js diorama of
   Constantinople across 4 eras (667 BC → AD 1550). Procedural terrain, instanced
   houses, parametric landmarks, era transitions, glass UI, custom orbit controls.
-- `prototype/palimpsest-globe.html` — v2: adds a MapLibre GL globe view
+- `prototype/antea-globe.html` — v2: adds a MapLibre GL globe view
   (demotiles style repainted to our palette, spinning globe, city markers,
   fly-in descent to the diorama) and right-drag/two-finger panning.
 - `docs/architecture.md` — full stack reference. Follow it unless it conflicts

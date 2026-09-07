@@ -2,7 +2,7 @@ import { listCitySlugs } from '@antea/city-specs';
 
 /**
  * Scaffold placeholder. Phase 1 task 4 replaces this with the MapLibre globe
- * ported from `prototype/palimpsest-globe.html`.
+ * ported from `prototype/antea-globe.html`.
  */
 export default function HomePage() {
   const slugs = listCitySlugs();
