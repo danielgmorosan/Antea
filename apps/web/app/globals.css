@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Antea design tokens.
+
+   These are the whole system — do not improvise new ones (see CLAUDE.md).
+   Declared in @theme so each token is both a plain CSS variable
+   (var(--color-ink)) and a Tailwind utility (text-ink, bg-base, rounded-panel).
+   The 3D palette is NOT here: it lives in the city spec.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-base: #e9e6dd;
+  --color-ink: #22302f;
+  --color-ink-soft: #66756f;
+  --color-verdigris: #38756a;
+  --color-verdigris-soft: rgba(56, 117, 106, 0.14);
+
+  --color-glass: rgba(252, 251, 247, 0.68);
+  --color-glass-strong: rgba(252, 251, 247, 0.86);
+  --color-line: rgba(34, 48, 47, 0.14);
+
+  --radius-panel: 22px;
+  --radius-pill: 999px;
+
+  --blur-glass: 14px;
+  --blur-glass-strong: 18px;
+
+  --shadow-panel: 0 18px 50px rgba(34, 48, 47, 0.1);
+  --shadow-pill: 0 12px 36px rgba(34, 48, 47, 0.12);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-ui: var(--font-archivo), system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-verdigris);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* The one surface treatment in the system: frosted panel over the map. */
+  .glass {
+    background: var(--color-glass);
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(var(--blur-glass-strong));
+    -webkit-backdrop-filter: blur(var(--blur-glass-strong));
+    box-shadow: var(--shadow-panel);
+  }
+}
+
+/* Accessibility floor: idle drift and count-ups must stop here. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

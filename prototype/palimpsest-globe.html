@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Palimpsest — from the globe to the city</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.0/maplibre-gl.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#e9e6dd;
+    --glass:rgba(252,251,247,.68);
+    --glass-strong:rgba(252,251,247,.86);
+    --ink:#22302f;
+    --ink-soft:#66756f;
+    --verdigris:#38756a;
+    --verdigris-soft:rgba(56,117,106,.14);
+    --line:rgba(34,48,47,.14);
+    --radius-panel:22px;
+    --radius-pill:999px;
+    --font-display:"Fraunces", Georgia, serif;
+    --font-ui:"Archivo", system-ui, -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:var(--font-ui);
+    background:var(--base);
+    color:var(--ink);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  #scene{position:fixed;inset:0;display:block;cursor:grab}
+  #scene.dragging{cursor:grabbing}
+  .vignette{
+    position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 38%, transparent 55%, rgba(34,48,47,.10) 100%);
+  }
+
+  /* ---------- top chrome ---------- */
+  .brand{
+    position:fixed;top:22px;left:26px;display:flex;align-items:baseline;gap:12px;z-index:5;
+  }
+  .brand h1{
+    font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:.01em;
+  }
+  .brand span{font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+
+  .city-pill{
+    position:fixed;top:18px;right:22px;z-index:6;
+  }
+  .city-pill button{
+    font-family:var(--font-ui);font-size:13.5px;font-weight:500;color:var(--ink);
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-pill);
+    padding:10px 18px;display:flex;align-items:center;gap:9px;cursor:pointer;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 6px 24px rgba(34,48,47,.08);
+  }
+  .city-pill button .dot{width:7px;height:7px;border-radius:50%;background:var(--verdigris)}
+  .city-pill button svg{transition:transform .25s ease}
+  .city-pill.open button svg{transform:rotate(180deg)}
+  .city-menu{
+    margin-top:8px;background:var(--glass-strong);border:1px solid var(--line);
+    border-radius:16px;overflow:hidden;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    box-shadow:0 14px 40px rgba(34,48,47,.14);
+    display:none;min-width:218px;
+  }
+  .city-pill.open .city-menu{display:block}
+  .city-menu div{
+    padding:11px 16px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:18px;
+  }
+  .city-menu div+div{border-top:1px solid var(--line)}
+  .city-menu .now{font-weight:600}
+  .city-menu .soon{color:var(--ink-soft)}
+  .city-menu .tag{
+    font-size:10.5px;color:var(--verdigris);background:var(--verdigris-soft);
+    padding:3px 8px;border-radius:var(--radius-pill);
+  }
+
+  /* ---------- dossier panel ---------- */
+  .dossier{
+    position:fixed;left:26px;top:86px;width:330px;z-index:4;
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-panel);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 18px 50px rgba(34,48,47,.10);
+    padding:24px 26px 22px;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .dossier.swap{opacity:0;transform:translateY(6px)}
+  .dossier .era-year{
+    font-family:var(--font-display);font-size:44px;font-weight:500;line-height:1;letter-spacing:-.01em;
+  }
+  .dossier .era-name{
+    font-family:var(--font-display);font-size:17px;font-weight:500;color:var(--verdigris);
+    margin-top:6px;font-style:italic;
+  }
+  .dossier .facts{
+    display:flex;gap:0;margin:18px 0 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .dossier .fact{flex:1;padding:12px 0}
+  .dossier .fact+.fact{border-left:1px solid var(--line);padding-left:16px}
+  .dossier .fact b{
+    display:block;font-family:var(--font-display);font-size:19px;font-weight:600;
+  }
+  .dossier .fact i{font-style:normal;font-size:11px;color:var(--ink-soft);letter-spacing:.02em}
+  .dossier p{font-size:13.5px;line-height:1.65;color:var(--ink)}
+  .dossier .seeing{
+    margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--verdigris-soft);
+    font-size:12.5px;line-height:1.6;color:var(--ink);
+  }
+  .dossier .seeing strong{color:var(--verdigris);font-weight:600}
+  .dossier .src{
+    margin-top:14px;font-size:11px;color:var(--ink-soft);line-height:1.6;
+  }
+
+  /* ---------- timeline ---------- */
+  .timeline{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:5;
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-pill);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    box-shadow:0 12px 36px rgba(34,48,47,.12);
+    display:flex;align-items:center;gap:8px;padding:10px 22px 10px 12px;
+  }
+  .play{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;
+    color:var(--ink);cursor:pointer;display:grid;place-items:center;flex:none;
+  }
+  .play:hover{background:var(--verdigris-soft)}
+  .rail{display:flex;align-items:center}
+  .stop{
+    background:none;border:none;cursor:pointer;font-family:var(--font-ui);
+    display:flex;flex-direction:column;align-items:center;gap:7px;
+    padding:6px 0;width:96px;position:relative;
+  }
+  .stop::before{
+    content:"";position:absolute;top:11px;left:-48px;width:96px;height:2px;background:var(--line);
+  }
+  .stop:first-child::before{display:none}
+  .stop .node{
+    width:12px;height:12px;border-radius:50%;background:var(--base);
+    border:2px solid var(--ink-soft);position:relative;z-index:1;transition:all .25s ease;
+  }
+  .stop .yr{font-size:11.5px;color:var(--ink-soft);font-weight:500;transition:color .25s ease}
+  .stop:hover .node{border-color:var(--verdigris)}
+  .stop.active .node{background:var(--verdigris);border-color:var(--verdigris);transform:scale(1.25)}
+  .stop.active .yr{color:var(--ink);font-weight:600}
+
+  /* ---------- hint ---------- */
+  .hint{
+    position:fixed;right:26px;bottom:30px;z-index:4;font-size:12px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:14px;
+  }
+  .hint span{display:flex;align-items:center;gap:6px}
+  .hint kbd{
+    font-family:var(--font-ui);font-size:10.5px;border:1px solid var(--line);border-radius:6px;
+    padding:2px 7px;background:var(--glass);
+  }
+
+  :focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:8px}
+
+  /* ---------- globe / city view switching ---------- */
+  #globe{position:fixed;inset:0;opacity:1;transition:opacity .7s ease}
+  body.view-city #globe{opacity:0;pointer-events:none}
+  #scene{opacity:0;pointer-events:none;transition:opacity .7s ease}
+  body.view-city #scene{opacity:1;pointer-events:auto}
+  body.view-globe .dossier,
+  body.view-globe .timeline,
+  body.view-globe .city-pill,
+  body.view-globe .back{display:none}
+  .back{
+    position:fixed;top:58px;left:26px;z-index:6;
+    font-family:var(--font-ui);font-size:12.5px;font-weight:500;color:var(--ink);
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-pill);
+    padding:8px 15px;cursor:pointer;display:flex;align-items:center;gap:7px;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:0 6px 20px rgba(34,48,47,.08);
+  }
+  .back:hover{background:var(--glass-strong)}
+  .m-city{
+    display:flex;align-items:center;gap:8px;white-space:nowrap;
+    background:var(--glass-strong);border:1px solid var(--line);border-radius:var(--radius-pill);
+    padding:7px 14px 7px 10px;font:500 12.5px var(--font-ui);color:var(--ink);cursor:pointer;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:0 8px 24px rgba(34,48,47,.16);transition:transform .2s ease;
+  }
+  .m-city:hover{transform:scale(1.07)}
+  .m-city .dot{width:8px;height:8px;border-radius:50%;background:var(--verdigris);flex:none}
+  .m-city.soon{opacity:.55;cursor:default}
+  .m-city.soon .dot{background:var(--ink-soft)}
+  .m-city.soon:hover{transform:none}
+  .maplibregl-ctrl-attrib{font-size:10px;opacity:.7}
+
+  @media (max-width:820px){
+    .dossier{
+      left:12px;right:12px;width:auto;top:auto;bottom:104px;
+      max-height:34vh;overflow-y:auto;padding:18px 20px 16px;
+    }
+    .dossier .era-year{font-size:34px}
+    .hint{display:none}
+    .timeline{bottom:14px;padding:8px 14px 8px 8px}
+    .stop{width:70px}
+    .stop::before{left:-35px;width:70px}
+    .brand span{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+  }
+</style>
+</head>
+<body class="view-globe">
+<div id="globe"></div>
+<canvas id="scene"></canvas>
+<div class="vignette"></div>
+
+<div class="brand">
+  <h1>Palimpsest</h1>
+  <span>an atlas of lost cities</span>
+</div>
+<button class="back" id="backBtn">← back to the globe</button>
+
+<div class="city-pill" id="cityPill">
+  <button id="cityBtn" aria-haspopup="true" aria-expanded="false">
+    <span class="dot"></span> Constantinople
+    <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="city-menu" role="menu">
+    <div class="now"><span>Constantinople</span><span class="tag">exploring</span></div>
+    <div class="soon"><span>Rome</span><span class="tag">soon</span></div>
+    <div class="soon"><span>Babylon</span><span class="tag">soon</span></div>
+    <div class="soon"><span>Tenochtitlan</span><span class="tag">soon</span></div>
+  </div>
+</div>
+
+<aside class="dossier" id="dossier" aria-live="polite">
+  <div class="era-year" id="dYear"></div>
+  <div class="era-name" id="dName"></div>
+  <div class="facts">
+    <div class="fact"><b id="dPop">—</b><i>people, est.</i></div>
+    <div class="fact"><b id="dRule" style="font-size:14px;line-height:1.35;padding-top:3px"></b><i>who rules</i></div>
+  </div>
+  <p id="dStory"></p>
+  <div class="seeing" id="dSeeing"></div>
+  <div class="src">Borders &amp; population from Pleiades, OpenHistoricalMap and period chronicles. Reconstruction is an artistic approximation.</div>
+</aside>
+
+<div class="timeline" role="tablist" aria-label="Choose an era">
+  <button class="play" id="playBtn" aria-label="Play through the eras">
+    <svg id="playIco" width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M1 1.5v11l10-5.5z"/></svg>
+  </button>
+  <div class="rail" id="rail"></div>
+</div>
+
+<div class="hint" id="hint">
+  <span><kbd>drag</kbd> spin</span>
+  <span><kbd>scroll</kbd> zoom</span>
+  <span>pick a city to descend</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.0/maplibre-gl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================
+   PALIMPSEST — low-poly Constantinople across four eras
+   ============================================================ */
+(function(){
+"use strict";
+
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- era data ---------- */
+const ERAS = [
+  {
+    year:"667 BC", name:"Byzantion, the colony",
+    pop:5000, popLabel:"~5,000",
+    ruler:"Megarian colonists",
+    story:"Greek settlers from Megara, told by the Delphic oracle to build “opposite the land of the blind,” plant a town on the hill at the mouth of the Bosporus. It is little more than an acropolis, a harbor and fishing nets — but it sits on the one strait every grain ship from the Black Sea must pass.",
+    seeing:"<strong>On the map</strong> — a temple on the acropolis, a timber palisade, and a scatter of houses above the Golden Horn. Everything west of the hill is still fields.",
+    extent:6.2, houses:130, wall:"palisade", galata:false, ships:2,
+    marks:["temple"]
+  },
+  {
+    year:"AD 537", name:"Constantinople, Justinian's capital",
+    pop:450000, popLabel:"~450,000",
+    ruler:"Justinian I, Roman Emperor",
+    story:"Two centuries after Constantine refounded the city, Justinian consecrates the Hagia Sophia — the largest building on Earth. “Solomon, I have outdone thee.” Half a million people live between the Theodosian double walls and the sea, fed by Egyptian grain and defended by the empire's whole navy.",
+    seeing:"<strong>On the map</strong> — the new Hagia Sophia beside the Hippodrome and Great Palace, the Column of Constantine on the main avenue, and the triple land walls far to the west.",
+    extent:14.5, houses:640, wall:"theodosian", galata:false, ships:6,
+    marks:["hagia","hippodrome","column","palace"]
+  },
+  {
+    year:"AD 1200", name:"The Queen of Cities",
+    pop:400000, popLabel:"~400,000",
+    ruler:"Alexios III Angelos, Byzantine Emperor",
+    story:"To visiting crusaders it is simply the greatest city in Christendom — “those who had never seen her could not believe.” Trade fills the Golden Horn; the Genoese and Venetian quarters crowd the shore. Four years from now the Fourth Crusade will sack it all, a wound the city never fully heals.",
+    seeing:"<strong>On the map</strong> — the city at its medieval peak, the merchant suburb of Galata growing across the Golden Horn, and harbors busy on every shore.",
+    extent:16.4, houses:800, wall:"theodosian", galata:true, ships:9,
+    marks:["hagia","hippodrome","column","palace"]
+  },
+  {
+    year:"AD 1550", name:"Kostantiniyye",
+    pop:660000, popLabel:"~660,000",
+    ruler:"Süleyman the Magnificent, Ottoman Sultan",
+    story:"A century after the conquest, the city is the largest in Europe again — now facing Mecca. Sinan's domes and minarets remake the skyline; Topkapı Palace spreads over the old acropolis where the Greek colonists first landed two thousand years before. The palimpsest keeps being rewritten.",
+    seeing:"<strong>On the map</strong> — minarets rise beside the Hagia Sophia, the Süleymaniye crowns the third hill, the Galata Tower watches the Horn, and Topkapı gardens cover the point.",
+    extent:17, houses:880, wall:"theodosian", galata:true, ships:12,
+    marks:["hagiaMosque","suleymaniye","column","topkapi","galataTower"]
+  }
+];
+
+/* ---------- palette ---------- */
+const C = {
+  sky:0xe7ebe3, fog:0xdfe4dc,
+  water:0x9fc0bf, shore:0xcfc3a2, grass:0x9fae87, rock:0xc9c3b0,
+  houseA:0xd9cdb4, houseB:0xcabfa9, houseC:0xe0d6c0,
+  roof:0xb96f4b, roofB:0xa9613f,
+  stone:0xd6cfbc, marble:0xe6ddcc, domeVerd:0x6fa192, domeLead:0x8b9297,
+  cypress:0x4c6b52, wallStone:0xbfb6a0, wood:0x8a6f52, sail:0xefe9da
+};
+
+/* ---------- renderer / scene ---------- */
+const canvas = document.getElementById("scene");
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(C.sky);
+scene.fog = new THREE.Fog(C.fog, 48, 130);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 400);
+
+const hemi = new THREE.HemisphereLight(0xf2f4ee, 0xb9b2a1, 0.95);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff4e0, 0.85);
+sun.position.set(-30, 42, 26);
+scene.add(sun);
+
+/* ---------- custom orbit controls ---------- */
+const TARGET = new THREE.Vector3(0, 2.2, 0);
+let theta = 0.85, phi = 0.98, radius = 42;
+let userTouched = false;
+const PHI_MIN = 0.28, PHI_MAX = 1.28, R_MIN = 16, R_MAX = 70;
+
+function applyCamera(){
+  camera.position.set(
+    TARGET.x + radius * Math.sin(phi) * Math.cos(theta),
+    TARGET.y + radius * Math.cos(phi),
+    TARGET.z + radius * Math.sin(phi) * Math.sin(theta)
+  );
+  camera.lookAt(TARGET);
+}
+
+let dragging = false, px = 0, py = 0;
+canvas.addEventListener("contextmenu", e => e.preventDefault());
+function panBy(dx, dy){
+  const k = radius * 0.0011;
+  const rx = Math.sin(theta),  rz = -Math.cos(theta);   // screen-right on ground
+  const fx = -Math.cos(theta), fz = -Math.sin(theta);   // screen-up on ground
+  TARGET.x += (-dx * rx - dy * fx) * k;
+  TARGET.z += (-dx * rz - dy * fz) * k;
+  TARGET.x = Math.min(28, Math.max(-34, TARGET.x));
+  TARGET.z = Math.min(20, Math.max(-20, TARGET.z));
+}
+canvas.addEventListener("pointerdown", e => {
+  dragging = true; userTouched = true;
+  px = e.clientX; py = e.clientY;
+  canvas.classList.add("dragging");
+  canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener("pointermove", e => {
+  if(!dragging) return;
+  const dx = e.clientX - px, dy = e.clientY - py;
+  if((e.buttons & 2) || e.shiftKey){
+    panBy(dx, dy);
+  }else{
+    theta += dx * 0.0052;
+    phi   -= dy * 0.0042;
+    phi = Math.min(PHI_MAX, Math.max(PHI_MIN, phi));
+  }
+  px = e.clientX; py = e.clientY;
+});
+canvas.addEventListener("pointerup", e => {
+  dragging = false;
+  canvas.classList.remove("dragging");
+  try{ canvas.releasePointerCapture(e.pointerId); }catch(_){}
+});
+canvas.addEventListener("wheel", e => {
+  e.preventDefault(); userTouched = true;
+  radius = Math.min(R_MAX, Math.max(R_MIN, radius + e.deltaY * 0.035));
+}, {passive:false});
+
+/* pinch zoom + two-finger pan */
+let pinchD = 0, pinchX = 0, pinchY = 0;
+canvas.addEventListener("touchstart", e => {
+  if(e.touches.length === 2){
+    pinchD = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    pinchX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    pinchY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+  }
+}, {passive:true});
+canvas.addEventListener("touchmove", e => {
+  if(e.touches.length === 2){
+    const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+    radius = Math.min(R_MAX, Math.max(R_MIN, radius - (d - pinchD) * 0.06));
+    panBy(cx - pinchX, cy - pinchY);
+    pinchD = d; pinchX = cx; pinchY = cy; userTouched = true;
+    dragging = false;   // don't orbit while two fingers are down
+  }
+}, {passive:true});
+
+/* ---------- terrain ---------- */
+const TIP = {x:9, z:1.2};                 // Seraglio point
+function blob(x, z, cx, cz, rx, rz){
+  const d = Math.pow((x - cx)/rx, 2) + Math.pow((z - cz)/rz, 2);
+  const t = 1 - Math.min(1, d);
+  return t * t * (3 - 2 * t);            // smoothstep falloff
+}
+function landMask(x, z){
+  const pen = blob(x, z, -6, 2.4, 19.5, 8.6);          // main peninsula
+  const gal = blob(x, z, 7.4, -9.6, 5.6, 4.8) * 0.9;   // Galata
+  return Math.max(pen, gal);
+}
+function landH(x, z){
+  const m = landMask(x, z);
+  if(m <= 0) return 0;
+  const n = Math.sin(x * 0.55) * Math.cos(z * 0.62) * 0.28
+          + Math.sin(x * 1.6 + z * 1.25) * 0.12;
+  let h = m * 2.7 + n * Math.min(1, m * 2.4);
+  h += 1.5 * Math.exp(-((x - 8.2)**2 + (z - 1.4)**2) / 14) * Math.sqrt(m);   // acropolis hill
+  h += 0.8  * Math.exp(-((x + 2 )**2 + (z + 1  )**2) / 14) * m;   // third hill
+  return Math.max(0, h);
+}
+const WATER_Y = 0.62;
+function onLand(x, z){ return landH(x, z) > WATER_Y + 0.22; }
+function groundY(x, z){ return Math.max(WATER_Y, landH(x, z)); }
+
+(function buildTerrain(){
+  const W = 96, D = 66, SX = 110, SZ = 80;
+  const geo = new THREE.PlaneGeometry(SX, SZ, W, D);
+  geo.rotateX(-Math.PI / 2);
+  const pos = geo.attributes.position;
+  const colors = [];
+  const cWater = new THREE.Color(C.water), cShore = new THREE.Color(C.shore),
+        cGrass = new THREE.Color(C.grass), cRock = new THREE.Color(C.rock);
+  const tmp = new THREE.Color();
+  for(let i = 0; i < pos.count; i++){
+    const x = pos.getX(i), z = pos.getZ(i);
+    const h = landH(x, z);
+    pos.setY(i, h);
+    if(h < WATER_Y - 0.12) tmp.copy(cWater).offsetHSL(0, 0, (Math.random() - 0.5) * 0.015);
+    else if(h < WATER_Y + 0.35) tmp.copy(cShore);
+    else if(h < 2.1) tmp.copy(cGrass).lerp(cRock, (h - 0.9) / 2.6);
+    else tmp.copy(cRock);
+    colors.push(tmp.r, tmp.g, tmp.b);
+  }
+  geo.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+  geo.computeVertexNormals();
+  const mat = new THREE.MeshLambertMaterial({vertexColors:true, flatShading:true});
+  scene.add(new THREE.Mesh(geo, mat));
+
+  const wgeo = new THREE.PlaneGeometry(SX * 1.4, SZ * 1.4, 1, 1);
+  wgeo.rotateX(-Math.PI / 2);
+  const water = new THREE.Mesh(wgeo, new THREE.MeshLambertMaterial({
+    color:C.water, transparent:true, opacity:0.92
+  }));
+  water.position.y = WATER_Y;
+  scene.add(water);
+})();
+
+/* ---------- shared low-poly pieces ---------- */
+const M = {};
+function mat(color){
+  const k = "m" + color;
+  if(!M[k]) M[k] = new THREE.MeshLambertMaterial({color, flatShading:true});
+  return M[k];
+}
+function box(w, h, d, color){ return new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color)); }
+function cyl(rt, rb, h, color, seg){ return new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 8), mat(color)); }
+function cone(r, h, color, seg){ return new THREE.Mesh(new THREE.ConeGeometry(r, h, seg || 4), mat(color)); }
+function dome(r, color, squash){
+  const g = new THREE.SphereGeometry(r, 10, 7, 0, Math.PI * 2, 0, Math.PI / 2);
+  const m = new THREE.Mesh(g, mat(color));
+  m.scale.y = squash || 0.78;
+  return m;
+}
+function place(mesh, x, z, yOff){
+  mesh.position.set(x, groundY(x, z) + (yOff || 0), z);
+  return mesh;
+}
+
+/* ---------- landmark builders ---------- */
+const EXCL = [];   // exclusion circles for house placement, refreshed per era
+function excl(x, z, r){ EXCL.push({x, z, r}); }
+
+function buildTemple(g){
+  const x = 8.4, z = 1.0;
+  const grp = new THREE.Group();
+  const base = box(2.6, 0.35, 1.7, C.marble); base.position.y = 0.18; grp.add(base);
+  for(let i = 0; i < 5; i++){
+    for(const s of [-1, 1]){
+      const c = cyl(0.09, 0.11, 0.9, C.marble, 6);
+      c.position.set(-1 + i * 0.5, 0.8, s * 0.6);
+      grp.add(c);
+    }
+  }
+  const roof = cone(1.65, 0.65, C.roof, 4);
+  roof.rotation.y = Math.PI / 4; roof.scale.z = 0.62; roof.position.y = 1.55;
+  grp.add(roof);
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 2.6);
+}
+
+function buildHagia(g, mosque){
+  const x = 7.6, z = 1.4;
+  const grp = new THREE.Group();
+  const base = box(3.4, 1.5, 2.5, mosque ? C.stone : C.marble); base.position.y = 0.75; grp.add(base);
+  const up = box(2.2, 0.8, 1.8, mosque ? C.stone : C.marble); up.position.y = 1.9; grp.add(up);
+  const dm = dome(1.18, mosque ? C.domeLead : C.domeVerd, 0.72); dm.position.y = 2.3; grp.add(dm);
+  for(const s of [-1, 1]){
+    const hd = dome(0.72, mosque ? C.domeLead : C.domeVerd, 0.7);
+    hd.position.set(s * 1.55, 1.7, 0); grp.add(hd);
+  }
+  for(const sx of [-1, 1]) for(const sz of [-1, 1]){
+    const t = box(0.5, 1.9, 0.5, mosque ? C.stone : C.marble);
+    t.position.set(sx * 1.65, 0.95, sz * 1.25); grp.add(t);
+  }
+  if(mosque){
+    for(const sx of [-1, 1]) for(const sz of [-1, 1]){
+      const m1 = cyl(0.09, 0.12, 3.4, C.marble, 6);
+      m1.position.set(sx * 2.1, 1.7, sz * 1.6); grp.add(m1);
+      const cap = cone(0.16, 0.55, C.domeLead, 6);
+      cap.position.set(sx * 2.1, 3.6, sz * 1.6); grp.add(cap);
+    }
+  }
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 3.2);
+}
+
+function buildSuleymaniye(g){
+  const x = -2.2, z = -1.4;
+  const grp = new THREE.Group();
+  const base = box(2.6, 1.2, 2.1, C.stone); base.position.y = 0.6; grp.add(base);
+  const dm = dome(1.0, C.domeLead, 0.74); dm.position.y = 1.75; grp.add(dm);
+  for(const s of [-1, 1]){
+    const hd = dome(0.55, C.domeLead, 0.7); hd.position.set(0, 1.35, s * 1.15); grp.add(hd);
+  }
+  for(const sx of [-1, 1]){
+    const m1 = cyl(0.08, 0.11, 3.8, C.marble, 6);
+    m1.position.set(sx * 1.7, 1.9, 0.9); grp.add(m1);
+    const cap = cone(0.15, 0.5, C.domeLead, 6);
+    cap.position.set(sx * 1.7, 4.05, 0.9); grp.add(cap);
+  }
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 2.8);
+}
+
+function buildHippodrome(g){
+  const x = 5.2, z = 3.6;
+  const grp = new THREE.Group();
+  grp.rotation.y = -0.25;
+  const track = box(4.6, 0.25, 1.9, C.shore); track.position.y = 0.12; grp.add(track);
+  for(const s of [-1, 1]){
+    const stand = box(4.2, 0.7, 0.35, C.stone);
+    stand.position.set(-0.2, 0.5, s * 1.05); grp.add(stand);
+  }
+  const curve = cyl(1.05, 1.05, 0.7, C.stone, 10);
+  curve.scale.z = 0.9; curve.position.set(-2.4, 0.5, 0); grp.add(curve);
+  const ob = box(0.16, 1.5, 0.16, C.marble); ob.position.set(0.4, 0.95, 0); grp.add(ob);
+  const obTip = cone(0.14, 0.3, C.marble, 4); obTip.position.set(0.4, 1.85, 0); grp.add(obTip);
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 3.4);
+}
+
+function buildColumn(g){
+  const x = 0.6, z = 2.0;
+  const c = cyl(0.16, 0.2, 2.6, C.roof, 8);
+  place(c, x, z, 1.3); g.add(c);
+  const s = new THREE.Mesh(new THREE.SphereGeometry(0.24, 6, 5), mat(C.domeVerd));
+  place(s, x, z, 2.75); g.add(s);
+  excl(x, z, 1.0);
+}
+
+function buildPalace(g){
+  const x = 7.2, z = 3.6;
+  const grp = new THREE.Group();
+  const a = box(2.0, 1.0, 1.4, C.marble); a.position.set(0, 0.5, 0); grp.add(a);
+  const b = box(1.2, 1.4, 1.0, C.stone);  b.position.set(1.2, 0.7, 0.9); grp.add(b);
+  const d1 = dome(0.5, C.domeVerd, 0.7);  d1.position.set(0, 1.0, 0); grp.add(d1);
+  const c2 = box(1.3, 0.8, 1.6, C.marble); c2.position.set(-1.3, 0.4, 0.7); grp.add(c2);
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 2.6);
+}
+
+function buildTopkapi(g){
+  const x = 9.0, z = 0.6;
+  const grp = new THREE.Group();
+  for(let i = 0; i < 4; i++){
+    const p = box(0.9 + Math.random() * 0.5, 0.55, 0.8, C.stone);
+    p.position.set((Math.random() - 0.5) * 2.4, 0.28, (Math.random() - 0.5) * 2.2);
+    p.rotation.y = Math.random() * 0.8;
+    grp.add(p);
+    const r = cone(0.55, 0.4, C.domeLead, 4);
+    r.rotation.y = p.rotation.y + Math.PI / 4;
+    r.position.set(p.position.x, 0.75, p.position.z);
+    grp.add(r);
+  }
+  place(grp, x, z, 0); g.add(grp);
+  excl(x, z, 2.4);
+}
+
+function buildGalataTower(g){
+  const x = 7.4, z = -9.6;
+  const t = cyl(0.42, 0.5, 2.6, C.wallStone, 9);
+  place(t, x, z, 1.3); g.add(t);
+  const cap = cone(0.55, 0.9, C.roofB, 9);
+  place(cap, x, z, 3.0); g.add(cap);
+  excl(x, z, 1.2);
+}
+
+/* ---------- walls ---------- */
+function buildPalisade(g){
+  const grp = new THREE.Group();
+  const N = 26;
+  for(let i = 0; i <= N; i++){
+    const a = -1.85 + (i / N) * 3.7;                    // arc facing west
+    const x = TIP.x - 5.6 * Math.cos(a * 0.55 + 0.35) - 0.4;
+    const z = TIP.z + 5.4 * Math.sin(a);
+    if(!onLand(x, z)) continue;
+    const p = cyl(0.07, 0.09, 0.7, C.wood, 5);
+    place(p, x, z, 0.35); grp.add(p);
+  }
+  g.add(grp);
+}
+function buildTheodosian(g){
+  const grp = new THREE.Group();
+  const N = 15;
+  let prev = null;
+  for(let i = 0; i <= N; i++){
+    const t = i / N;
+    const z = -5.2 + t * 15.4;
+    const x = -13.2 - Math.sin(t * Math.PI) * 2.2;
+    if(!onLand(x, z)){ prev = null; continue; }
+    const pt = {x, z};
+    if(prev){
+      const mx = (prev.x + x) / 2, mz = (prev.z + z) / 2;
+      const len = Math.hypot(x - prev.x, z - prev.z);
+      const seg = box(len + 0.12, 0.95, 0.45, C.wallStone);
+      seg.position.set(mx, groundY(mx, mz) + 0.48, mz);
+      seg.rotation.y = -Math.atan2(z - prev.z, x - prev.x);
+      grp.add(seg);
+    }
+    if(i % 2 === 0){
+      const tw = box(0.75, 1.55, 0.75, C.wallStone);
+      tw.position.set(x, groundY(x, z) + 0.78, z);
+      grp.add(tw);
+      const cap = cone(0.55, 0.4, C.roofB, 4);
+      cap.rotation.y = Math.PI / 4;
+      cap.position.set(x, groundY(x, z) + 1.75, z);
+      grp.add(cap);
+    }
+    prev = pt;
+  }
+  g.add(grp);
+}
+
+/* ---------- houses, trees, ships (instanced) ---------- */
+const houseGeo = new THREE.BoxGeometry(1, 1, 1);
+houseGeo.translate(0, 0.5, 0);
+const roofGeo = new THREE.ConeGeometry(0.78, 0.55, 4);
+roofGeo.translate(0, 0.27, 0);
+const treeGeo = new THREE.ConeGeometry(0.32, 1.25, 5);
+treeGeo.translate(0, 0.62, 0);
+
+function scatterCity(g, era){
+  const bodies = [
+    new THREE.InstancedMesh(houseGeo, mat(C.houseA), era.houses),
+    new THREE.InstancedMesh(houseGeo, mat(C.houseB), era.houses),
+    new THREE.InstancedMesh(houseGeo, mat(C.houseC), era.houses)
+  ];
+  const roofs = new THREE.InstancedMesh(roofGeo, mat(C.roof), era.houses);
+  const roofs2 = new THREE.InstancedMesh(roofGeo, mat(C.roofB), era.houses);
+  const counts = [0, 0, 0]; let rc = 0, rc2 = 0;
+  const dummy = new THREE.Object3D();
+
+  let placed = 0, guard = 0;
+  while(placed < era.houses && guard < era.houses * 40){
+    guard++;
+    const onGalata = era.galata && Math.random() < 0.16;
+    let x, z;
+    if(onGalata){
+      x = 7.4 + (Math.random() - 0.5) * 7.5;
+      z = -9.6 + (Math.random() - 0.5) * 6.5;
+    }else{
+      x = TIP.x - Math.random() * (era.extent + 6);
+      z = TIP.z + (Math.random() - 0.5) * 15;
+    }
+    if(!onLand(x, z)) continue;
+    if(!onGalata){
+      const d = Math.hypot(x - TIP.x, z - TIP.z);
+      if(d > era.extent + Math.random() * 1.2) continue;
+      if(era.wall === "theodosian" && x < -13.0) continue;
+    }
+    let blocked = false;
+    for(const e of EXCL){
+      if(Math.hypot(x - e.x, z - e.z) < e.r){ blocked = true; break; }
+    }
+    if(blocked) continue;
+
+    const s = 0.42 + Math.random() * 0.5;
+    const h = 0.35 + Math.random() * 0.55;
+    const rot = Math.random() * Math.PI;
+    const y = groundY(x, z);
+
+    dummy.position.set(x, y, z);
+    dummy.rotation.set(0, rot, 0);
+    dummy.scale.set(s, h, s * (0.8 + Math.random() * 0.4));
+    dummy.updateMatrix();
+    const bi = Math.floor(Math.random() * 3);
+    bodies[bi].setMatrixAt(counts[bi]++, dummy.matrix);
+
+    dummy.position.y = y + h;
+    dummy.scale.set(s * 1.12, 0.5 + Math.random() * 0.35, s * 1.12);
+    dummy.rotation.y = rot + Math.PI / 4;
+    dummy.updateMatrix();
+    if(Math.random() < 0.75) roofs.setMatrixAt(rc++, dummy.matrix);
+    else roofs2.setMatrixAt(rc2++, dummy.matrix);
+    placed++;
+  }
+  bodies.forEach((b, i) => { b.count = counts[i]; b.instanceMatrix.needsUpdate = true; g.add(b); });
+  roofs.count = rc; roofs.instanceMatrix.needsUpdate = true; g.add(roofs);
+  roofs2.count = rc2; roofs2.instanceMatrix.needsUpdate = true; g.add(roofs2);
+
+  /* cypress */
+  const nT = Math.round(40 + era.extent * 4);
+  const trees = new THREE.InstancedMesh(treeGeo, mat(C.cypress), nT);
+  let tc = 0, tg = 0;
+  while(tc < nT && tg < nT * 30){
+    tg++;
+    const x = TIP.x - Math.random() * 30 + 3;
+    const z = TIP.z + (Math.random() - 0.5) * 20;
+    if(!onLand(x, z)) continue;
+    let blocked = false;
+    for(const e of EXCL){ if(Math.hypot(x - e.x, z - e.z) < e.r){ blocked = true; break; } }
+    if(blocked) continue;
+    const s = 0.7 + Math.random() * 0.8;
+    dummy.position.set(x, groundY(x, z), z);
+    dummy.rotation.set(0, Math.random() * Math.PI, 0);
+    dummy.scale.set(s, s * (0.9 + Math.random() * 0.5), s);
+    dummy.updateMatrix();
+    trees.setMatrixAt(tc++, dummy.matrix);
+  }
+  trees.count = tc; trees.instanceMatrix.needsUpdate = true; g.add(trees);
+}
+
+const shipsPool = [];
+function buildShips(g, n){
+  shipsPool.length = 0;
+  const spots = [
+    [13.5, 7], [15, 2.5], [12, -3.5], [4, -5.6], [0, -6.6], [13.5, -7],
+    [9, 8], [-3, 9.2], [16.5, -1], [11, -5.8], [-6, 10], [17, 4.5]
+  ];
+  for(let i = 0; i < Math.min(n, spots.length); i++){
+    const grp = new THREE.Group();
+    const hull = box(0.85, 0.22, 0.3, C.wood); hull.position.y = 0.1; grp.add(hull);
+    const mast = cyl(0.02, 0.02, 0.7, C.wood, 4); mast.position.y = 0.55; grp.add(mast);
+    const sail = cone(0.22, 0.5, C.sail, 3); sail.position.set(0.05, 0.6, 0); sail.rotation.z = -0.12; grp.add(sail);
+    grp.position.set(spots[i][0], WATER_Y, spots[i][1]);
+    grp.rotation.y = Math.random() * Math.PI * 2;
+    grp.userData.phase = Math.random() * Math.PI * 2;
+    g.add(grp); shipsPool.push(grp);
+  }
+}
+
+/* ---------- era assembly ---------- */
+let cityGroup = null;
+function buildEra(idx){
+  EXCL.length = 0;
+  const era = ERAS[idx];
+  const g = new THREE.Group();
+
+  const builders = {
+    temple: buildTemple, hagia: gg => buildHagia(gg, false), hagiaMosque: gg => buildHagia(gg, true),
+    suleymaniye: buildSuleymaniye, hippodrome: buildHippodrome, column: buildColumn,
+    palace: buildPalace, topkapi: buildTopkapi, galataTower: buildGalataTower
+  };
+  for(const m of era.marks) builders[m](g);
+  if(era.wall === "palisade") buildPalisade(g);
+  if(era.wall === "theodosian") buildTheodosian(g);
+  scatterCity(g, era);
+  buildShips(g, era.ships);
+  return g;
+}
+
+let swapAnim = null;
+function setEra(idx, instant){
+  currentEra = idx;
+  updateRail(); updateDossier(idx);
+  const next = buildEra(idx);
+  if(instant || REDUCED || !cityGroup){
+    if(cityGroup) scene.remove(cityGroup);
+    cityGroup = next; scene.add(cityGroup);
+    return;
+  }
+  next.scale.y = 0.001;
+  scene.add(next);
+  swapAnim = {out:cityGroup, into:next, t:0};
+  cityGroup = next;
+}
+
+/* ---------- UI ---------- */
+const rail = document.getElementById("rail");
+let currentEra = 0;
+ERAS.forEach((e, i) => {
+  const b = document.createElement("button");
+  b.className = "stop"; b.role = "tab";
+  b.innerHTML = `<span class="node"></span><span class="yr">${e.year}</span>`;
+  b.addEventListener("click", () => { stopPlay(); setEra(i); });
+  rail.appendChild(b);
+});
+function updateRail(){
+  [...rail.children].forEach((el, i) => el.classList.toggle("active", i === currentEra));
+}
+
+const dossier = document.getElementById("dossier");
+const dYear = document.getElementById("dYear"), dName = document.getElementById("dName"),
+      dPop = document.getElementById("dPop"), dRule = document.getElementById("dRule"),
+      dStory = document.getElementById("dStory"), dSeeing = document.getElementById("dSeeing");
+
+let popAnim = null;
+function updateDossier(idx){
+  const e = ERAS[idx];
+  dossier.classList.add("swap");
+  setTimeout(() => {
+    dYear.textContent = e.year;
+    dName.textContent = e.name;
+    dRule.textContent = e.ruler;
+    dStory.textContent = e.story;
+    dSeeing.innerHTML = e.seeing;
+    if(REDUCED){ dPop.textContent = e.popLabel; }
+    else{
+      const from = popAnim ? popAnim.val : 0;
+      popAnim = {from, to:e.pop, t:0, val:from};
+    }
+    dossier.classList.remove("swap");
+  }, REDUCED ? 0 : 180);
+}
+
+/* play-through */
+const playBtn = document.getElementById("playBtn");
+const playIco = document.getElementById("playIco");
+let playTimer = null;
+function stopPlay(){
+  if(playTimer){ clearInterval(playTimer); playTimer = null; }
+  playIco.innerHTML = '<path d="M1 1.5v11l10-5.5z"/>';
+  playBtn.setAttribute("aria-label", "Play through the eras");
+}
+playBtn.addEventListener("click", () => {
+  if(playTimer){ stopPlay(); return; }
+  playIco.innerHTML = '<rect x="1" y="1" width="3.4" height="12"/><rect x="7.6" y="1" width="3.4" height="12"/>';
+  playBtn.setAttribute("aria-label", "Pause");
+  setEra((currentEra + 1) % ERAS.length);
+  playTimer = setInterval(() => setEra((currentEra + 1) % ERAS.length), 5000);
+});
+
+document.addEventListener("keydown", e => {
+  if(e.key === "ArrowRight"){ stopPlay(); setEra(Math.min(ERAS.length - 1, currentEra + 1)); }
+  if(e.key === "ArrowLeft"){ stopPlay(); setEra(Math.max(0, currentEra - 1)); }
+});
+
+const pill = document.getElementById("cityPill");
+document.getElementById("cityBtn").addEventListener("click", () => {
+  pill.classList.toggle("open");
+  document.getElementById("cityBtn").setAttribute("aria-expanded", pill.classList.contains("open"));
+});
+document.addEventListener("click", e => {
+  if(!pill.contains(e.target)) pill.classList.remove("open");
+});
+
+/* ---------- globe view ---------- */
+const CITIES = [
+  {name:"Constantinople", lng:28.98, lat:41.01, live:true},
+  {name:"Rome",           lng:12.49, lat:41.89},
+  {name:"Babylon",        lng:44.42, lat:32.54},
+  {name:"Tenochtitlan",   lng:-99.13, lat:19.43}
+];
+const hintEl = document.getElementById("hint");
+const backBtn = document.getElementById("backBtn");
+const HINT_GLOBE = '<span><kbd>drag</kbd> spin</span><span><kbd>scroll</kbd> zoom</span><span>pick a city to descend</span>';
+const HINT_CITY  = '<span><kbd>drag</kbd> orbit</span><span><kbd>right-drag</kbd> move</span><span><kbd>scroll</kbd> zoom</span><span><kbd>←→</kbd> travel time</span>';
+
+let map = null, spinning = true, inCity = false;
+function setView(city){
+  inCity = city;
+  document.body.classList.toggle("view-city", city);
+  document.body.classList.toggle("view-globe", !city);
+  hintEl.innerHTML = city ? HINT_CITY : HINT_GLOBE;
+  if(!city && map){ spinning = true; spinStep(); }
+}
+function spinStep(){
+  if(!spinning || inCity || !map) return;
+  const c = map.getCenter();
+  c.lng += 0.09;
+  map.easeTo({center:c, duration:130, easing:t => t});
+}
+function descend(c){
+  spinning = false;
+  map.flyTo({center:[c.lng, c.lat], zoom:6.1, speed:0.85, curve:1.55, essential:true});
+  map.once("moveend", () => setView(true));
+}
+function initGlobe(){
+  if(!window.maplibregl){ setView(true); return; }   // offline / CDN fail → straight to the city
+  try{
+    map = new maplibregl.Map({
+      container:"globe",
+      style:"https://demotiles.maplibre.org/style.json",
+      center:[24, 28], zoom:1.7,
+      attributionControl:{compact:true}
+    });
+  }catch(err){ setView(true); return; }
+  map.on("error", () => { if(!inCity && !map.loaded()) setView(true); });
+  map.on("style.load", () => {
+    try{ map.setProjection({type:"globe"}); }catch(_){}
+    /* repaint the demo style into the Palimpsest palette */
+    for(const l of map.getStyle().layers){
+      try{
+        if(l.type === "background") map.setPaintProperty(l.id, "background-color", "#c3d5d3");
+        else if(l.type === "fill"){
+          map.setPaintProperty(l.id, "fill-color", "#ded8c8");
+          map.setPaintProperty(l.id, "fill-outline-color", "#b9b3a2");
+        }
+        else if(l.type === "line"){
+          map.setPaintProperty(l.id, "line-color", "#9aa59e");
+          map.setPaintProperty(l.id, "line-width", 0.6);
+        }
+        else if(l.type === "symbol") map.setLayoutProperty(l.id, "visibility", "none");
+      }catch(_){}
+    }
+  });
+  for(const c of CITIES){
+    const el = document.createElement("button");
+    el.className = "m-city" + (c.live ? "" : " soon");
+    el.innerHTML = `<span class="dot"></span>${c.name}${c.live ? "" : " · soon"}`;
+    if(c.live) el.addEventListener("click", () => descend(c));
+    new maplibregl.Marker({element:el, anchor:"left", offset:[10, 0]})
+      .setLngLat([c.lng, c.lat]).addTo(map);
+  }
+  map.on("moveend", spinStep);
+  for(const ev of ["mousedown", "touchstart", "wheel"])
+    map.getCanvas().addEventListener(ev, () => { spinning = false; }, {passive:true});
+  spinStep();
+}
+backBtn.addEventListener("click", () => {
+  setView(false);
+  if(map) map.flyTo({zoom:1.7, center:[24, 28], duration:1800, essential:true});
+});
+
+/* ---------- resize / loop ---------- */
+function resize(){
+  const w = window.innerWidth, h = window.innerHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener("resize", resize);
+resize();
+
+const clock = new THREE.Clock();
+function tick(){
+  requestAnimationFrame(tick);
+  const dt = Math.min(clock.getDelta(), 0.05);
+  const t = clock.elapsedTime;
+  if(!inCity) return;                       // don't burn GPU behind the globe
+
+  if(!userTouched && !REDUCED) theta += dt * 0.045;
+
+  if(swapAnim){
+    swapAnim.t += dt / 0.55;
+    const k = Math.min(1, swapAnim.t);
+    const ease = 1 - Math.pow(1 - k, 3);
+    swapAnim.into.scale.y = 0.001 + ease * 0.999;
+    swapAnim.out.scale.y = Math.max(0.001, 1 - ease * 1.4);
+    if(k >= 1){
+      scene.remove(swapAnim.out);
+      swapAnim.into.scale.y = 1;
+      swapAnim = null;
+    }
+  }
+
+  if(popAnim){
+    popAnim.t += dt / 0.9;
+    const k = Math.min(1, popAnim.t);
+    const ease = 1 - Math.pow(1 - k, 2);
+    popAnim.val = Math.round(popAnim.from + (popAnim.to - popAnim.from) * ease);
+    dPop.textContent = "~" + popAnim.val.toLocaleString("en-US");
+    if(k >= 1) popAnim.t = 1;
+  }
+
+  for(const s of shipsPool){
+    s.position.y = WATER_Y + Math.sin(t * 1.3 + s.userData.phase) * 0.045;
+    s.rotation.z = Math.sin(t * 0.9 + s.userData.phase) * 0.03;
+  }
+
+  applyCamera();
+  renderer.render(scene, camera);
+}
+
+setEra(1, true);   // pre-build Justinian's city so the descent lands instantly
+initGlobe();
+tick();
+})();
+</script>
+</body>
+</html>
