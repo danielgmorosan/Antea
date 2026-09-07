@@ -48,6 +48,18 @@ export function boundaryFilter(year: number): FilterSpecification {
   ] as unknown as FilterSpecification;
 }
 
+/**
+ * A tileset's internal layer name is not always its tileset name: OHM serves
+ * `land_polygons` with a layer called `land`. A mismatched `source-layer` fails
+ * silently — tiles fetch and parse, then match nothing and draw nothing.
+ * Verified by decoding real tiles.
+ */
+export const OHM_SOURCE_LAYERS = {
+  land_polygons: 'land',
+  water_areas: 'water_areas',
+  boundaries: 'boundaries',
+} as const;
+
 function vectorSource(tileset: string) {
   return {
     type: 'vector' as const,
@@ -85,17 +97,18 @@ export function buildGlobeStyle(year: number): StyleSpecification {
         id: 'land',
         type: 'fill',
         source: 'ohm-land',
-        'source-layer': 'land_polygons',
-        paint: {
-          'fill-color': GLOBE_COLOURS.land,
-          'fill-outline-color': GLOBE_COLOURS.coast,
-        },
+        'source-layer': OHM_SOURCE_LAYERS.land_polygons,
+        // No fill-outline-color: OSM's land polygons are pre-split into a grid
+        // for performance, and outlining each one draws every seam as a
+        // lattice across the continents. The coast reads from the colour
+        // change against the sea.
+        paint: { 'fill-color': GLOBE_COLOURS.land },
       },
       {
         id: 'water',
         type: 'fill',
         source: 'ohm-water',
-        'source-layer': 'water_areas',
+        'source-layer': OHM_SOURCE_LAYERS.water_areas,
         filter: boundaryFilter(year),
         paint: { 'fill-color': GLOBE_COLOURS.water },
       },
@@ -103,7 +116,7 @@ export function buildGlobeStyle(year: number): StyleSpecification {
         id: 'boundaries',
         type: 'line',
         source: 'ohm-boundaries',
-        'source-layer': 'boundaries',
+        'source-layer': OHM_SOURCE_LAYERS.boundaries,
         filter: boundaryFilter(year),
         layout: { 'line-join': 'round', 'line-cap': 'round' },
         paint: {
@@ -127,3 +140,14 @@ export function buildGlobeStyle(year: number): StyleSpecification {
 
 /** Layers whose filter has to be rewritten when the year changes. */
 export const TIME_FILTERED_LAYERS = ['water', 'boundaries'] as const;
+
+/** The span the globe's time control covers. */
+export const GLOBE_YEAR_RANGE = { min: -3000, max: 2026 } as const;
+
+/**
+ * A year as the UI writes it. There is no year zero, so 1 BC is followed
+ * directly by AD 1.
+ */
+export function formatYear(year: number): string {
+  return year < 0 ? `${Math.abs(year)} BC` : `AD ${year}`;
+}

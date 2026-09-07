@@ -32,21 +32,22 @@ in a test with no WebGL context and no DOM.
 
 ## 2. Status
 
-| Area                                               | State                               |
-| -------------------------------------------------- | ----------------------------------- |
-| Monorepo, TypeScript strict, lint/format/test gate | built                               |
-| `@antea/schema` — the city spec contract           | built                               |
-| `@antea/landmark-kit` — terrain + 11 builders      | built                               |
-| `@antea/city-specs` — Constantinople, 4 eras       | built                               |
-| Diorama renderer, era transitions, camera controls | built                               |
-| Routing, static generation, metadata, sitemap      | built                               |
-| Editorial sources with provenance                  | built                               |
-| World globe                                        | built, **basemap broken** — see §11 |
-| CI on push and PR                                  | built                               |
-| Vercel deployment                                  | built, behind Deployment Protection |
-| OHM border tiles, PMTiles on R2                    | Phase 2, not started                |
-| Postgres + PostGIS, ingest pipeline                | Phase 2, not started                |
-| Cities beyond Constantinople                       | not started                         |
+| Area                                               | State                                 |
+| -------------------------------------------------- | ------------------------------------- |
+| Monorepo, TypeScript strict, lint/format/test gate | built                                 |
+| `@antea/schema` — the city spec contract           | built                                 |
+| `@antea/landmark-kit` — terrain + 11 builders      | built                                 |
+| `@antea/city-specs` — Constantinople, 4 eras       | built                                 |
+| Diorama renderer, era transitions, camera controls | built                                 |
+| Routing, static generation, metadata, sitemap      | built                                 |
+| Editorial sources with provenance                  | built                                 |
+| World globe on OpenHistoricalMap, time-filtered    | built                                 |
+| CI on push and PR                                  | built                                 |
+| Vercel deployment                                  | built, behind Deployment Protection   |
+| OHM border tiles                                   | built (live OHM service, not PMTiles) |
+| PMTiles on R2                                      | Phase 2, not started                  |
+| Postgres + PostGIS, ingest pipeline                | Phase 2, not started                  |
+| Cities beyond Constantinople                       | not started                           |
 
 ---
 
@@ -157,16 +158,28 @@ Three.js, one `<canvas>`, a render loop owned by `Diorama.tsx`.
 
 ## 6. Rendering the globe
 
-MapLibre GL, `projection: globe`, the MapLibre demo tiles repainted into our
-palette. This is a placeholder basemap; Phase 2 replaces it with our own PMTiles
-on R2.
+MapLibre GL with `projection: globe`, drawing a style we assemble ourselves in
+`lib/ohm.ts` from OpenHistoricalMap's public Martin tile server.
 
-The globe is `aria-hidden`, and the same cities appear beside it as ordinary
-links — so keyboard users, screen readers and crawlers never depend on a canvas.
+- **Three tilesets**: `land_polygons` (coastline), `water_areas`, `boundaries`.
+- **The style is built, not fetched and mutated.** Mutating a style while it is
+  still loading is what strands MapLibre's sources.
+- **A tileset's name is not its layer's name.** OHM serves `land_polygons` with
+  an internal layer called `land`. `OHM_SOURCE_LAYERS` records the mapping,
+  verified by decoding real tiles.
+- **Time filtering** compares `start_decdate`/`end_decdate`, OHM's decimal-year
+  fields — the `start_date`/`end_date` strings the brief names cannot be
+  compared numerically in a filter. Absent dates mean "always existed" and
+  "still exists".
+- **Changing the year rewrites layer filters in place** via `setFilter`, never
+  rebuilding the map, so dragging the slider does not refetch every tile.
+- The globe is `aria-hidden` and the same cities appear beside it as ordinary
+  links, so keyboard users, screen readers and crawlers never depend on a
+  canvas.
 
-**The basemap does not currently render landmasses.** See §11.
-
----
+Licensing: OHM is CC0 and attribution is encouraged rather than required; we
+attribute anyway. Individual elements may carry their own `license` tag, and
+`land_polygons` is OSM-derived and therefore ODbL. Both are credited in the UI.
 
 ## 7. Routing, SEO and the design system
 
@@ -281,28 +294,28 @@ pnpm is pinned both there and by `packageManager` in `package.json`.
 
 ## 11. Known problems
 
-### The globe renders no landmasses — unresolved
+### Solved: the globe rendered no landmasses
 
-The sphere, the palette and the city markers are correct. The basemap is empty.
+Worth recording, because the diagnosis was wrong three times before it was
+right, and each wrong answer was plausible.
 
-Established:
+The cause was a **mismatched `source-layer`**. OHM's `land_polygons` tileset
+serves a layer named `land`; the style asked for `land_polygons`. MapLibre
+fetched the tiles, parsed them successfully, matched no layer, and drew
+nothing — silently. No error, no warning.
 
-- Not environmental. A pristine MapLibre map with none of our code fails
-  identically, in dev and production builds, on maplibre-gl 5.6.0 and 5.24.0.
-- `style.json` and `tiles.json` fetch successfully; **no `.pbf` tile is ever
-  requested**; no error is raised.
-- `load` and `idle` never fire with this style, so there is no natural event to
-  wait on.
-- The one sequence that _did_ render land: let the map load flat, then call
-  `setProjection({type:'globe'})` on the live map. Reproducing that as startup
-  code has so far failed — constructing in mercator does not reproduce it, which
-  suggests the projection change forces a source reload that the initial load
-  does not perform.
-- After a deferred `setProjection`, paint properties applied with
-  `setPaintProperty` appear to be lost.
+What made it expensive: a wrong `source-layer` is indistinguishable at a glance
+from a network failure, a broken worker, or a projection bug. Ruling those out
+took a raster-versus-vector experiment (raster rendered, which seemed to
+incriminate the worker) and finally instrumenting the worker's own message
+traffic, which showed thirteen `loadTile` calls and thirteen successful
+responses. That was the moment the data proved the tiles were fine and the
+fault had to be downstream.
 
-Phase 2 replaces this basemap entirely, which may remove the problem. Worth an
-upstream issue rather than more blind iteration.
+**The lesson: when a vector layer draws nothing, verify the `source-layer`
+against a decoded tile before suspecting anything else.** Worker errors also
+never reach the page console — they fire an `error` event on the worker object
+— so "no errors in the console" is not evidence about a worker.
 
 ### Gotchas that have already cost time
 
@@ -327,8 +340,10 @@ upstream issue rather than more blind iteration.
 Phase 2 is gated on Phase 1 being merged and deployed. Both are now true, but
 these are unresolved:
 
-1. **Tile hosting.** PMTiles on Cloudflare R2 is the plan. Not started, and it
-   is entangled with §11.
+1. **Tile hosting.** The globe currently reads OHM's public tile server
+   directly, which is a third-party runtime dependency and serves boundary
+   tiles over 1 MB at low zoom. PMTiles on Cloudflare R2 remains the plan for
+   resilience and weight; it needs an R2 account.
 2. **Historical borders.** OpenHistoricalMap layers filtered on
    `start_date`/`end_date`. Volume and licensing need checking before ingest.
 3. **Database.** Postgres + PostGIS on Neon is the plan; nothing needs it yet.

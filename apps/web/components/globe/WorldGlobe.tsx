@@ -4,7 +4,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { buildGlobeStyle } from '@/lib/ohm';
+import { boundaryFilter, buildGlobeStyle, TIME_FILTERED_LAYERS } from '@/lib/ohm';
 
 const HOME = { center: [24, 28] as [number, number], zoom: 1.7 };
 /** Degrees of longitude per idle step, and how long each step eases for. */
@@ -20,6 +20,13 @@ export interface GlobeCity {
 }
 
 export function WorldGlobe({ cities, year }: { cities: GlobeCity[]; year: number }) {
+  /**
+   * The map is built once. Changing the year rewrites layer filters in place —
+   * rebuilding the map would tear down the WebGL context and refetch every
+   * tile on each step of a slider.
+   */
+  const mapRef = useRef<maplibregl.Map | null>(null);
+  const yearRef = useRef(year);
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [descending, setDescending] = useState(false);
@@ -35,7 +42,7 @@ export function WorldGlobe({ cities, year }: { cities: GlobeCity[]; year: number
     try {
       map = new maplibregl.Map({
         container,
-        style: buildGlobeStyle(year),
+        style: buildGlobeStyle(yearRef.current),
         center: HOME.center,
         zoom: HOME.zoom,
         attributionControl: { compact: true },
@@ -125,13 +132,34 @@ export function WorldGlobe({ cities, year }: { cities: GlobeCity[]; year: number
     }
     spinStep();
 
+    mapRef.current = map;
+
     return () => {
       disposed = true;
+      mapRef.current = null;
       resizeObserver.disconnect();
       for (const marker of markers) marker.remove();
       map.remove();
     };
-  }, [cities, router, year]);
+    // The year is deliberately absent: it is applied by the effect below,
+    // which rewrites filters instead of rebuilding the whole map.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cities, router]);
+
+  useEffect(() => {
+    yearRef.current = year;
+    const map = mapRef.current;
+    if (!map) return;
+
+    const apply = () => {
+      for (const layer of TIME_FILTERED_LAYERS) {
+        if (map.getLayer(layer)) map.setFilter(layer, boundaryFilter(year));
+      }
+    };
+    // setFilter throws if the style is not up yet, so wait for it the first time.
+    if (map.isStyleLoaded()) apply();
+    else map.once('style.load', apply);
+  }, [year]);
 
   return (
     <>

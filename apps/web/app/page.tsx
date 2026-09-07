@@ -66,7 +66,8 @@ export default function HomePage() {
         </ul>
       </nav>
 
-      <p className="hide-narrow glass pointer-events-none absolute bottom-[26px] left-1/2 flex -translate-x-1/2 gap-5 rounded-pill px-[18px] py-2.5 text-[12px] text-ink-soft">
+      {/* Sits above the time control, which now owns the bottom of the screen. */}
+      <p className="hide-narrow pointer-events-none absolute bottom-[86px] left-1/2 flex -translate-x-1/2 gap-5 text-[12px] text-ink-soft">
         <span>drag to spin</span>
         <span>scroll to zoom</span>
         <span>pick a city to descend</span>

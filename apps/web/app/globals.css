@@ -103,6 +103,30 @@
     transform: none;
   }
 
+  /* The globe's year slider, in the system's own materials. */
+  .year-slider {
+    appearance: none;
+    background: var(--color-line);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+  }
+  .year-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-verdigris);
+    border: 2px solid #fcfbf7;
+    box-shadow: 0 2px 6px rgba(34, 48, 47, 0.25);
+  }
+  .year-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fcfbf7;
+    border-radius: 50%;
+    background: var(--color-verdigris);
+  }
+
   .maplibregl-ctrl-attrib {
     font-size: 10px;
     opacity: 0.7;

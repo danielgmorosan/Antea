@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import {
   boundaryFilter,
   buildGlobeStyle,
+  formatYear,
+  GLOBE_YEAR_RANGE,
   OHM_ATTRIBUTION,
   TIME_FILTERED_LAYERS,
 } from './ohm';
@@ -145,5 +147,23 @@ describe('buildGlobeStyle', () => {
     expect(JSON.stringify(boundaryFilter(537))).not.toBe(
       JSON.stringify(boundaryFilter(1560)),
     );
+  });
+});
+
+describe('formatYear', () => {
+  it('writes BC and AD the way the dossiers do', () => {
+    expect(formatYear(-667)).toBe('667 BC');
+    expect(formatYear(537)).toBe('AD 537');
+    expect(formatYear(1560)).toBe('AD 1560');
+  });
+
+  it('has no year zero to get wrong', () => {
+    expect(formatYear(-1)).toBe('1 BC');
+    expect(formatYear(1)).toBe('AD 1');
+  });
+
+  it('covers the whole control range', () => {
+    expect(formatYear(GLOBE_YEAR_RANGE.min)).toBe('3000 BC');
+    expect(formatYear(GLOBE_YEAR_RANGE.max)).toBe('AD 2026');
   });
 });

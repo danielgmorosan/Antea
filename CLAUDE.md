@@ -96,8 +96,15 @@ Phase 1 is merged and deployed.
 
 - Three.js r128+: no OrbitControls import in this setup — we ship our own
   spherical-coordinate controls (see prototype); keep them, they're 60 lines.
-- MapLibre globe: call `map.setProjection({type:"globe"})` after `style.load`;
-  wrap style repainting in try/catch per layer (demo styles change).
+- MapLibre globe: call `map.setProjection({type:"globe"})` after `style.load`.
+- A vector tileset's name is not its layer's name. OHM serves `land_polygons`
+  with an internal layer called `land`. A wrong `source-layer` fails silently —
+  tiles fetch and parse, then match nothing and draw nothing, with no error.
+  Decode a real tile to check the layer name before suspecting anything else.
+- Worker errors never reach the page console; they fire an `error` event on the
+  Worker object. "No console errors" says nothing about a worker.
+- OHM time filtering uses `start_decdate`/`end_decdate` (decimal years), not the
+  `start_date`/`end_date` strings — only the former compare numerically.
 - `maplibre-gl.css` loads after the app stylesheet, and its
   `.maplibregl-map { position: relative }` beats Tailwind's `.absolute` on
   source order — same specificity, later in the cascade. A map container
