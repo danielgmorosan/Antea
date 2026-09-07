@@ -1,11 +1,35 @@
 /**
  * Landmark kit — pure builders that turn a city spec into Three.js objects.
  *
- * Every builder is a pure function `(THREE, spec) => Group | InstancedMesh`:
- * THREE is injected rather than imported so this package stays free of a
- * hard Three.js dependency and the placement maths stays unit-testable.
+ * Three.js is injected into every builder rather than imported, so the
+ * placement maths can be unit-tested with no WebGL context and this package
+ * carries no hard runtime dependency on Three.
  *
- * Phase 1 task 2 ports `terrain.ts` and `builders/` out of
- * `prototype/antea-globe.html` into here.
+ * Ported from `prototype/antea-globe.html`.
  */
 export { mulberry32, pick, range, rangeInt } from './rng';
+
+export {
+  blob,
+  createTerrainSampler,
+  isLand,
+  isWater,
+  landHeight,
+  landMask,
+  surfaceY,
+} from './terrain';
+export type { TerrainSampler } from './terrain';
+
+export { createPalette } from './palette';
+export type { Palette } from './palette';
+
+export { anchor, createKit } from './kit';
+export type { Builder, BuilderInput, BuildContext, Exclusion, Kit } from './kit';
+
+export { buildLandmark, exclusionsFor } from './buildLandmark';
+export { buildEra, disposeGeometries } from './buildEra';
+export type { EraScene } from './buildEra';
+export { buildTerrainMesh } from './terrainMesh';
+
+export * from './builders';
+export type { Three } from './three';

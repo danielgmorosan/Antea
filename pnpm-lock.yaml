@@ -59,6 +59,9 @@ importers:
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
+      three:
+        specifier: ^0.185.1
+        version: 0.185.1
       zustand:
         specifier: ^5.0.15
         version: 5.0.15(@types/react@19.2.18)(react@19.2.8)
@@ -75,15 +78,28 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.0
         version: 19.2.7(@types/react@19.2.18)
+      '@types/three':
+        specifier: ^0.185.0
+        version: 0.185.4
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
 
   packages/city-specs:
     dependencies:
+      '@antea/landmark-kit':
+        specifier: workspace:*
+        version: link:../landmark-kit
       '@antea/schema':
         specifier: workspace:*
         version: link:../schema
+    devDependencies:
+      '@types/three':
+        specifier: ^0.185.0
+        version: 0.185.4
+      three:
+        specifier: ^0.185.1
+        version: 0.185.1
 
   packages/landmark-kit:
     dependencies:

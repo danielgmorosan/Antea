@@ -1,0 +1,890 @@
+{
+  "slug": "constantinople",
+  "name": "Constantinople",
+  "location": {
+    "lng": 28.98,
+    "lat": 41.01
+  },
+  "seed": 1453,
+  "palette": {
+    "sky": "#e7ebe3",
+    "fog": "#dfe4dc",
+    "water": "#9fc0bf",
+    "shore": "#cfc3a2",
+    "grass": "#9fae87",
+    "rock": "#c9c3b0",
+    "houseA": "#d9cdb4",
+    "houseB": "#cabfa9",
+    "houseC": "#e0d6c0",
+    "roof": "#b96f4b",
+    "roofB": "#a9613f",
+    "stone": "#d6cfbc",
+    "marble": "#e6ddcc",
+    "domeVerd": "#6fa192",
+    "domeLead": "#8b9297",
+    "cypress": "#4c6b52",
+    "wallStone": "#bfb6a0",
+    "wood": "#8a6f52",
+    "sail": "#efe9da"
+  },
+  "terrain": {
+    "size": {
+      "width": 110,
+      "depth": 80
+    },
+    "segments": {
+      "x": 96,
+      "z": 66
+    },
+    "blobs": [
+      {
+        "cx": -6,
+        "cz": 2.4,
+        "rx": 19.5,
+        "rz": 8.6
+      },
+      {
+        "cx": 7.4,
+        "cz": -9.6,
+        "rx": 5.6,
+        "rz": 4.8,
+        "weight": 0.9
+      }
+    ],
+    "hills": [
+      {
+        "cx": 8.2,
+        "cz": 1.4,
+        "height": 1.5,
+        "spread": 14,
+        "maskMode": "sqrt"
+      },
+      {
+        "cx": -2,
+        "cz": -1,
+        "height": 0.8,
+        "spread": 14,
+        "maskMode": "linear"
+      }
+    ],
+    "heightScale": 2.7,
+    "noise": {
+      "primary": {
+        "amplitude": 0.28,
+        "fx": 0.55,
+        "fz": 0.62
+      },
+      "secondary": {
+        "amplitude": 0.12,
+        "fx": 1.6,
+        "fz": 1.25
+      },
+      "maskInfluence": 2.4
+    },
+    "waterLevel": 0.62,
+    "landThreshold": 0.22,
+    "waterThreshold": 0.12,
+    "bands": {
+      "waterEdge": -0.12,
+      "shoreTop": 0.35,
+      "grassTop": 2.1,
+      "rockLerp": {
+        "from": 0.9,
+        "over": 2.6
+      }
+    },
+    "origin": {
+      "x": 9,
+      "z": 1.2
+    },
+    "colours": {
+      "water": "water",
+      "shore": "shore",
+      "grass": "grass",
+      "rock": "rock"
+    }
+  },
+  "eras": [
+    {
+      "year": -667,
+      "yearLabel": "667 BC",
+      "name": "Byzantion, the colony",
+      "dossier": {
+        "population": 5000,
+        "populationLabel": "~5,000",
+        "populationConfidence": "approximate",
+        "ruler": "Megarian colonists",
+        "story": "Greek settlers from Megara, told by the Delphic oracle to build “opposite the land of the blind,” plant a town on the hill at the mouth of the Bosporus. It is little more than an acropolis, a harbor and fishing nets — but it sits on the one strait every grain ship from the Black Sea must pass.",
+        "seeing": "a temple on the acropolis, a timber palisade, and a scatter of houses above the Golden Horn. Everything west of the hill is still fields.",
+        "sourceIds": []
+      },
+      "landmarks": [
+        {
+          "builder": "temple",
+          "x": 8.4,
+          "z": 1.0,
+          "exclusionRadius": 2.6,
+          "params": {
+            "base": {
+              "w": 2.6,
+              "h": 0.35,
+              "d": 1.7
+            },
+            "columns": 5,
+            "columnSpacing": 0.5,
+            "columnHeight": 0.9,
+            "columnOffsetZ": 0.6,
+            "roof": {
+              "radius": 1.65,
+              "height": 0.65,
+              "scaleZ": 0.62,
+              "y": 1.55
+            },
+            "stone": "marble",
+            "roofColour": "roof"
+          }
+        },
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "palisade",
+            "path": {
+              "kind": "arc",
+              "segments": 26,
+              "from": -1.85,
+              "to": 1.85,
+              "angleScale": 0.55,
+              "angleOffset": 0.35,
+              "radiusX": 5.6,
+              "radiusZ": 5.4,
+              "offsetX": -0.4
+            },
+            "height": 0.7,
+            "thickness": 0.09,
+            "stone": "wood"
+          }
+        }
+      ],
+      "houses": {
+        "count": 130,
+        "extent": 6.2,
+        "spreadZ": 15,
+        "extentJitter": 1.2,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.75
+      },
+      "trees": {
+        "base": 40,
+        "perExtent": 4,
+        "spreadX": 30,
+        "spreadZ": 20,
+        "offsetX": 3,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [13.5, 7],
+          [15, 2.5],
+          [12, -3.5],
+          [4, -5.6],
+          [0, -6.6],
+          [13.5, -7],
+          [9, 8],
+          [-3, 10.5],
+          [16.5, -1],
+          [11, -5.8],
+          [-6, 10],
+          [17, 4.5]
+        ],
+        "count": 2,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    },
+    {
+      "year": 537,
+      "yearLabel": "AD 537",
+      "name": "Constantinople, Justinian's capital",
+      "dossier": {
+        "population": 450000,
+        "populationLabel": "~450,000",
+        "populationConfidence": "approximate",
+        "ruler": "Justinian I, Roman Emperor",
+        "story": "Two centuries after Constantine refounded the city, Justinian consecrates the Hagia Sophia — the largest building on Earth. “Solomon, I have outdone thee.” Half a million people live between the Theodosian double walls and the sea, fed by Egyptian grain and defended by the empire's whole navy.",
+        "seeing": "the new Hagia Sophia beside the Hippodrome and Great Palace, the Column of Constantine on the main avenue, and the triple land walls far to the west.",
+        "sourceIds": []
+      },
+      "landmarks": [
+        {
+          "builder": "basilicaDome",
+          "x": 7.6,
+          "z": 1.4,
+          "exclusionRadius": 3.2,
+          "params": {
+            "base": {
+              "w": 3.4,
+              "h": 1.5,
+              "d": 2.5
+            },
+            "upper": {
+              "w": 2.2,
+              "h": 0.8,
+              "d": 1.8
+            },
+            "dome": {
+              "radius": 1.18,
+              "squash": 0.72,
+              "y": 2.3
+            },
+            "halfDomes": {
+              "count": 2,
+              "axis": "x",
+              "radius": 0.72,
+              "squash": 0.7,
+              "offset": 1.55,
+              "y": 1.7
+            },
+            "corners": {
+              "w": 0.5,
+              "h": 1.9,
+              "d": 0.5,
+              "offsetX": 1.65,
+              "offsetZ": 1.25
+            },
+            "stone": "marble",
+            "domeColour": "domeVerd"
+          }
+        },
+        {
+          "builder": "hippodrome",
+          "x": 5.2,
+          "z": 3.6,
+          "rotationY": -0.25,
+          "exclusionRadius": 3.4,
+          "params": {
+            "track": {
+              "w": 4.6,
+              "h": 0.25,
+              "d": 1.9
+            },
+            "stands": {
+              "w": 4.2,
+              "h": 0.7,
+              "d": 0.35,
+              "offsetX": -0.2,
+              "offsetZ": 1.05
+            },
+            "turn": {
+              "radius": 1.05,
+              "height": 0.7,
+              "scaleZ": 0.9,
+              "x": -2.4
+            },
+            "obelisk": {
+              "width": 0.16,
+              "height": 1.5,
+              "x": 0.4
+            },
+            "track_colour": "shore",
+            "stone": "stone",
+            "marble": "marble"
+          }
+        },
+        {
+          "builder": "column",
+          "x": 0.6,
+          "z": 2.0,
+          "exclusionRadius": 1.0,
+          "params": {
+            "height": 2.6,
+            "radiusTop": 0.16,
+            "radiusBottom": 0.2,
+            "orbRadius": 0.24,
+            "shaft": "roof",
+            "orb": "domeVerd"
+          }
+        },
+        {
+          "builder": "pavilionCluster",
+          "x": 7.2,
+          "z": 3.6,
+          "exclusionRadius": 2.6,
+          "params": {
+            "blocks": [
+              {
+                "size": {
+                  "w": 2.0,
+                  "h": 1.0,
+                  "d": 1.4
+                },
+                "x": 0,
+                "z": 0,
+                "colour": "marble",
+                "dome": {
+                  "radius": 0.5,
+                  "squash": 0.7,
+                  "y": 1.0,
+                  "colour": "domeVerd"
+                }
+              },
+              {
+                "size": {
+                  "w": 1.2,
+                  "h": 1.4,
+                  "d": 1.0
+                },
+                "x": 1.2,
+                "z": 0.9,
+                "colour": "stone"
+              },
+              {
+                "size": {
+                  "w": 1.3,
+                  "h": 0.8,
+                  "d": 1.6
+                },
+                "x": -1.3,
+                "z": 0.7,
+                "colour": "marble"
+              }
+            ]
+          }
+        },
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "curtain",
+            "path": {
+              "kind": "sine",
+              "segments": 15,
+              "zFrom": -5.2,
+              "zTo": 10.2,
+              "x": -13.2,
+              "bow": 2.2
+            },
+            "height": 0.95,
+            "thickness": 0.45,
+            "towerEvery": 2,
+            "tower": {
+              "size": {
+                "w": 0.75,
+                "h": 1.55,
+                "d": 0.75
+              },
+              "capRadius": 0.55,
+              "capHeight": 0.4
+            },
+            "stone": "wallStone",
+            "capColour": "roofB"
+          }
+        }
+      ],
+      "houses": {
+        "count": 640,
+        "extent": 14.5,
+        "spreadZ": 15,
+        "extentJitter": 1.2,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.75,
+        "cutoffX": -13.0
+      },
+      "trees": {
+        "base": 40,
+        "perExtent": 4,
+        "spreadX": 30,
+        "spreadZ": 20,
+        "offsetX": 3,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [13.5, 7],
+          [15, 2.5],
+          [12, -3.5],
+          [4, -5.6],
+          [0, -6.6],
+          [13.5, -7],
+          [9, 8],
+          [-3, 10.5],
+          [16.5, -1],
+          [11, -5.8],
+          [-6, 10],
+          [17, 4.5]
+        ],
+        "count": 6,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    },
+    {
+      "year": 1200,
+      "yearLabel": "AD 1200",
+      "name": "The Queen of Cities",
+      "dossier": {
+        "population": 400000,
+        "populationLabel": "~400,000",
+        "populationConfidence": "approximate",
+        "ruler": "Alexios III Angelos, Byzantine Emperor",
+        "story": "To visiting crusaders it is simply the greatest city in Christendom — “those who had never seen her could not believe.” Trade fills the Golden Horn; the Genoese and Venetian quarters crowd the shore. Four years from now the Fourth Crusade will sack it all, a wound the city never fully heals.",
+        "seeing": "the city at its medieval peak, the merchant suburb of Galata growing across the Golden Horn, and harbors busy on every shore.",
+        "sourceIds": []
+      },
+      "landmarks": [
+        {
+          "builder": "basilicaDome",
+          "x": 7.6,
+          "z": 1.4,
+          "exclusionRadius": 3.2,
+          "params": {
+            "base": {
+              "w": 3.4,
+              "h": 1.5,
+              "d": 2.5
+            },
+            "upper": {
+              "w": 2.2,
+              "h": 0.8,
+              "d": 1.8
+            },
+            "dome": {
+              "radius": 1.18,
+              "squash": 0.72,
+              "y": 2.3
+            },
+            "halfDomes": {
+              "count": 2,
+              "axis": "x",
+              "radius": 0.72,
+              "squash": 0.7,
+              "offset": 1.55,
+              "y": 1.7
+            },
+            "corners": {
+              "w": 0.5,
+              "h": 1.9,
+              "d": 0.5,
+              "offsetX": 1.65,
+              "offsetZ": 1.25
+            },
+            "stone": "marble",
+            "domeColour": "domeVerd"
+          }
+        },
+        {
+          "builder": "hippodrome",
+          "x": 5.2,
+          "z": 3.6,
+          "rotationY": -0.25,
+          "exclusionRadius": 3.4,
+          "params": {
+            "track": {
+              "w": 4.6,
+              "h": 0.25,
+              "d": 1.9
+            },
+            "stands": {
+              "w": 4.2,
+              "h": 0.7,
+              "d": 0.35,
+              "offsetX": -0.2,
+              "offsetZ": 1.05
+            },
+            "turn": {
+              "radius": 1.05,
+              "height": 0.7,
+              "scaleZ": 0.9,
+              "x": -2.4
+            },
+            "obelisk": {
+              "width": 0.16,
+              "height": 1.5,
+              "x": 0.4
+            },
+            "track_colour": "shore",
+            "stone": "stone",
+            "marble": "marble"
+          }
+        },
+        {
+          "builder": "column",
+          "x": 0.6,
+          "z": 2.0,
+          "exclusionRadius": 1.0,
+          "params": {
+            "height": 2.6,
+            "radiusTop": 0.16,
+            "radiusBottom": 0.2,
+            "orbRadius": 0.24,
+            "shaft": "roof",
+            "orb": "domeVerd"
+          }
+        },
+        {
+          "builder": "pavilionCluster",
+          "x": 7.2,
+          "z": 3.6,
+          "exclusionRadius": 2.6,
+          "params": {
+            "blocks": [
+              {
+                "size": {
+                  "w": 2.0,
+                  "h": 1.0,
+                  "d": 1.4
+                },
+                "x": 0,
+                "z": 0,
+                "colour": "marble",
+                "dome": {
+                  "radius": 0.5,
+                  "squash": 0.7,
+                  "y": 1.0,
+                  "colour": "domeVerd"
+                }
+              },
+              {
+                "size": {
+                  "w": 1.2,
+                  "h": 1.4,
+                  "d": 1.0
+                },
+                "x": 1.2,
+                "z": 0.9,
+                "colour": "stone"
+              },
+              {
+                "size": {
+                  "w": 1.3,
+                  "h": 0.8,
+                  "d": 1.6
+                },
+                "x": -1.3,
+                "z": 0.7,
+                "colour": "marble"
+              }
+            ]
+          }
+        },
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "curtain",
+            "path": {
+              "kind": "sine",
+              "segments": 15,
+              "zFrom": -5.2,
+              "zTo": 10.2,
+              "x": -13.2,
+              "bow": 2.2
+            },
+            "height": 0.95,
+            "thickness": 0.45,
+            "towerEvery": 2,
+            "tower": {
+              "size": {
+                "w": 0.75,
+                "h": 1.55,
+                "d": 0.75
+              },
+              "capRadius": 0.55,
+              "capHeight": 0.4
+            },
+            "stone": "wallStone",
+            "capColour": "roofB"
+          }
+        }
+      ],
+      "houses": {
+        "count": 800,
+        "extent": 16.4,
+        "spreadZ": 15,
+        "extentJitter": 1.2,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.75,
+        "suburb": {
+          "x": 7.4,
+          "z": -9.6,
+          "spreadX": 7.5,
+          "spreadZ": 6.5,
+          "share": 0.16
+        },
+        "cutoffX": -13.0
+      },
+      "trees": {
+        "base": 40,
+        "perExtent": 4,
+        "spreadX": 30,
+        "spreadZ": 20,
+        "offsetX": 3,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [13.5, 7],
+          [15, 2.5],
+          [12, -3.5],
+          [4, -5.6],
+          [0, -6.6],
+          [13.5, -7],
+          [9, 8],
+          [-3, 10.5],
+          [16.5, -1],
+          [11, -5.8],
+          [-6, 10],
+          [17, 4.5]
+        ],
+        "count": 9,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    },
+    {
+      "year": 1550,
+      "yearLabel": "AD 1550",
+      "name": "Kostantiniyye",
+      "dossier": {
+        "population": 660000,
+        "populationLabel": "~660,000",
+        "populationConfidence": "approximate",
+        "ruler": "Süleyman the Magnificent, Ottoman Sultan",
+        "story": "A century after the conquest, the city is the largest in Europe again — now facing Mecca. Sinan's domes and minarets remake the skyline; Topkapı Palace spreads over the old acropolis where the Greek colonists first landed two thousand years before. The palimpsest keeps being rewritten.",
+        "seeing": "minarets rise beside the Hagia Sophia, the Süleymaniye crowns the third hill, the Galata Tower watches the Horn, and Topkapı gardens cover the point.",
+        "sourceIds": []
+      },
+      "landmarks": [
+        {
+          "builder": "basilicaDome",
+          "x": 7.6,
+          "z": 1.4,
+          "exclusionRadius": 3.2,
+          "params": {
+            "base": {
+              "w": 3.4,
+              "h": 1.5,
+              "d": 2.5
+            },
+            "upper": {
+              "w": 2.2,
+              "h": 0.8,
+              "d": 1.8
+            },
+            "dome": {
+              "radius": 1.18,
+              "squash": 0.72,
+              "y": 2.3
+            },
+            "halfDomes": {
+              "count": 2,
+              "axis": "x",
+              "radius": 0.72,
+              "squash": 0.7,
+              "offset": 1.55,
+              "y": 1.7
+            },
+            "corners": {
+              "w": 0.5,
+              "h": 1.9,
+              "d": 0.5,
+              "offsetX": 1.65,
+              "offsetZ": 1.25
+            },
+            "stone": "stone",
+            "domeColour": "domeLead",
+            "minarets": {
+              "count": 4,
+              "height": 3.4,
+              "radiusTop": 0.09,
+              "radiusBottom": 0.12,
+              "capRadius": 0.16,
+              "capHeight": 0.55,
+              "shaft": "marble",
+              "cap": "domeLead",
+              "offsetX": 2.1,
+              "offsetZ": 1.6
+            }
+          }
+        },
+        {
+          "builder": "basilicaDome",
+          "x": -2.2,
+          "z": -1.4,
+          "exclusionRadius": 2.8,
+          "params": {
+            "base": {
+              "w": 2.6,
+              "h": 1.2,
+              "d": 2.1
+            },
+            "dome": {
+              "radius": 1.0,
+              "squash": 0.74,
+              "y": 1.75
+            },
+            "halfDomes": {
+              "count": 2,
+              "axis": "z",
+              "radius": 0.55,
+              "squash": 0.7,
+              "offset": 1.15,
+              "y": 1.35
+            },
+            "minarets": {
+              "count": 2,
+              "height": 3.8,
+              "radiusTop": 0.08,
+              "radiusBottom": 0.11,
+              "capRadius": 0.15,
+              "capHeight": 0.5,
+              "shaft": "marble",
+              "cap": "domeLead",
+              "offsetX": 1.7,
+              "offsetZ": 0.9
+            },
+            "stone": "stone",
+            "domeColour": "domeLead"
+          }
+        },
+        {
+          "builder": "column",
+          "x": 0.6,
+          "z": 2.0,
+          "exclusionRadius": 1.0,
+          "params": {
+            "height": 2.6,
+            "radiusTop": 0.16,
+            "radiusBottom": 0.2,
+            "orbRadius": 0.24,
+            "shaft": "roof",
+            "orb": "domeVerd"
+          }
+        },
+        {
+          "builder": "pavilionCluster",
+          "x": 9.0,
+          "z": 0.6,
+          "exclusionRadius": 2.4,
+          "params": {
+            "scatter": {
+              "count": 4,
+              "spreadX": 2.4,
+              "spreadZ": 2.2,
+              "size": {
+                "w": 0.9,
+                "h": 0.55,
+                "d": 0.8
+              },
+              "widthJitter": 0.5,
+              "rotationJitter": 0.8,
+              "colour": "stone",
+              "roof": {
+                "radius": 0.55,
+                "height": 0.4,
+                "colour": "domeLead"
+              }
+            }
+          }
+        },
+        {
+          "builder": "tower",
+          "x": 7.4,
+          "z": -9.6,
+          "exclusionRadius": 1.2,
+          "params": {
+            "height": 2.6,
+            "radiusTop": 0.42,
+            "radiusBottom": 0.5,
+            "capRadius": 0.55,
+            "capHeight": 0.9,
+            "segments": 9,
+            "shaft": "wallStone",
+            "cap": "roofB"
+          }
+        },
+        {
+          "builder": "wall",
+          "x": 0,
+          "z": 0,
+          "params": {
+            "style": "curtain",
+            "path": {
+              "kind": "sine",
+              "segments": 15,
+              "zFrom": -5.2,
+              "zTo": 10.2,
+              "x": -13.2,
+              "bow": 2.2
+            },
+            "height": 0.95,
+            "thickness": 0.45,
+            "towerEvery": 2,
+            "tower": {
+              "size": {
+                "w": 0.75,
+                "h": 1.55,
+                "d": 0.75
+              },
+              "capRadius": 0.55,
+              "capHeight": 0.4
+            },
+            "stone": "wallStone",
+            "capColour": "roofB"
+          }
+        }
+      ],
+      "houses": {
+        "count": 880,
+        "extent": 17,
+        "spreadZ": 15,
+        "extentJitter": 1.2,
+        "bodyColours": ["houseA", "houseB", "houseC"],
+        "roofColours": ["roof", "roofB"],
+        "roofSplit": 0.75,
+        "suburb": {
+          "x": 7.4,
+          "z": -9.6,
+          "spreadX": 7.5,
+          "spreadZ": 6.5,
+          "share": 0.16
+        },
+        "cutoffX": -13.0
+      },
+      "trees": {
+        "base": 40,
+        "perExtent": 4,
+        "spreadX": 30,
+        "spreadZ": 20,
+        "offsetX": 3,
+        "colour": "cypress"
+      },
+      "ships": {
+        "spots": [
+          [13.5, 7],
+          [15, 2.5],
+          [12, -3.5],
+          [4, -5.6],
+          [0, -6.6],
+          [13.5, -7],
+          [9, 8],
+          [-3, 10.5],
+          [16.5, -1],
+          [11, -5.8],
+          [-6, 10],
+          [17, 4.5]
+        ],
+        "count": 12,
+        "hull": "wood",
+        "sail": "sail"
+      }
+    }
+  ],
+  "sources": []
+}

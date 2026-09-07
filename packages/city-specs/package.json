@@ -12,6 +12,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@antea/schema": "workspace:*"
+    "@antea/schema": "workspace:*",
+    "@antea/landmark-kit": "workspace:*"
+  },
+  "devDependencies": {
+    "three": "^0.185.1",
+    "@types/three": "^0.185.0"
   }
 }
