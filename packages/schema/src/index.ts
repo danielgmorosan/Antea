@@ -391,6 +391,16 @@ export interface CitySpec {
   name: string;
   /** Globe marker position (WGS84). */
   location: { lng: number; lat: number };
+  /**
+   * Identifiers in external gazetteers, used by the ingest pipeline to fetch
+   * sourced facts about this place. Absent where no match exists.
+   */
+  externalIds?: {
+    /** Pleiades place id, e.g. "520998". CC-BY: attribution required. */
+    pleiades?: string;
+    /** Wikidata Q-id, e.g. "Q16869". CC0. */
+    wikidata?: string;
+  };
   /** 3D palette lives here, not in components. */
   palette: Record<string, string>;
   /** Seeds every `mulberry32` draw so a city looks identical on every load. */

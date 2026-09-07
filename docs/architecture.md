@@ -63,6 +63,7 @@ packages/schema           the CitySpec contract. No dependencies, by design
 packages/landmark-kit     terrain maths + pure Three.js builders
 packages/city-specs       editorial city data + loader/validator
 packages/db               editorial database: migrations, seeding, queries
+pipeline/                 Python: ingests sourced facts from open gazetteers
 prototype/                antea-globe.html, the frozen original. Reference only
 docs/                     this file
 ```
@@ -244,6 +245,36 @@ satisfy it would defeat the point; leave the claim in `unsourcedClaims`.
 - OHM and Wikidata are CC0. Dossiers and specs are ours.
 
 ---
+
+## 8b. Ingest
+
+`pipeline/` is a Python 3.12 package that reads open gazetteers and emits
+**committed JSON artifacts**, not database rows.
+
+That indirection is the design. Ingested facts become sourced claims on the
+site, so they go through review as a diff exactly like editorial ones. A
+scheduled GitHub Action refreshes them and opens a pull request; nothing
+appears on the site unseen. Artifacts carry no timestamp, and claims are
+sorted deterministically, so an unchanged gazetteer produces an empty diff.
+
+The first source is **Pleiades** (CC-BY, so attribution is required and the
+licence travels with every record) for attested name forms and their date
+ranges — the raw material for watching Byzantion become Constantinople become
+Kostantiniyye.
+
+**Ingested claims are not pinned to our eras**, and that is deliberate.
+Pleiades records a name's dates as broad period buckets rather than
+attestation windows: its ancient Greek form for Constantinople spans 1200 BC
+to AD 1453. Attaching that to the 667 BC era would assert that Byzantion was
+called Konstantinoupolis a thousand years before Constantine refounded it —
+sourced, and false. So a claim hangs off the _place_, carries the span its
+source gives it, and names an era only when a source is genuinely that
+specific. `claim.era_id` is nullable for exactly this reason.
+
+Tests never touch the network: every one runs against a recorded fixture, so
+they are fast, offline and deterministic. CI additionally re-runs the ingest
+against those fixtures with `--check`, so a change to the mapping cannot land
+without its regenerated artifact.
 
 ## 9. Determinism and testing
 

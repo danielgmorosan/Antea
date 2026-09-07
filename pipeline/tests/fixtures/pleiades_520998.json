@@ -1,0 +1,123 @@
+{
+  "title": "Constantinopolis",
+  "uri": "https://pleiades.stoa.org/places/520998",
+  "description": "Capital city of the Eastern Roman Empire, the Latin, and the Ottoman Empires founded by Constantine I in AD 330.",
+  "provenance": "Barrington Atlas: BAtlas 53 A2 Constantinopolis",
+  "placeTypes": ["urban", "settlement"],
+  "reprPoint": [28.965635140087546, 41.00659262530202],
+  "rights": "Copyright © The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "names": [
+    {
+      "romanized": "Constantinopolis",
+      "attested": "Constantinopolis",
+      "language": "la",
+      "nameType": "geographic",
+      "start": 300,
+      "end": 640
+    },
+    {
+      "romanized": "Constantinople",
+      "attested": "Constantinople",
+      "language": "en",
+      "nameType": "geographic",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "Istanbul",
+      "attested": "Istanbul",
+      "language": "tr",
+      "nameType": "associated_modern",
+      "start": 1700,
+      "end": 2100
+    },
+    {
+      "romanized": "He Polis",
+      "attested": "ἡ Πόλις",
+      "language": "grc",
+      "nameType": "geographic",
+      "start": 850,
+      "end": 1450
+    },
+    {
+      "romanized": "Ḳusṭanṭiniye, Kustantiniye, Qustantiniye",
+      "attested": null,
+      "language": "ota",
+      "nameType": "geographic",
+      "start": 1300,
+      "end": 1453
+    },
+    {
+      "romanized": "Quṣtanṭīnīya",
+      "attested": null,
+      "language": null,
+      "nameType": "geographic",
+      "start": 632,
+      "end": 750
+    },
+    {
+      "romanized": "al-Qustantīnīya, al-Qustantiniya, el-Qustantiniye, al-Qustantiniyah, el-Qustantiniyeh",
+      "attested": null,
+      "language": "arb",
+      "nameType": "geographic",
+      "start": 632,
+      "end": 1335
+    },
+    {
+      "romanized": "Quṣṭanṭīnīya",
+      "attested": null,
+      "language": null,
+      "nameType": "geographic",
+      "start": 1258,
+      "end": 1335
+    },
+    {
+      "romanized": "Kōnstantinoupolis, Konstantinoupolis",
+      "attested": null,
+      "language": "grc",
+      "nameType": "geographic",
+      "start": -1200,
+      "end": 1453
+    },
+    {
+      "romanized": "Konstantinoúpolis",
+      "attested": null,
+      "language": null,
+      "nameType": "geographic",
+      "start": 1300,
+      "end": 1453
+    },
+    {
+      "romanized": "Qosṭanṭiniye, Qostantiniye",
+      "attested": null,
+      "language": "ota",
+      "nameType": "geographic",
+      "start": 1453,
+      "end": 1683
+    },
+    {
+      "romanized": "Konstantinoupolis",
+      "attested": null,
+      "language": null,
+      "nameType": "geographic",
+      "start": 500,
+      "end": 1204
+    },
+    {
+      "romanized": "Konstantinopel",
+      "attested": null,
+      "language": "de",
+      "nameType": "geographic",
+      "start": 1683,
+      "end": 1918
+    },
+    {
+      "romanized": "Ḳosṭanṭıniyye,Qostantiniyye",
+      "attested": "قسطنطينيه",
+      "language": "ota",
+      "nameType": "geographic",
+      "start": 1300,
+      "end": 1923
+    }
+  ]
+}

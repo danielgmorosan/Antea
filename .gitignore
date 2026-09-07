@@ -14,3 +14,8 @@ __pycache__/
 *.pyc
 .venv/
 .vercel
+
+# Python virtualenv for the ingest pipeline
+pipeline/.venv/
+*.egg-info/
+.pytest_cache/

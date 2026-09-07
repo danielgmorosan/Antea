@@ -1,0 +1,112 @@
+{
+  "place": "constantinople",
+  "gazetteer": "pleiades",
+  "source": {
+    "id": "pleiades-520998",
+    "citation": "Pleiades, Constantinopolis (520998)",
+    "kind": "modern-scholarship",
+    "url": "https://pleiades.stoa.org/places/520998",
+    "licence": "CC-BY",
+    "note": "Attested name forms and their date ranges. Provenance: Barrington Atlas: BAtlas 53 A2 Constantinopolis."
+  },
+  "claims": [
+    {
+      "subject": "name",
+      "statement": "Known as “Kōnstantinoupolis, Konstantinoupolis” (ancient Greek), recorded 1200 BC to AD 1453.",
+      "confidence": "inferred",
+      "startYear": -1200,
+      "endYear": 1453
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Constantinopolis” (Latin), recorded AD 300 to AD 640.",
+      "confidence": "attested",
+      "startYear": 300,
+      "endYear": 640
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Konstantinoupolis”, recorded AD 500 to AD 1204.",
+      "confidence": "inferred",
+      "startYear": 500,
+      "endYear": 1204
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Quṣtanṭīnīya”, recorded AD 632 to AD 750.",
+      "confidence": "inferred",
+      "startYear": 632,
+      "endYear": 750
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “al-Qustantīnīya, al-Qustantiniya, el-Qustantiniye, al-Qustantiniyah, el-Qustantiniyeh” (Arabic), recorded AD 632 to AD 1335.",
+      "confidence": "inferred",
+      "startYear": 632,
+      "endYear": 1335
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “ἡ Πόλις” (ancient Greek), recorded AD 850 to AD 1450.",
+      "confidence": "attested",
+      "startYear": 850,
+      "endYear": 1450
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Quṣṭanṭīnīya”, recorded AD 1258 to AD 1335.",
+      "confidence": "inferred",
+      "startYear": 1258,
+      "endYear": 1335
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Konstantinoúpolis”, recorded AD 1300 to AD 1453.",
+      "confidence": "inferred",
+      "startYear": 1300,
+      "endYear": 1453
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “قسطنطينيه” (Ottoman Turkish), recorded AD 1300 to AD 1923.",
+      "confidence": "attested",
+      "startYear": 1300,
+      "endYear": 1923
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Ḳusṭanṭiniye, Kustantiniye, Qustantiniye” (Ottoman Turkish), recorded AD 1300 to AD 1453.",
+      "confidence": "inferred",
+      "startYear": 1300,
+      "endYear": 1453
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Qosṭanṭiniye, Qostantiniye” (Ottoman Turkish), recorded AD 1453 to AD 1683.",
+      "confidence": "inferred",
+      "startYear": 1453,
+      "endYear": 1683
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Konstantinopel” (German), recorded AD 1683 to AD 1918.",
+      "confidence": "inferred",
+      "startYear": 1683,
+      "endYear": 1918
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Constantinople” (English), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    },
+    {
+      "subject": "name",
+      "statement": "Known as “Istanbul” (Turkish), recorded AD 1700 to AD 2100.",
+      "confidence": "attested",
+      "startYear": 1700,
+      "endYear": 2100
+    }
+  ]
+}

@@ -5,6 +5,10 @@
     "lng": 28.98,
     "lat": 41.01
   },
+  "externalIds": {
+    "pleiades": "520998",
+    "wikidata": "Q16869"
+  },
   "seed": 1453,
   "palette": {
     "sky": "#e7ebe3",

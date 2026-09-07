@@ -1,0 +1,46 @@
+name: Ingest
+
+# Gazetteers are edited continuously. This refreshes what we have ingested and
+# opens a pull request when it changes — ingested facts get reviewed as a diff
+# like editorial ones, rather than appearing on the site unseen.
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install
+        working-directory: pipeline
+        run: pip install -e .
+
+      # Hits the live gazetteers, unlike the test suite.
+      - name: Ingest
+        working-directory: pipeline
+        run: python -m antea_pipeline.cli
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: ingest/refresh
+          title: 'Refresh ingested gazetteer claims'
+          commit-message: 'Refresh ingested gazetteer claims'
+          body: |
+            Automated refresh of `packages/city-specs/src/ingested/`.
+
+            These become sourced claims on the site, so read the diff as
+            editorial content: check that date ranges still make sense against
+            our eras, and that nothing reads as an assertion the source does
+            not actually make.
+          add-paths: packages/city-specs/src/ingested/**

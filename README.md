@@ -10,6 +10,8 @@ apps/web              Next.js (App Router) — globe, dioramas, dossier pages
 packages/schema       The CitySpec contract every city is written against
 packages/city-specs   Editorial city data (eras, landmarks, terrain, dossiers)
 packages/landmark-kit Pure Three.js builders: terrain + parametric landmarks
+packages/db           Editorial database: migrations, seeding, queries
+pipeline/             Python ingest: sourced facts from open gazetteers
 prototype/            Self-contained HTML prototypes, kept for reference
 docs/                 Architecture reference
 ```
@@ -26,7 +28,15 @@ pnpm build
 pnpm check        # typecheck + lint + format:check + test
 ```
 
-Requires Node >= 20.9 and pnpm 9.
+Requires Node >= 20.9 and pnpm 9. The ingest pipeline additionally needs
+Python >= 3.12:
+
+```bash
+cd pipeline
+python3.12 -m venv .venv && .venv/bin/pip install -e . pytest ruff
+.venv/bin/pytest                                              # offline, fixtures only
+.venv/bin/python -m antea_pipeline.cli                        # refresh from the gazetteers
+```
 
 ## Where things stand
 

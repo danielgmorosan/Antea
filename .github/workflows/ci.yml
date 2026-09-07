@@ -40,3 +40,31 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install
+        working-directory: pipeline
+        run: pip install -e . pytest ruff
+
+      - name: Lint
+        working-directory: pipeline
+        run: ruff check . && ruff format --check .
+
+      - name: Test
+        working-directory: pipeline
+        run: pytest
+
+      # Proves the committed artifacts match what the pipeline produces from
+      # the recorded fixtures, so a change to the mapping cannot land without
+      # its regenerated output.
+      - name: Ingest artifacts are current
+        working-directory: pipeline
+        run: python -m antea_pipeline.cli --check --fixtures tests/fixtures

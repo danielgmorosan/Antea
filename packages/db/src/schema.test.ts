@@ -56,7 +56,10 @@ describe('migrations', () => {
     const { rows } = await sql.query<{ name: string }>(
       'SELECT name FROM schema_migration ORDER BY name',
     );
-    expect(rows.map((r) => r.name)).toEqual(['0001_editorial.sql']);
+    expect(rows.map((r) => r.name)).toEqual([
+      '0001_editorial.sql',
+      '0003_place_level_claims.sql',
+    ]);
   });
 });
 
@@ -65,42 +68,51 @@ describe('the sourcing rule', () => {
     await seedCity(sql, constantinople);
   });
 
-  const anEra = async () => {
-    const { rows } = await sql.query<{ id: string }>('SELECT id FROM era LIMIT 1');
+  const aPlace = async () => {
+    const { rows } = await sql.query<{ id: string }>('SELECT id FROM place LIMIT 1');
     return rows[0]!.id;
   };
 
   it('accepts a claim that cites a source', async () => {
-    const eraId = await anEra();
+    const placeId = await aPlace();
     await expect(
       sql.query(
-        `INSERT INTO claim (era_id, subject, statement, confidence, source_id)
+        `INSERT INTO claim (place_id, subject, statement, confidence, source_id)
          VALUES ($1, 'population', 'about 450,000', 'approximate', $2)`,
-        [eraId, 'mango-constantinople-population'],
+        [placeId, 'mango-constantinople-population'],
       ),
     ).resolves.toBeDefined();
   });
 
   it('refuses a claim with no source at all', async () => {
-    const eraId = await anEra();
+    const placeId = await aPlace();
     // This is the rule the database exists to enforce. In JSON it is a
     // convention a reviewer has to catch; here it is unstorable.
     await expect(
       sql.query(
-        `INSERT INTO claim (era_id, subject, statement, confidence, source_id)
+        `INSERT INTO claim (place_id, subject, statement, confidence, source_id)
          VALUES ($1, 'population', 'about 450,000', 'approximate', NULL)`,
-        [eraId],
+        [placeId],
       ),
     ).rejects.toThrow();
   });
 
   it('refuses a claim citing a source that does not exist', async () => {
-    const eraId = await anEra();
+    const placeId = await aPlace();
     await expect(
       sql.query(
-        `INSERT INTO claim (era_id, subject, statement, confidence, source_id)
-         VALUES ($1, 'population', 'about 450,000', 'approximate', 'invented-source')`,
-        [eraId],
+        `INSERT INTO claim (place_id, subject, statement, confidence, source_id)
+         VALUES ($1, 'population', 'x', 'approximate', 'invented-source')`,
+        [placeId],
+      ),
+    ).rejects.toThrow();
+  });
+
+  it('refuses a claim that belongs to no place', async () => {
+    await expect(
+      sql.query(
+        `INSERT INTO claim (subject, statement, confidence, source_id)
+         VALUES ('population', 'x', 'approximate', 'mango-constantinople-population')`,
       ),
     ).rejects.toThrow();
   });

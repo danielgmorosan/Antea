@@ -1,0 +1,26 @@
+[project]
+name = "antea-pipeline"
+version = "0.1.0"
+description = "Ingests sourced facts about Antea's places from open gazetteers."
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+antea-ingest = "antea_pipeline.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["antea_pipeline*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The pipeline talks to the network; tests never do. Every test runs against a
+# recorded fixture, so they are fast, offline and deterministic.
+addopts = "-q"
+
+[tool.ruff]
+line-length = 90
+target-version = "py312"
