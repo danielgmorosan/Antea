@@ -98,6 +98,14 @@ Phase 1 is merged and deployed.
   spherical-coordinate controls (see prototype); keep them, they're 60 lines.
 - MapLibre globe: call `map.setProjection({type:"globe"})` after `style.load`;
   wrap style repainting in try/catch per layer (demo styles change).
+- `maplibre-gl.css` loads after the app stylesheet, and its
+  `.maplibregl-map { position: relative }` beats Tailwind's `.absolute` on
+  source order — same specificity, later in the cascade. A map container
+  positioned only with `absolute inset-0` silently collapses to zero height
+  and MapLibre falls back to a 300px canvas. Always give it `h-full w-full`.
+- MapLibre measures its container once, at construction, and never re-measures.
+  Every map needs a ResizeObserver calling `map.resize()`, or it is wrong after
+  any layout settle, window resize or orientation change.
 - InstancedMesh: set `.count` after filling matrices and flag
   `instanceMatrix.needsUpdate`, or instances silently don't render.
 - Terrain-dependent placement must be validated numerically, not visually.

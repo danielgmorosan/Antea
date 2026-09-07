@@ -138,6 +138,12 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
       );
     }
 
+    // MapLibre measures its container once, at construction. If the layout has
+    // not settled yet the canvas sticks at a fallback size and the globe is
+    // never visible; the same applies on window resize and orientation change.
+    const resizeObserver = new ResizeObserver(() => map.resize());
+    resizeObserver.observe(container);
+
     map.on('moveend', spinStep);
     for (const event of ['mousedown', 'touchstart', 'wheel'] as const) {
       map.getCanvas().addEventListener(event, stopSpin, { passive: true });
@@ -146,6 +152,7 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
 
     return () => {
       disposed = true;
+      resizeObserver.disconnect();
       for (const marker of markers) marker.remove();
       map.remove();
     };
@@ -153,7 +160,17 @@ export function WorldGlobe({ cities }: { cities: GlobeCity[] }) {
 
   return (
     <>
-      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" />
+      {/*
+        h-full/w-full rather than relying on inset-0 alone: maplibre-gl.css
+        loads after the app stylesheet and its `.maplibregl-map { position:
+        relative }` beats Tailwind's `.absolute` on source order, which drops
+        `inset-0` and collapses the container to zero height.
+      */}
+      <div
+        ref={containerRef}
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      />
 
       {unavailable ? (
         <p className="glass absolute top-1/2 left-1/2 max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-panel px-6 py-5 text-center text-sm text-ink-soft">
