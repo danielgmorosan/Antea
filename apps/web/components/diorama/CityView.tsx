@@ -105,7 +105,7 @@ export function CityView({
         ← Back to the globe
       </Link>
 
-      <Dossier era={era} />
+      <Dossier era={era} sources={spec.sources} />
       <Timeline stops={stops} current={eraIndex} onSelect={goTo} />
 
       {/* Crawlers and no-JS visitors get the era prose without the canvas. */}

@@ -1,4 +1,4 @@
-import type { EraSpec } from '@antea/schema';
+import type { CitySpec, EraSpec, Source, SourceKind } from '@antea/schema';
 
 const CONFIDENCE_LABEL: Record<EraSpec['dossier']['populationConfidence'], string> = {
   attested: 'recorded',
@@ -6,12 +6,29 @@ const CONFIDENCE_LABEL: Record<EraSpec['dossier']['populationConfidence'], strin
   approximate: 'estimate',
 };
 
+/** How close a source stands to what it describes. Shown, never flattened. */
+const KIND_LABEL: Record<SourceKind, string> = {
+  contemporary: 'contemporary',
+  'later-tradition': 'later tradition',
+  'modern-scholarship': 'modern scholarship',
+};
+
 /** The editorial panel for one place-era pairing. */
-export function Dossier({ era }: { era: EraSpec }) {
+export function Dossier({
+  era,
+  sources,
+}: {
+  era: EraSpec;
+  sources: CitySpec['sources'];
+}) {
   const { dossier } = era;
+  const byId = new Map(sources.map((source) => [source.id, source]));
+  const cited = dossier.sourceIds
+    .map((id) => byId.get(id))
+    .filter((source): source is Source => source !== undefined);
 
   return (
-    <article className="glass absolute top-[86px] left-[26px] w-[330px] rounded-panel px-[26px] pt-6 pb-[22px]">
+    <article className="dossier-panel glass absolute top-[86px] bottom-[110px] left-[26px] w-[330px] overflow-y-auto rounded-panel px-[26px] pt-6 pb-[22px]">
       <p className="dossier-year font-display text-[44px] leading-none font-medium tracking-[-0.01em]">
         {era.yearLabel}
       </p>
@@ -43,11 +60,32 @@ export function Dossier({ era }: { era: EraSpec }) {
         {dossier.seeing}
       </p>
 
-      {dossier.sourceIds.length === 0 ? (
-        <p className="mt-3.5 text-[11px] leading-[1.6] text-ink-soft">
-          Artistic approximation. Sources for this dossier are not yet attached.
+      <footer className="mt-4 border-t border-line pt-3.5 text-[11px] leading-[1.6] text-ink-soft">
+        <p className="font-semibold text-ink">Sources</p>
+        <ul className="mt-1.5 space-y-1.5">
+          {cited.map((source) => (
+            <li key={source.id}>
+              {source.url ? (
+                <a href={source.url} rel="noreferrer" className="text-ink underline">
+                  {source.citation}
+                </a>
+              ) : (
+                <span className="text-ink">{source.citation}</span>
+              )}{' '}
+              <span className="text-verdigris">· {KIND_LABEL[source.kind]}</span>
+              {source.note ? <span className="block">{source.note}</span> : null}
+            </li>
+          ))}
+        </ul>
+
+        {dossier.unsourcedClaims?.length ? (
+          <p className="mt-2.5">Not yet sourced: {dossier.unsourcedClaims.join('; ')}.</p>
+        ) : null}
+
+        <p className="mt-2.5">
+          The reconstruction is an artistic approximation, not a survey.
         </p>
-      ) : null}
+      </footer>
     </article>
   );
 }

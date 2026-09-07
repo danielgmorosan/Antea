@@ -116,7 +116,8 @@
         "ruler": "Megarian colonists",
         "story": "Greek settlers from Megara, told by the Delphic oracle to build “opposite the land of the blind,” plant a town on the hill at the mouth of the Bosporus. It is little more than an acropolis, a harbor and fishing nets — but it sits on the one strait every grain ship from the Black Sea must pass.",
         "seeing": "a temple on the acropolis, a timber palisade, and a scatter of houses above the Golden Horn. Everything west of the hill is still fields.",
-        "sourceIds": []
+        "sourceIds": ["herodotus-histories-4-144", "tacitus-annals-12-63"],
+        "unsourcedClaims": ["the population estimate"]
       },
       "landmarks": [
         {
@@ -215,7 +216,11 @@
         "ruler": "Justinian I, Roman Emperor",
         "story": "Two centuries after Constantine refounded the city, Justinian consecrates the Hagia Sophia — the largest building on Earth. “Solomon, I have outdone thee.” Half a million people live between the Theodosian double walls and the sea, fed by Egyptian grain and defended by the empire's whole navy.",
         "seeing": "the new Hagia Sophia beside the Hippodrome and Great Palace, the Column of Constantine on the main avenue, and the triple land walls far to the west.",
-        "sourceIds": []
+        "sourceIds": [
+          "procopius-buildings-1-1",
+          "diegesis-hagia-sophia",
+          "mango-constantinople-population"
+        ]
       },
       "landmarks": [
         {
@@ -433,7 +438,7 @@
         "ruler": "Alexios III Angelos, Byzantine Emperor",
         "story": "To visiting crusaders it is simply the greatest city in Christendom — “those who had never seen her could not believe.” Trade fills the Golden Horn; the Genoese and Venetian quarters crowd the shore. Four years from now the Fourth Crusade will sack it all, a wound the city never fully heals.",
         "seeing": "the city at its medieval peak, the merchant suburb of Galata growing across the Golden Horn, and harbors busy on every shore.",
-        "sourceIds": []
+        "sourceIds": ["villehardouin-conquete", "mango-constantinople-population"]
       },
       "landmarks": [
         {
@@ -658,7 +663,8 @@
         "ruler": "Süleyman the Magnificent, Ottoman Sultan",
         "story": "A century after the conquest, the city is the largest in Europe again — now facing Mecca. Sinan's domes and minarets remake the skyline; Topkapı Palace spreads over the old acropolis where the Greek colonists first landed two thousand years before. The palimpsest keeps being rewritten.",
         "seeing": "minarets rise beside the Hagia Sophia, the Süleymaniye crowns the third hill, the Galata Tower watches the Horn, and Topkapı gardens cover the point.",
-        "sourceIds": []
+        "sourceIds": ["suleymaniye-inscription"],
+        "unsourcedClaims": ["the population estimate"]
       },
       "landmarks": [
         {
@@ -887,5 +893,59 @@
     }
   ],
   "defaultEraYear": 537,
-  "sources": []
+  "sources": [
+    {
+      "id": "herodotus-histories-4-144",
+      "citation": "Herodotus, Histories 4.144",
+      "kind": "later-tradition",
+      "licence": "public-domain",
+      "note": "Written c. 430 BC, roughly two centuries after the founding. Herodotus gives the “blind” remark to the Persian commander Megabazus, not to the oracle."
+    },
+    {
+      "id": "tacitus-annals-12-63",
+      "citation": "Tacitus, Annals 12.63",
+      "kind": "later-tradition",
+      "url": "https://en.wikisource.org/wiki/The_Annals_(Tacitus)/Book_12",
+      "licence": "public-domain",
+      "note": "The source for the Delphic oracle telling the Megarians to settle opposite “the blind men’s country”."
+    },
+    {
+      "id": "procopius-buildings-1-1",
+      "citation": "Procopius, Buildings I.i",
+      "kind": "contemporary",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Procopius/Buildings/1A*.html",
+      "licence": "public-domain",
+      "note": "Written under Justinian; the closest thing to eyewitness testimony for the new Hagia Sophia."
+    },
+    {
+      "id": "diegesis-hagia-sophia",
+      "citation": "Diegesis (Narratio de S. Sophia), 8th–9th century",
+      "kind": "later-tradition",
+      "licence": "public-domain",
+      "note": "Source of “Solomon, I have outdone thee.” The line is a later legend, not contemporary testimony, and does not appear in Procopius."
+    },
+    {
+      "id": "villehardouin-conquete",
+      "citation": "Geoffroy de Villehardouin, De la Conquête de Constantinople",
+      "kind": "contemporary",
+      "url": "https://www.gutenberg.org/files/6032/6032-h/6032-h.htm",
+      "licence": "public-domain",
+      "note": "An eyewitness of the Fourth Crusade, describing the fleet’s arrival in June 1203."
+    },
+    {
+      "id": "mango-constantinople-population",
+      "citation": "Cyril Mango, on the population of Byzantine Constantinople",
+      "kind": "modern-scholarship",
+      "url": "https://istanbultarihi.ist/460-the-population-of-constantinople-in-the-byzantine-period",
+      "note": "Estimates are contested. Mango argues for 300,000–400,000 at peak; grain-supply calculations give figures nearer 500,000."
+    },
+    {
+      "id": "suleymaniye-inscription",
+      "citation": "Foundation inscription of the Süleymaniye, Karahisari Ahmed Efendi",
+      "kind": "contemporary",
+      "url": "https://istanbultarihi.ist/702-the-suleymaniye-mosque-and-its-complex-1548-1557",
+      "licence": "public-domain",
+      "note": "Dates construction from 13 June 1550 to 15 October 1557."
+    }
+  ]
 }

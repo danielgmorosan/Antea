@@ -1,4 +1,9 @@
-import { BUILDER_NAMES, type CitySpec, type LandmarkPlacement } from '@antea/schema';
+import {
+  BUILDER_NAMES,
+  SOURCE_KINDS,
+  type CitySpec,
+  type LandmarkPlacement,
+} from '@antea/schema';
 
 /**
  * Validates a raw JSON city spec and narrows it to `CitySpec`.
@@ -36,8 +41,20 @@ export function parseCitySpec(raw: unknown): CitySpec {
   const sources = spec['sources'];
   if (!Array.isArray(sources)) throw new Error('city spec: sources must be an array');
   const sourceIds = new Set(
-    sources.map((s) => requireString(asRecord(s, 'source')['id'], 'source.id')),
+    sources.map((raw, i) => {
+      const source = asRecord(raw, `sources[${i}]`);
+      const id = requireString(source['id'], `sources[${i}].id`);
+      requireString(source['citation'], `sources[${i}].citation`);
+      const kind = requireString(source['kind'], `sources[${i}].kind`);
+      if (!(SOURCE_KINDS as readonly string[]).includes(kind)) {
+        throw new Error(`city spec: sources[${i}] has unknown kind "${kind}"`);
+      }
+      return id;
+    }),
   );
+  if (sourceIds.size !== sources.length) {
+    throw new Error('city spec: duplicate source ids');
+  }
 
   const defaultEraYear = requireNumber(spec['defaultEraYear'], 'defaultEraYear');
   if (!eras.some((e) => asRecord(e, 'era')['year'] === defaultEraYear)) {
@@ -60,6 +77,11 @@ export function parseCitySpec(raw: unknown): CitySpec {
     const cited = dossier['sourceIds'];
     if (!Array.isArray(cited)) {
       throw new Error(`city spec: eras[${i}].dossier.sourceIds must be an array`);
+    }
+    if (cited.length === 0) {
+      throw new Error(
+        `city spec: eras[${i}].dossier cites no sources — every dossier must be sourced`,
+      );
     }
     for (const id of cited) {
       if (!sourceIds.has(String(id))) {

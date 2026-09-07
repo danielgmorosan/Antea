@@ -10,14 +10,35 @@
 /** How sure we are about a claim. Surfaced in the UI — never hidden. */
 export type Confidence = 'attested' | 'inferred' | 'approximate';
 
+/**
+ * How close a source stands to the events it describes.
+ *
+ * This is surfaced in the UI rather than flattened away: a witness who was
+ * there, a legend written three centuries later, and a modern population
+ * estimate are all "sources", and a reader deserves to know which is which.
+ */
+export type SourceKind = 'contemporary' | 'later-tradition' | 'modern-scholarship';
+
+export const SOURCE_KINDS = [
+  'contemporary',
+  'later-tradition',
+  'modern-scholarship',
+] as const satisfies readonly SourceKind[];
+
 /** A citation. Every factual claim in a dossier points at one of these. */
 export interface Source {
   id: string;
-  /** Short form shown in the dossier footer, e.g. "Procopius, Buildings I.i". */
+  /** Short form shown on the dossier, e.g. "Procopius, Buildings I.i". */
   citation: string;
+  kind: SourceKind;
   url?: string;
-  /** Licence of the underlying data, where it is not our own editorial prose. */
-  licence?: 'CC0' | 'CC-BY' | 'ODbL' | 'editorial';
+  /**
+   * A caveat shown with the citation — that a famous quotation is a later
+   * attribution, or that an estimate is disputed. Kept short.
+   */
+  note?: string;
+  /** Licence, where the material is not public domain or our own prose. */
+  licence?: 'CC0' | 'CC-BY' | 'ODbL' | 'public-domain' | 'editorial';
 }
 
 /** The editorial panel for one place-era pairing. */
@@ -32,6 +53,12 @@ export interface Dossier {
   /** "What you are looking at" — ties the prose to the diorama. */
   seeing: string;
   sourceIds: string[];
+  /**
+   * Claims in this dossier that no source has been attached to yet, named so
+   * a reader can see the gap instead of assuming the citations below cover
+   * everything. The structured form of the brief's `TODO(source)` marker.
+   */
+  unsourcedClaims?: string[];
 }
 
 /* -------------------------------------------------------------------------
