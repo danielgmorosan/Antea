@@ -62,6 +62,7 @@ apps/web                  Next.js App Router — the only deployable
 packages/schema           the CitySpec contract. No dependencies, by design
 packages/landmark-kit     terrain maths + pure Three.js builders
 packages/city-specs       editorial city data + loader/validator
+packages/db               editorial database: migrations, seeding, queries
 prototype/                antea-globe.html, the frozen original. Reference only
 docs/                     this file
 ```
@@ -346,10 +347,13 @@ these are unresolved:
    resilience and weight; it needs an R2 account.
 2. **Historical borders.** OpenHistoricalMap layers filtered on
    `start_date`/`end_date`. Volume and licensing need checking before ingest.
-3. **Database.** Postgres + PostGIS on Neon is the plan; nothing needs it yet.
-   The editorial content is small, static, and currently well served by JSON in
-   the repo, which is also diffable and reviewable. Introduce a database when
-   there is a reason, not on schedule.
+3. **Database.** The schema exists in `@antea/db` and is tested, but nothing
+   reads from it: the site still renders from the JSON specs, which stay the
+   editorial source of truth because they are diffable and reviewable. The
+   database earns its place by enforcing the sourcing rule — `claim.source_id`
+   is NOT NULL, so an unsourced claim is unstorable — and by being where
+   ingested data will land. Still open: whether the app reads from it, and
+   when. It needs a Neon account before it runs anywhere but tests.
 4. **State management.** `zustand` is a declared dependency but is **imported
    nowhere**. Era state is local component state plus the URL, which has been
    sufficient. Either use it or drop the dependency.
