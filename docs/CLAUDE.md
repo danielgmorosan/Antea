@@ -55,15 +55,19 @@ period imagery) and are not part of the core build. The core is the 2D atlas
 
 ## Phase 1 tasks (in order)
 
-1. Scaffold the monorepo (pnpm, Next.js, TS strict, ESLint+Prettier, Vitest).
-2. Port v3 into components: `AtlasMap.tsx` (map + border layers + theme),
-   `TimeSlider.tsx`, `ArticlePanel.tsx`; year data served from `/data`.
-3. Pages with real URLs: `/` (atlas), `/place/[slug]` and
-   `/place/[slug]/[year]` (atlas centered + panel open, statically
-   generated, full meta tags), `/polity/[slug]/[year]`.
+1. DONE — monorepo scaffolded (pnpm workspaces, Next 16, TS strict, Vitest).
+2. DONE — v3 ported to components (`AtlasMap`, `TimeSlider`, `ArticlePanel`);
+   border data served from `/data`; deployed on Vercel from `main`.
+3. DONE — `/place/[slug]/[year]`: 317 SSG pages with canonical URLs, meta
+   and OpenGraph; `/place/[slug]` redirects to each city's canonical year;
+   sitemap.xml + robots.ts. Still open: `/polity/[slug]/[year]`.
 4. Postgres schema (see architecture doc) + seed script importing
    `places.geojson` and the three curated articles.
-5. CI: typecheck, lint, test, build on PR.
+5. CI: typecheck, lint, test, build on PR (ESLint/Prettier not yet set up).
+
+Deploy note: Vercel builds `main` (pnpm; `apps/web/vercel.json` pins the
+commands). Its security gate refuses vulnerable Next versions — keep Next
+current. `siteOrigin()` must tolerate an empty NEXT_PUBLIC_SITE_URL.
 
 Do NOT start Phase 2 (ingest pipeline, auto-compiled articles at scale,
 OHM blending) until Phase 1 is merged and deployed.
