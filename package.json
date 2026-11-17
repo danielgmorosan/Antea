@@ -1,0 +1,11 @@
+{
+  "name": "antea",
+  "private": true,
+  "workspaces": ["packages/chrono", "apps/web"],
+  "scripts": {
+    "dev": "npm run dev -w apps/web",
+    "build": "npm run build -w packages/chrono && npm run build -w apps/web",
+    "test": "npm run test -w packages/chrono",
+    "typecheck": "npm run typecheck -w packages/chrono && npm run typecheck -w apps/web"
+  }
+}
