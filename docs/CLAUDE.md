@@ -60,10 +60,14 @@ period imagery) and are not part of the core build. The core is the 2D atlas
    border data served from `/data`; deployed on Vercel from `main`.
 3. DONE — `/place/[slug]/[year]`: 317 SSG pages with canonical URLs, meta
    and OpenGraph; `/place/[slug]` redirects to each city's canonical year;
-   sitemap.xml + robots.ts. Still open: `/polity/[slug]/[year]`.
+   sitemap.xml + robots.ts. ALSO DONE — `/polity/[slug]/[year]`: 6,795 SSG
+   pages from scripts/build-polity-index.mjs (2,094 polities; rerun it after
+   regenerating border data); `/polity/[slug]` redirects to the mapped
+   territorial peak; sitemap totals 9,223 URLs.
 4. Postgres schema (see architecture doc) + seed script importing
    `places.geojson` and the three curated articles.
-5. CI: typecheck, lint, test, build on PR (ESLint/Prettier not yet set up).
+5. DONE (lean) — .github/workflows/ci.yml runs install, tests and the build
+   on pushes to main and PRs. ESLint/Prettier still to add.
 
 Deploy note: Vercel builds `main` (pnpm; `apps/web/vercel.json` pins the
 commands). Its security gate refuses vulnerable Next versions — keep Next
