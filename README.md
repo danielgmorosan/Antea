@@ -22,10 +22,10 @@ docs/             Architecture and CLAUDE.md
 ## Develop
 
 ```
-npm install
-npm test      # vitest on packages/chrono
-npm run dev   # atlas on http://localhost:3000
-npm run build
+pnpm install
+pnpm test      # vitest on packages/chrono
+pnpm dev       # atlas on http://localhost:3000
+pnpm build
 ```
 
 Border data (3000 BC – AD 2000) lives in `apps/web/public/data/`, simplified
