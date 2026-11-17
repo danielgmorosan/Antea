@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { siteOrigin } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteOrigin()),
   title: "Antea — the world, before",
   description:
     "A time-aware atlas of the world: 5,000 years of borders you can scrub through, with sourced articles for the places that rose and vanished.",

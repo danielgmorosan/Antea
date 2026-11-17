@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   YEARS, fileKey, yearLabel, clampIndex, nameAt, phaseAt,
   activeTimelineYear, isVisible, colorFor, ringMetrics, physicalWeight,
-  labelFontSize, SOFT_LABEL, type Phase,
+  labelFontSize, SOFT_LABEL, parseYearKey, snapYears, nearestIndex,
+  type Phase,
 } from "../src/index";
 
 const CONSTANTINOPLE = [
@@ -67,6 +68,30 @@ describe("city identity through time", () => {
   it("controls marker visibility", () => {
     expect(isVisible(1325, 1521, 1400)).toBe(true);  // Tenochtitlan exists
     expect(isVisible(1325, 1521, 1600)).toBe(false); // ...and is gone
+  });
+});
+
+describe("url year keys", () => {
+  it("round-trips every snapshot year", () => {
+    for (const y of YEARS) expect(parseYearKey(fileKey(y))).toBe(y);
+  });
+  it("rejects garbage and non-snapshot years", () => {
+    expect(parseYearKey("bc501")).toBeNull();
+    expect(parseYearKey("1201")).toBeNull();
+    expect(parseYearKey("abc")).toBeNull();
+    expect(parseYearKey("-500")).toBeNull();
+    expect(parseYearKey("")).toBeNull();
+  });
+  it("lists the snapshot years a place exists in", () => {
+    const ys = snapYears(1325, 1521); // Tenochtitlan
+    expect(ys[0]).toBe(1400);
+    expect(ys[ys.length - 1]).toBe(1500);
+    expect(ys).not.toContain(1600);
+  });
+  it("snaps arbitrary years to the nearest snapshot", () => {
+    expect(YEARS[nearestIndex(1453)]).toBe(1492);
+    expect(YEARS[nearestIndex(-650)]).toBe(-700);
+    expect(YEARS[nearestIndex(5000)]).toBe(2000);
   });
 });
 

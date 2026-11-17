@@ -13,6 +13,7 @@ import type { Selection } from "@/lib/select";
 
 interface Props {
   yearIndex: number;
+  focus?: [number, number];
   onPick: (sel: Selection | null) => void;
   onBusy: (busy: boolean) => void;
   onError: (msg: string) => void;
@@ -34,7 +35,7 @@ function graticule() {
   return { type: "FeatureCollection", features };
 }
 
-export default function AtlasMap({ yearIndex, onPick, onBusy, onError }: Props) {
+export default function AtlasMap({ yearIndex, focus, onPick, onBusy, onError }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
@@ -62,7 +63,7 @@ export default function AtlasMap({ yearIndex, onPick, onBusy, onError }: Props) 
           version: 8, sources: {},
           layers: [{ id: "bg", type: "background", paint: { "background-color": PAL[isDark() ? "dark" : "light"].ocean } }],
         },
-        center: [24, 34], zoom: 2.6, minZoom: 1.1, maxZoom: 8,
+        center: focus ?? [24, 34], zoom: focus ? 4.2 : 2.6, minZoom: 1.1, maxZoom: 8,
         attributionControl: false, dragRotate: false, pitchWithRotate: false,
       });
       map.touchZoomRotate.disableRotation();

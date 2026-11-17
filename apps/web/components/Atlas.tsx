@@ -2,14 +2,22 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { YEARS, clampIndex } from "@antea/chrono";
+import { CITIES } from "@/lib/cities";
 import AtlasMap from "./AtlasMap";
 import TimeSlider from "./TimeSlider";
 import ArticlePanel from "./ArticlePanel";
 import type { Selection } from "@/lib/select";
 
-export default function Atlas() {
-  const [idx, setIdx] = useState(YEARS.indexOf(1200));
-  const [sel, setSel] = useState<Selection | null>(null);
+interface Props {
+  initialIdx?: number;
+  initialSlug?: string;
+}
+
+export default function Atlas({ initialIdx, initialSlug }: Props) {
+  const [idx, setIdx] = useState(initialIdx ?? YEARS.indexOf(1200));
+  const [sel, setSel] = useState<Selection | null>(
+    initialSlug ? { kind: "city", slug: initialSlug } : null,
+  );
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [popOpen, setPopOpen] = useState(false);
@@ -33,9 +41,13 @@ export default function Atlas() {
     return () => document.removeEventListener("keydown", h);
   }, []);
 
+  const focus = initialSlug
+    ? CITIES.find((c) => c.slug === initialSlug)?.ll
+    : undefined;
+
   return (
     <>
-      <AtlasMap yearIndex={idx} onPick={setSel} onBusy={setBusy} onError={onError} />
+      <AtlasMap yearIndex={idx} focus={focus} onPick={setSel} onBusy={setBusy} onError={onError} />
 
       <div className="brand"><h1>Antea</h1><span>the world, before</span></div>
 

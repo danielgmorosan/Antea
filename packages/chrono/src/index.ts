@@ -21,6 +21,26 @@ export const fileKey = (y: number): string => (y < 0 ? `bc${-y}` : String(y));
 export const clampIndex = (i: number): number =>
   Math.max(0, Math.min(YEARS.length - 1, Math.round(i)));
 
+/** Inverse of fileKey: "bc500" → -500, "1200" → 1200, null if malformed or not a snapshot year. */
+export function parseYearKey(key: string): number | null {
+  const m = /^(bc)?(\d{1,4})$/.exec(key);
+  if (!m) return null;
+  const y = m[1] ? -Number(m[2]) : Number(m[2]);
+  return YEARS.includes(y) ? y : null;
+}
+
+/** Snapshot years in which a place with lifespan [from, to] exists. */
+export const snapYears = (from: number, to: number): number[] =>
+  YEARS.filter((y) => y >= from && y <= to);
+
+/** Index of the snapshot year nearest to y (ties go earlier). */
+export function nearestIndex(y: number): number {
+  let best = 0;
+  for (let i = 1; i < YEARS.length; i++)
+    if (Math.abs(YEARS[i] - y) < Math.abs(YEARS[best] - y)) best = i;
+  return best;
+}
+
 /** [fromYear, name] pairs, ascending; the latest pair ≤ y wins. */
 export type NameByYear = readonly (readonly [number, string])[];
 export function nameAt(names: NameByYear, y: number): string {
