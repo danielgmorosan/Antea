@@ -5,7 +5,7 @@ import type { GeoJSONSource, Map as MLMap, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   YEARS, fileKey, nameAt, isVisible, colorFor,
-  ringMetrics, physicalWeight, SOFT_LABEL, labelFontSize,
+  largestOuterRing, SOFT_LABEL, labelFontSize,
 } from "@antea/chrono";
 import { PAL, isDark } from "@/lib/palette";
 import { CITIES, titleCase } from "@/lib/cities";
@@ -185,14 +185,8 @@ export default function AtlasMap({ yearIndex, focus, onPick, onBusy, onError }: 
     for (const f of d.features) {
       const n = f.properties.n;
       if (!n) continue;
-      const g = f.geometry;
-      const polys = (g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : []) as number[][][][] | number[][][];
-      for (const poly of polys as number[][][][]) {
-        const ring = (g.type === "Polygon" ? (poly as unknown as number[][]) : poly[0]) as [number, number][];
-        const m = ringMetrics(ring);
-        const phys = physicalWeight(m.area, m.c[1]);
-        if (!best[n] || phys > best[n].phys) best[n] = { phys, c: m.c };
-      }
+      const r = largestOuterRing(f.geometry);
+      if (r && (!best[n] || r.phys > best[n].phys)) best[n] = r;
     }
     const top = Object.entries(best).filter(([, v]) => v.phys > 3.5)
       .sort((a, b) => b[1].phys - a[1].phys).slice(0, 26);

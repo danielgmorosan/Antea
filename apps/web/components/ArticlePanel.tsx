@@ -4,14 +4,20 @@ import { YEARS, yearLabel, nameAt, phaseAt, activeTimelineYear, isVisible } from
 import { CITIES, titleCase, type City } from "@/lib/cities";
 import type { Selection } from "@/lib/select";
 
+export interface YearChip {
+  key: string;
+  label: string;
+}
+
 interface Props {
   sel: Selection | null;
   idx: number;
+  polityChips?: YearChip[];
   onClose: () => void;
   onOpenCity: (slug: string) => void;
 }
 
-export default function ArticlePanel({ sel, idx, onClose, onOpenCity }: Props) {
+export default function ArticlePanel({ sel, idx, polityChips, onClose, onOpenCity }: Props) {
   const y = YEARS[idx];
   return (
     <aside className={"panel" + (sel ? " open" : "")} aria-live="polite">
@@ -23,6 +29,16 @@ export default function ArticlePanel({ sel, idx, onClose, onOpenCity }: Props) {
           </div>
           <div className="panel-body">
             <Body sel={sel} y={y} onOpenCity={onOpenCity} />
+            {sel.kind === "polity" && polityChips && polityChips.length > 1 && (
+              <>
+                <h3>On the map in</h3>
+                <div className="rel">
+                  {polityChips.map((ch) => (
+                    <a key={ch.key} className="chip-link" href={ch.key}>{ch.label}</a>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

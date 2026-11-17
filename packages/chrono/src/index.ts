@@ -111,6 +111,43 @@ export function ringMetrics(r: Ring): { area: number; c: [number, number] } {
 export const physicalWeight = (area: number, latDeg: number): number =>
   area * Math.max(0.2, Math.cos((latDeg * Math.PI) / 180));
 
+export interface GeoJSONGeometry {
+  type: string;
+  coordinates: unknown;
+}
+
+/** Weight and centroid of a geometry's largest outer ring (Polygon or MultiPolygon). */
+export function largestOuterRing(
+  g: GeoJSONGeometry,
+): { phys: number; c: [number, number] } | null {
+  const polys =
+    g.type === "Polygon"
+      ? [g.coordinates as Ring[]]
+      : g.type === "MultiPolygon"
+        ? (g.coordinates as Ring[][])
+        : [];
+  let best: { phys: number; c: [number, number] } | null = null;
+  for (const poly of polys) {
+    const outer = poly[0];
+    if (!outer || outer.length < 4) continue;
+    const m = ringMetrics(outer);
+    const phys = physicalWeight(m.area, m.c[1]);
+    if (!best || phys > best.phys) best = { phys, c: m.c };
+  }
+  return best;
+}
+
+/** URL slug for a polity name: parentheses dropped, ASCII-folded, hyphenated. */
+export function slugifyName(name: string): string {
+  return name
+    .replace(/\s*\(.*?\)\s*/g, " ")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 /** Names rendered in the quiet italic style: peoples, not states. */
 export const SOFT_LABEL =
   /hunter|gather|peoples?|tribes?|nomad|farmer|pastoral|cultures?/i;

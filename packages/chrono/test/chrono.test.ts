@@ -3,6 +3,7 @@ import {
   YEARS, fileKey, yearLabel, clampIndex, nameAt, phaseAt,
   activeTimelineYear, isVisible, colorFor, ringMetrics, physicalWeight,
   labelFontSize, SOFT_LABEL, parseYearKey, snapYears, nearestIndex,
+  largestOuterRing, slugifyName,
   type Phase,
 } from "../src/index";
 
@@ -110,6 +111,24 @@ describe("colors & labels", () => {
   });
   it("down-weights polar areas", () => {
     expect(physicalWeight(100, 0)).toBeGreaterThan(physicalWeight(100, 70));
+  });
+  it("finds the largest outer ring of Polygon and MultiPolygon alike", () => {
+    const sq = (s: number, off = 0) =>
+      [[off, 0], [off + s, 0], [off + s, s], [off, s], [off, 0]] as const;
+    const poly = { type: "Polygon", coordinates: [sq(2)] };
+    const p = largestOuterRing(poly as never);
+    expect(p?.phys).toBeCloseTo(4, 1);
+    expect(p?.c[0]).toBeCloseTo(1);
+    const multi = { type: "MultiPolygon", coordinates: [[sq(1)], [sq(3, 10)]] };
+    const m = largestOuterRing(multi as never);
+    expect(m?.phys).toBeCloseTo(9, 0);
+    expect(m?.c[0]).toBeCloseTo(11.5);
+    expect(largestOuterRing({ type: "Point", coordinates: [0, 0] } as never)).toBeNull();
+  });
+  it("slugifies polity names", () => {
+    expect(slugifyName("Eastern Roman Empire")).toBe("eastern-roman-empire");
+    expect(slugifyName("Khanate of the Golden Horde (Kipchak)")).toBe("khanate-of-the-golden-horde");
+    expect(slugifyName("Côte d'Ivoire")).toBe("cote-d-ivoire");
   });
   it("styles peoples differently from states", () => {
     expect(SOFT_LABEL.test("Tuareg Nomadic Tribes")).toBe(true);

@@ -2,22 +2,27 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { YEARS, clampIndex } from "@antea/chrono";
-import { CITIES } from "@/lib/cities";
 import AtlasMap from "./AtlasMap";
 import TimeSlider from "./TimeSlider";
 import ArticlePanel from "./ArticlePanel";
 import type { Selection } from "@/lib/select";
 
-interface Props {
-  initialIdx?: number;
-  initialSlug?: string;
+export interface YearChip {
+  key: string;
+  label: string;
 }
 
-export default function Atlas({ initialIdx, initialSlug }: Props) {
+interface Props {
+  initialIdx?: number;
+  initialSel?: Selection;
+  focus?: [number, number];
+  /** For a polity page: the snapshot years this polity is mapped in, as links. */
+  polityChips?: YearChip[];
+}
+
+export default function Atlas({ initialIdx, initialSel, focus, polityChips }: Props) {
   const [idx, setIdx] = useState(initialIdx ?? YEARS.indexOf(1200));
-  const [sel, setSel] = useState<Selection | null>(
-    initialSlug ? { kind: "city", slug: initialSlug } : null,
-  );
+  const [sel, setSel] = useState<Selection | null>(initialSel ?? null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [popOpen, setPopOpen] = useState(false);
@@ -41,10 +46,6 @@ export default function Atlas({ initialIdx, initialSlug }: Props) {
     return () => document.removeEventListener("keydown", h);
   }, []);
 
-  const focus = initialSlug
-    ? CITIES.find((c) => c.slug === initialSlug)?.ll
-    : undefined;
-
   return (
     <>
       <AtlasMap yearIndex={idx} focus={focus} onPick={setSel} onBusy={setBusy} onError={onError} />
@@ -67,7 +68,7 @@ export default function Atlas({ initialIdx, initialSlug }: Props) {
 
       {err && <div id="err">{err}</div>}
 
-      <ArticlePanel sel={sel} idx={idx} onClose={() => setSel(null)} onOpenCity={(slug) => setSel({ kind: "city", slug })} />
+      <ArticlePanel sel={sel} idx={idx} polityChips={polityChips} onClose={() => setSel(null)} onOpenCity={(slug) => setSel({ kind: "city", slug })} />
       <TimeSlider idx={idx} busy={busy} onChange={changeYear} />
 
       <div className="credit">Antea prototype · borders: historical-basemaps · articles: curated &amp; auto-compiled tiers</div>

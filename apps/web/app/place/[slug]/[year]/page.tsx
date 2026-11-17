@@ -54,5 +54,11 @@ export default async function PlaceYearPage(
   const r = resolve(await params);
   if (!r) notFound();
   const { city, y } = r;
-  return <Atlas initialIdx={YEARS.indexOf(y)} initialSlug={city.slug} />;
+  return (
+    <Atlas
+      initialIdx={YEARS.indexOf(y)}
+      initialSel={{ kind: "city", slug: city.slug }}
+      focus={city.ll}
+    />
+  );
 }
