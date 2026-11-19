@@ -64,8 +64,13 @@ period imagery) and are not part of the core build. The core is the 2D atlas
    pages from scripts/build-polity-index.mjs (2,094 polities; rerun it after
    regenerating border data); `/polity/[slug]` redirects to the mapped
    territorial peak; sitemap totals 9,223 URLs.
-4. Postgres schema (see architecture doc) + seed script importing
-   `places.geojson` and the three curated articles.
+4. BUILT, awaiting a database — `db/` holds schema.sql (editorial vs
+   staging schemas; every claim has a source_id) and an idempotent seed
+   that imports apps/web/lib/cities.ts plus the vendored places extract
+   into staging. `pnpm --filter @antea/db check` verifies it on in-memory
+   Postgres (pglite) and runs in CI. To go live: create a Neon project and
+   run `DATABASE_URL=… pnpm --filter @antea/db seed`. GPL data stays in
+   staging only (db/vendor/NOTICE.md).
 5. DONE (lean) — .github/workflows/ci.yml runs install, tests and the build
    on pushes to main and PRs. ESLint/Prettier still to add.
 

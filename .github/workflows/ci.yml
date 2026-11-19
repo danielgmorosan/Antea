@@ -28,5 +28,8 @@ jobs:
       - name: Unit tests (@antea/chrono)
         run: pnpm test
 
+      - name: Database schema + seed dry run (pglite)
+        run: pnpm --filter @antea/db check
+
       - name: Build (typechecks the app)
         run: pnpm build

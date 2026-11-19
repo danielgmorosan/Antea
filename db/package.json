@@ -1,0 +1,17 @@
+{
+  "name": "@antea/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "seed": "node --experimental-strip-types seed.mjs",
+    "check": "node --experimental-strip-types seed.mjs --local",
+    "typecheck": "echo 'db: no typecheck (plain SQL + mjs)'"
+  },
+  "dependencies": {
+    "pg": "8.13.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.2.17"
+  }
+}
