@@ -18,6 +18,19 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rows = JSON.parse(readFileSync(join(root, "db", "vendor", "hb-places.json"), "utf8"));
 
+/* merge coordinate-verified QIDs from the reconciliation pass, if present */
+try {
+  const rec = JSON.parse(readFileSync(join(root, "pipeline", "reconciled-qids.json"), "utf8"));
+  const byKey = new Map(rec.map((m) => [`${m.name}|${m.lon}|${m.lat}`, m.q]));
+  let merged = 0;
+  for (const r of rows)
+    if (!r.wikidata) {
+      const q = byKey.get(`${r.name}|${r.lon}|${r.lat}`);
+      if (q) { r.wikidata = q; merged++; }
+    }
+  console.log(`merged ${merged} reconciled QIDs`);
+} catch { /* no reconciliation yet */ }
+
 const API = "https://www.wikidata.org/w/api.php";
 const UA = "AnteaAtlas/0.1 (https://github.com/danielgmorosan/antea) node";
 // Flagship/stub cities already curated in apps/web/lib/cities.ts:

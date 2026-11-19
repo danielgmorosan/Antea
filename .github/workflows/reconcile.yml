@@ -1,0 +1,32 @@
+name: Reconcile places against Wikidata
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node pipeline/reconcile-wikidata.mjs
+
+      - name: Run enrichment on the merged set
+        run: node pipeline/enrich-wikidata.mjs
+
+      - name: Commit results
+        run: |
+          git config user.name "antea-pipeline"
+          git config user.email "pipeline@users.noreply.github.com"
+          git add pipeline/reconciled-qids.json apps/web/lib/places-auto.json
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit -m "pipeline: reconcile QID-less places and refresh places-auto.json"
+          git push
