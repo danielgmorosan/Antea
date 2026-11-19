@@ -2,6 +2,8 @@ name: Reconcile places against Wikidata
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "41 */3 * * *"   # self-driving until reconcile-state.json says done
 
 permissions:
   contents: write
@@ -17,12 +19,25 @@ jobs:
         with:
           node-version: 22
 
-      - run: node pipeline/reconcile-wikidata.mjs
+      - name: Skip when reconciliation is complete
+        id: gate
+        run: |
+          if [ -f pipeline/reconcile-state.json ] && python3 -c "import json; raise SystemExit(0 if json.load(open('pipeline/reconcile-state.json'))['done'] else 1)"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Reconciliation already complete."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.gate.outputs.skip == 'false'
+        run: node pipeline/reconcile-wikidata.mjs
 
       - name: Run enrichment on the merged set
+        if: steps.gate.outputs.skip == 'false'
         run: node pipeline/enrich-wikidata.mjs
 
       - name: Commit results
+        if: steps.gate.outputs.skip == 'false'
         run: |
           git config user.name "antea-pipeline"
           git config user.email "pipeline@users.noreply.github.com"
