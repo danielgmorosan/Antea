@@ -4,3 +4,4 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+apps/web/public/search.json

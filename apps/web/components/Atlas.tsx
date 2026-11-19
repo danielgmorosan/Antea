@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { YEARS, clampIndex } from "@antea/chrono";
 import AtlasMap from "./AtlasMap";
+import SearchBox from "./SearchBox";
 import TimeSlider from "./TimeSlider";
 import ArticlePanel from "./ArticlePanel";
 import type { Selection } from "@/lib/select";
@@ -51,6 +52,7 @@ export default function Atlas({ initialIdx, initialSel, focus, polityChips }: Pr
       <AtlasMap yearIndex={idx} focus={focus} onPick={setSel} onBusy={setBusy} onError={onError} />
 
       <div className="brand"><h1>Antea</h1><span>the world, before</span></div>
+      <SearchBox />
 
       <button className="chip" aria-expanded={popOpen} onClick={() => setPopOpen((v) => !v)}>
         <i>≈</i> borders are approximate
