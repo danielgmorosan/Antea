@@ -9,7 +9,7 @@ permissions:
 jobs:
   reconcile:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 110
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "antea-pipeline"
           git config user.email "pipeline@users.noreply.github.com"
-          git add pipeline/reconciled-qids.json apps/web/lib/places-auto.json
+          git add pipeline/reconciled-qids.json pipeline/reconcile-state.json apps/web/lib/places-auto.json
           if git diff --cached --quiet; then echo "No changes."; exit 0; fi
           git commit -m "pipeline: reconcile QID-less places and refresh places-auto.json"
           git pull --rebase origin main

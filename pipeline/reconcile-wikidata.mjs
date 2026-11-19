@@ -11,13 +11,24 @@
  * Runs in CI (.github/workflows/reconcile.yml). No dependencies. Safe to
  * re-run; output is deterministic for a given Wikidata state.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rows = JSON.parse(readFileSync(join(root, "db", "vendor", "hb-places.json"), "utf8"));
 const OUT = join(root, "pipeline", "reconciled-qids.json");
+const STATE = join(root, "pipeline", "reconcile-state.json");
+
+/* Resumable: tried keys and matches survive across runs; each run spends
+ * at most BUDGET_MINUTES (default 90) and commits whatever it covered. */
+const BUDGET_MS = Number(process.env.BUDGET_MINUTES ?? 90) * 60_000;
+const DEADLINE = Date.now() + BUDGET_MS;
+const keyOf = (r) => `${r.name}|${r.lon}|${r.lat}`;
+const tried = new Set(
+  existsSync(STATE) ? JSON.parse(readFileSync(STATE, "utf8")).tried ?? [] : [],
+);
+const prevMatches = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : [];
 
 const API = "https://www.wikidata.org/w/api.php";
 const UA = "AnteaAtlas/0.1 (https://github.com/danielgmorosan/antea) node";
@@ -49,14 +60,17 @@ function kmBetween(a, b) {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
-const unresolved = rows.filter((r) => !r.wikidata);
-console.log(`reconciling ${unresolved.length} places without QIDs…`);
+const pending = rows.filter((r) => !r.wikidata && !tried.has(keyOf(r)));
+console.log(`reconciling: ${pending.length} pending (${tried.size} already tried, ${prevMatches.length} matched so far)`);
 
-/* pass 1: name search, collect candidates */
+/* pass 1: name search until ~60% of the budget is spent */
+const searchDeadline = Date.now() + (DEADLINE - Date.now()) * 0.6;
+const unresolved = [];
 const candidates = new Map(); // row index -> qid[]
 const allQids = new Set();
-for (let i = 0; i < unresolved.length; i++) {
-  const r = unresolved[i];
+for (const r of pending) {
+  if (Date.now() > searchDeadline) break;
+  const i = unresolved.push(r) - 1;
   const d = await wd({
     action: "wbsearchentities", search: r.name, language: "en",
     uselang: "en", type: "item", limit: "5",
@@ -66,10 +80,10 @@ for (let i = 0; i < unresolved.length; i++) {
     candidates.set(i, qs);
     qs.forEach((q) => allQids.add(q));
   }
-  if (i % 100 === 0) process.stdout.write(`  search ${i}/${unresolved.length}\r`);
+  if (i % 100 === 0) process.stdout.write(`  search ${i}/${pending.length}\r`);
   await sleep(60);
 }
-console.log(`\n  candidates for ${candidates.size} names, ${allQids.size} unique entities`);
+console.log(`\n  this run searched ${unresolved.length}; candidates for ${candidates.size} names, ${allQids.size} unique entities`);
 
 /* pass 2: fetch candidate coordinates + descriptions in batches */
 const coord = {}; const brief = {};
@@ -88,8 +102,9 @@ for (let i = 0; i < qlist.length; i += 50) {
   await sleep(60);
 }
 
-/* pass 3: accept nearest candidate within MAX_KM */
-const matches = [];
+/* pass 3: accept nearest candidate within MAX_KM, merge with earlier runs */
+const matches = [...prevMatches];
+let newMatches = 0;
 for (const [i, qs] of candidates) {
   const r = unresolved[i];
   let best = null;
@@ -98,13 +113,23 @@ for (const [i, qs] of candidates) {
     const km = kmBetween(r, coord[q]);
     if (km <= MAX_KM && (!best || km < best.km)) best = { q, km };
   }
-  if (best)
+  if (best) {
     matches.push({
       name: r.name, lon: r.lon, lat: r.lat,
       q: best.q, km: Number(best.km.toFixed(1)),
       desc: brief[best.q] ?? null,
     });
+    newMatches++;
+  }
 }
+for (const r of unresolved) tried.add(keyOf(r));
 matches.sort((a, b) => a.name.localeCompare(b.name));
 writeFileSync(OUT, JSON.stringify(matches, null, 1));
-console.log(`\nmatched ${matches.length}/${unresolved.length} (coordinate-verified ≤ ${MAX_KM} km); wrote pipeline/reconciled-qids.json`);
+const remaining = pending.length - unresolved.length;
+writeFileSync(STATE, JSON.stringify({
+  done: remaining === 0,
+  tried: [...tried].sort(),
+  matched: matches.length,
+  updated: new Date().toISOString(),
+}));
+console.log(`\nthis run: +${newMatches} coordinate-verified matches (${matches.length} total); ${remaining} names still pending — ${remaining === 0 ? "DONE" : "re-dispatch to continue"}`);
