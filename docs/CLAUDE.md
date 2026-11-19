@@ -78,8 +78,14 @@ Deploy note: Vercel builds `main` (pnpm; `apps/web/vercel.json` pins the
 commands). Its security gate refuses vulnerable Next versions — keep Next
 current. `siteOrigin()` must tolerate an empty NEXT_PUBLIC_SITE_URL.
 
-Do NOT start Phase 2 (ingest pipeline, auto-compiled articles at scale,
-OHM blending) until Phase 1 is merged and deployed.
+Phase 2 has begun. Done so far: pipeline/enrich-wikidata.mjs (runs in CI
+via .github/workflows/enrich.yml, workflow_dispatch + monthly cron; the
+sandbox has no Wikidata egress) enriches staged places that carry QIDs and
+writes apps/web/lib/places-auto.json, gated on having an English
+description. 245 auto places ship as /place/[slug]/[canonical-year] pages
+with Wikidata/Wikipedia source links, plus the /places directory. Next:
+reconcile the ~1,950 QID-less staged places (name+coords against Wikidata),
+then LLM-composed overviews with review_state.
 
 ## Conventions
 

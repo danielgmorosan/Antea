@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { fileKey, snapYears } from "@antea/chrono";
 import { CITIES } from "@/lib/cities";
+import { AUTO_PLACES, autoCanonicalKey } from "@/lib/autoplaces";
 import { POLITIES } from "@/lib/polities";
 import { siteOrigin } from "@/lib/site";
 
@@ -8,7 +9,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteOrigin();
   const entries: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/places`, changeFrequency: "weekly", priority: 0.9 },
   ];
+  for (const p of AUTO_PLACES)
+    entries.push({
+      url: `${base}/place/${p.slug}/${autoCanonicalKey(p)}`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   for (const c of CITIES) {
     entries.push({
       url: `${base}/place/${c.slug}`,

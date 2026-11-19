@@ -63,6 +63,14 @@ function Head({ sel, y }: { sel: Selection; y: number }) {
       </div>
     );
   }
+  if (sel.kind === "auto")
+    return (
+      <div className="head-main">
+        <div className="crumb">World › {sel.place.name}</div>
+        <h2>{sel.place.name}</h2>
+        <span className="tier stub">auto-compiled from Wikidata</span>
+      </div>
+    );
   if (sel.kind === "polity")
     return (
       <div className="head-main">
@@ -84,6 +92,31 @@ function Body({ sel, y, onOpenCity }: { sel: Selection; y: number; onOpenCity: (
   if (sel.kind === "city") {
     const c = CITIES.find((x) => x.slug === sel.slug)!;
     return c.flagship ? <Flagship c={c} y={y} onOpenCity={onOpenCity} /> : <Stub c={c} y={y} onOpenCity={onOpenCity} />;
+  }
+  if (sel.kind === "auto") {
+    const p = sel.place;
+    const sentence = p.desc.charAt(0).toUpperCase() + p.desc.slice(1) + (/[.!?]$/.test(p.desc) ? "" : ".");
+    const yr = (v: number) => (v < 0 ? `${-v} BC` : `AD ${v}`);
+    return (
+      <>
+        <div className="facts">
+          <div><b>{p.inception != null ? yr(p.inception) : "undated"}</b><i>founded or first attested</i></div>
+          <div><b>{p.dissolved != null ? yr(p.dissolved) : "—"}</b><i>abandoned or dissolved</i></div>
+        </div>
+        <p>{sentence}</p>
+        {p.kinds && <p>{p.kinds.join(" · ")}</p>}
+        <h3>Sources</h3>
+        <p className="src">
+          <a href={`https://www.wikidata.org/wiki/${p.q}`} target="_blank" rel="noopener noreferrer">Wikidata {p.q}</a> (CC0)
+          {p.enwiki && <> · <a href={`https://en.wikipedia.org/wiki/${encodeURIComponent(p.enwiki)}`} target="_blank" rel="noopener noreferrer">Wikipedia: {p.enwiki}</a></>}
+          <br />Coordinates: historical-basemaps places
+        </p>
+        <div className="note">
+          This stub was compiled automatically from structured sources — the first rung of the
+          ladder to a curated article. Dates shown only when a source states them.
+        </div>
+      </>
+    );
   }
   if (sel.kind === "polity")
     return (
