@@ -19,6 +19,14 @@ prototype/        Standalone HTML prototypes (v1–v2 dioramas are parked;
 docs/             Architecture and CLAUDE.md
 ```
 
+## Live
+
+The atlas deploys from `main` via Vercel: ~9,700 crawlable pages — the
+atlas itself, `/places` (the index of every place), `/place/<slug>/<year>`
+biographies and `/polity/<slug>/<year>` territory pages, with search over
+all of it. The ingest pipeline (GitHub Actions) reconciles and enriches
+places from Wikidata on a monthly schedule.
+
 ## Develop
 
 ```

@@ -1,6 +1,6 @@
 "use client";
 
-import { YEARS, yearLabel, nameAt, phaseAt, activeTimelineYear, isVisible } from "@antea/chrono";
+import { YEARS, yearLabel, nameAt, phaseAt, activeTimelineYear, isVisible, snapYears, fileKey } from "@antea/chrono";
 import { CITIES, titleCase, type City } from "@/lib/cities";
 import type { Selection } from "@/lib/select";
 
@@ -167,7 +167,29 @@ function Flagship({ c, y, onOpenCity }: { c: City; y: number; onOpenCity: (s: st
       </ul>
       <h3>Sources</h3>
       <p className="src">{c.sources!.map((s, i) => <span key={i}>{s}<br /></span>)}</p>
+      <ThroughYears c={c} y={y} />
       <Related slug={c.slug} y={y} onOpenCity={onOpenCity} />
+    </>
+  );
+}
+
+function ThroughYears({ c, y }: { c: City; y: number }) {
+  const ys = snapYears(c.from, c.to);
+  if (ys.length < 2) return null;
+  return (
+    <>
+      <h3>This place through the years</h3>
+      <div className="rel">
+        {ys.map((ty) => (
+          <a
+            key={ty}
+            className={"chip-link" + (ty === y ? " now" : "")}
+            href={`/place/${c.slug}/${fileKey(ty)}`}
+          >
+            {yearLabel(ty)}
+          </a>
+        ))}
+      </div>
     </>
   );
 }
@@ -185,6 +207,7 @@ function Stub({ c, y, onOpenCity }: { c: City; y: number; onOpenCity: (s: string
         OpenHistoricalMap, with every claim cited — then promoted to a curated article as editors
         review it. The three verdigris-dot cities show the curated tier.
       </div>
+      <ThroughYears c={c} y={y} />
       <Related slug={c.slug} y={y} onOpenCity={onOpenCity} />
     </>
   );

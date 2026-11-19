@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Antea — the world, before",
   description:
     "A time-aware atlas of the world: 5,000 years of borders you can scrub through, with sourced articles for the places that rose and vanished.",
+  openGraph: {
+    siteName: "Antea",
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
