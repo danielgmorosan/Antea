@@ -29,4 +29,5 @@ jobs:
           git add pipeline/reconciled-qids.json apps/web/lib/places-auto.json
           if git diff --cached --quiet; then echo "No changes."; exit 0; fi
           git commit -m "pipeline: reconcile QID-less places and refresh places-auto.json"
+          git pull --rebase origin main
           git push
