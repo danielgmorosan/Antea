@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: reconcile
+  cancel-in-progress: false
+
 jobs:
   reconcile:
     runs-on: ubuntu-latest
