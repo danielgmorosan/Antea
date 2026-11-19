@@ -1,1 +1,2538 @@
-[]
+[
+ {
+  "name": "Abraham's Well",
+  "lon": 35.104,
+  "lat": 31.5243,
+  "q": "Q6811332",
+  "km": 43.5,
+  "desc": "historical wells at Beersheba"
+ },
+ {
+  "name": "Aleppo",
+  "lon": 37.1678,
+  "lat": 36.2159,
+  "q": "Q41183",
+  "km": 1.9,
+  "desc": "city in Aleppo Governorate, Syria"
+ },
+ {
+  "name": "Amblada",
+  "lon": 31.7081,
+  "lat": 37.4886,
+  "q": "Q457697",
+  "km": 4.3,
+  "desc": "ancient city of Pisidia in modern-day Turkey"
+ },
+ {
+  "name": "Anbangbang Shelter",
+  "lon": 132.8129,
+  "lat": -12.8659,
+  "q": "Q136327954",
+  "km": 2,
+  "desc": "cave in Kakadu National Park, Northern Territory, Australia"
+ },
+ {
+  "name": "Ankara",
+  "lon": 32.8502,
+  "lat": 39.9165,
+  "q": "Q2297724",
+  "km": 1.2,
+  "desc": "province in west-central Turkey"
+ },
+ {
+  "name": "ANTİK LİMAN",
+  "lon": 34.5402,
+  "lat": 36.7411,
+  "q": "Q133467975",
+  "km": 0.4,
+  "desc": "pier in Mezitli District"
+ },
+ {
+  "name": "Anubieion",
+  "lon": 31.223,
+  "lat": 29.8752,
+  "q": "Q612248",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Aptalhöyük",
+  "lon": 34.2921,
+  "lat": 38.6878,
+  "q": "Q134960877",
+  "km": 0,
+  "desc": "tell (archaeology) in Gülşehir District"
+ },
+ {
+  "name": "Argos",
+  "lon": 22.7178,
+  "lat": 37.6143,
+  "q": "Q189901",
+  "km": 2.3,
+  "desc": "city in Argolis, Peloponnese, Greece"
+ },
+ {
+  "name": "Arslankaya",
+  "lon": 30.43,
+  "lat": 39.1159,
+  "q": "Q705110",
+  "km": 1.2,
+  "desc": null
+ },
+ {
+  "name": "Athens",
+  "lon": 23.7258,
+  "lat": 37.9714,
+  "q": "Q844930",
+  "km": 0.3,
+  "desc": "city-state in ancient Greece"
+ },
+ {
+  "name": "Balkh",
+  "lon": 66.8962,
+  "lat": 36.6893,
+  "q": "Q182159",
+  "km": 7.6,
+  "desc": "capital of Balkh District, Afghanistan"
+ },
+ {
+  "name": "Baltasarılar Höyük",
+  "lon": 34.6973,
+  "lat": 39.9387,
+  "q": "Q134960861",
+  "km": 0,
+  "desc": "tell (archaeology) in Yozgat District"
+ },
+ {
+  "name": "Beirut",
+  "lon": 35.5131,
+  "lat": 33.8889,
+  "q": "Q3820",
+  "km": 0.2,
+  "desc": "capital and largest city of Lebanon"
+ },
+ {
+  "name": "Bolghar",
+  "lon": 49.0302,
+  "lat": 54.9747,
+  "q": "Q2486263",
+  "km": 1.6,
+  "desc": "Gord of Volga Bulgaria"
+ },
+ {
+  "name": "Boyan Tower",
+  "lon": 34.1005,
+  "lat": 36.4644,
+  "q": "Q26821698",
+  "km": 0,
+  "desc": "building in Turkey"
+ },
+ {
+  "name": "Boz Höyük",
+  "lon": 31.9145,
+  "lat": 38.2651,
+  "q": "Q134960870",
+  "km": 0,
+  "desc": "tell (archaeology) in Ilgın District"
+ },
+ {
+  "name": "Bozyazı",
+  "lon": 32.9789,
+  "lat": 36.0999,
+  "q": "Q896218",
+  "km": 0.4,
+  "desc": "district of Mersin, south-central Turkey"
+ },
+ {
+  "name": "Bunjil's Shelter",
+  "lon": 142.7334,
+  "lat": -37.1394,
+  "q": "Q113372067",
+  "km": 0,
+  "desc": "protected area in Victoria, Australia"
+ },
+ {
+  "name": "Büyük Eğrek Tepesi",
+  "lon": 36.8148,
+  "lat": 39.5779,
+  "q": "Q134960862",
+  "km": 0,
+  "desc": "tell (archaeology) in Sivas District"
+ },
+ {
+  "name": "Byblos",
+  "lon": 35.6512,
+  "lat": 34.1235,
+  "q": "Q173532",
+  "km": 0.8,
+  "desc": "Mediterranean city in the Mount Lebanon Governorate, Lebanon, a main Canaanite-Phoenician city"
+ },
+ {
+  "name": "Calle Santa Ana",
+  "lon": -79.0056,
+  "lat": -2.8971,
+  "q": "Q131192828",
+  "km": 0,
+  "desc": "street in Cuenca, Azuay, Ecuador"
+ },
+ {
+  "name": "Çatal Höyük",
+  "lon": 32.8253,
+  "lat": 37.6626,
+  "q": "Q192522",
+  "km": 0.6,
+  "desc": "archaeological site in Konya Province, Turkey"
+ },
+ {
+  "name": "Cerro Mulato",
+  "lon": -79.3894,
+  "lat": -6.6278,
+  "q": "Q31739529",
+  "km": 27.1,
+  "desc": "mountain in Lambayeque, Peru"
+ },
+ {
+  "name": "Cerro Pátapo ruins",
+  "lon": -79.6474,
+  "lat": -6.7073,
+  "q": "Q2660321",
+  "km": 1.6,
+  "desc": "ruins in Lambayeque Region, Peru"
+ },
+ {
+  "name": "Cerro Pátapo ruins",
+  "lon": -79.6389,
+  "lat": -6.7181,
+  "q": "Q2660321",
+  "km": 0.7,
+  "desc": "ruins in Lambayeque Region, Peru"
+ },
+ {
+  "name": "Chachabamba",
+  "lon": -72.5103,
+  "lat": -13.1865,
+  "q": "Q110307095",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Chain Gate",
+  "lon": 35.2343,
+  "lat": 31.7773,
+  "q": "Q111856271",
+  "km": 0,
+  "desc": "hotel in Jerusalem, Israel"
+ },
+ {
+  "name": "Chanquillo",
+  "lon": -78.2289,
+  "lat": -9.5635,
+  "q": "Q1062357",
+  "km": 1.1,
+  "desc": "human settlement"
+ },
+ {
+  "name": "Chavín de Huántar",
+  "lon": -77.1782,
+  "lat": -9.5937,
+  "q": "Q732554",
+  "km": 0.1,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Chiquia",
+  "lon": -76.6284,
+  "lat": -10.1095,
+  "q": "Q112760377",
+  "km": 1,
+  "desc": "archeological site in Huánuco, Peru"
+ },
+ {
+  "name": "Chiquia",
+  "lon": -76.6205,
+  "lat": -10.1148,
+  "q": "Q112760377",
+  "km": 0,
+  "desc": "archeological site in Huánuco, Peru"
+ },
+ {
+  "name": "Cholula",
+  "lon": -98.3068,
+  "lat": 19.063,
+  "q": "Q1007232",
+  "km": 0.1,
+  "desc": "municipal seat of San Pedro Cholula, State of Puebla, Mexico"
+ },
+ {
+  "name": "Choquequilla",
+  "lon": -72.2301,
+  "lat": -13.289,
+  "q": "Q113565485",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Cirta",
+  "lon": 6.612,
+  "lat": 36.3672,
+  "q": "Q1093156",
+  "km": 0,
+  "desc": "major ancient city of Numidia, now Constantine in Algeria"
+ },
+ {
+  "name": "Complejo Arqueológico Wari",
+  "lon": -74.198,
+  "lat": -13.0613,
+  "q": "Q3395231",
+  "km": 0.4,
+  "desc": "cultural heritage site in Peru"
+ },
+ {
+  "name": "Constantinople",
+  "lon": 28.9808,
+  "lat": 41.0266,
+  "q": "Q23725",
+  "km": 1.5,
+  "desc": "ancient Greek city, precursor of Constantinople"
+ },
+ {
+  "name": "Convict Lumber Yard",
+  "lon": 151.7857,
+  "lat": -32.9269,
+  "q": "Q55608379",
+  "km": 0,
+  "desc": "historic site in New South Wales, Australia"
+ },
+ {
+  "name": "Curamba",
+  "lon": -73.1372,
+  "lat": -13.6233,
+  "q": "Q24961870",
+  "km": 0.7,
+  "desc": "archaeological site in Apurímac, Peru"
+ },
+ {
+  "name": "Danalık Yeraltı Şehri",
+  "lon": 35.6615,
+  "lat": 38.5099,
+  "q": "Q139433315",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Danişment Höyük",
+  "lon": 36.6802,
+  "lat": 40.0642,
+  "q": "Q134960863",
+  "km": 0,
+  "desc": "tell (archaeology) in Yıldızeli District"
+ },
+ {
+  "name": "Demirkonak Höyük",
+  "lon": 38.6681,
+  "lat": 40.0209,
+  "q": "Q134960864",
+  "km": 0,
+  "desc": "tell (archaeology) in Gölova District"
+ },
+ {
+  "name": "Dholavira",
+  "lon": 70.2178,
+  "lat": 23.8877,
+  "q": "Q9468",
+  "km": 0.2,
+  "desc": "archaeological site in Kutch, Gujarat in western India"
+ },
+ {
+  "name": "Divarlı Höyük",
+  "lon": 34.4653,
+  "lat": 38.2071,
+  "q": "Q134960859",
+  "km": 0,
+  "desc": "tell (archaeology) in Çiftlik District"
+ },
+ {
+  "name": "Emiruşağı Yeraltı Şehri",
+  "lon": 36.0794,
+  "lat": 38.4639,
+  "q": "Q139433305",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Eski Mosul",
+  "lon": 42.738,
+  "lat": 36.5098,
+  "q": "Q12179697",
+  "km": 1.6,
+  "desc": "village in Iraq"
+ },
+ {
+  "name": "Faiyum",
+  "lon": 30.8442,
+  "lat": 29.3085,
+  "q": "Q203299",
+  "km": 1.4,
+  "desc": "city in Egypt"
+ },
+ {
+  "name": "Faklı Höyük",
+  "lon": 33.7435,
+  "lat": 39.1841,
+  "q": "Q134960871",
+  "km": 0,
+  "desc": "tell (archaeology) in Kaman District"
+ },
+ {
+  "name": "Fatinler Yeraltı Şehri",
+  "lon": 35.8902,
+  "lat": 38.3409,
+  "q": "Q139433317",
+  "km": 4.8,
+  "desc": null
+ },
+ {
+  "name": "Fındıkoğlu Höyük",
+  "lon": 37.5568,
+  "lat": 39.8905,
+  "q": "Q134960865",
+  "km": 0,
+  "desc": "tell (archaeology) in Zara District"
+ },
+ {
+  "name": "Fuente de Lavapatas",
+  "lon": -76.2992,
+  "lat": 1.8806,
+  "q": "Q137190228",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Gelingüllü Höyük",
+  "lon": 35.0513,
+  "lat": 39.6052,
+  "q": "Q134960884",
+  "km": 0,
+  "desc": "tell (archaeology) in Yozgat District"
+ },
+ {
+  "name": "Genoa",
+  "lon": 8.9304,
+  "lat": 44.4136,
+  "q": "Q593321",
+  "km": 0.3,
+  "desc": "university in Genoa, Italy"
+ },
+ {
+  "name": "Ghat",
+  "lon": 10.1782,
+  "lat": 24.9615,
+  "q": "Q209393",
+  "km": 0.3,
+  "desc": "town in Libya"
+ },
+ {
+  "name": "Girnavaz Höyük",
+  "lon": 41.2304,
+  "lat": 37.1051,
+  "q": "Q6101667",
+  "km": 0,
+  "desc": "mound in Nusaybin, Mardin, Turkey"
+ },
+ {
+  "name": "Gıcan Kalesi",
+  "lon": 33.8405,
+  "lat": 37.8186,
+  "q": "Q131902135",
+  "km": 0,
+  "desc": "castle, fortress in Karapınar District"
+ },
+ {
+  "name": "Göbekli Tepe",
+  "lon": 38.9221,
+  "lat": 37.2187,
+  "q": "Q214944",
+  "km": 0.5,
+  "desc": "neolithic archaeological site in Turkey"
+ },
+ {
+  "name": "Göğyer Höyük",
+  "lon": 34.272,
+  "lat": 39.665,
+  "q": "Q134960886",
+  "km": 0,
+  "desc": "tell (archaeology) in Çiçekdağı District"
+ },
+ {
+  "name": "Gökçedere Höyüğü",
+  "lon": 39.7519,
+  "lat": 40.1313,
+  "q": "Q134960894",
+  "km": 0,
+  "desc": "tell (archaeology) in Demirözü District"
+ },
+ {
+  "name": "Gökçekısık",
+  "lon": 30.3959,
+  "lat": 39.6523,
+  "q": "Q132182462",
+  "km": 0,
+  "desc": "ancient settlement mound in Tepebaşı (Eskişehir) District"
+ },
+ {
+  "name": "Gongui",
+  "lon": -76.6836,
+  "lat": -10.0075,
+  "q": "Q134180792",
+  "km": 0,
+  "desc": "archaeological site in Huanuco, Peru"
+ },
+ {
+  "name": "Gonicutac",
+  "lon": -76.4786,
+  "lat": -10.4791,
+  "q": "Q28504008",
+  "km": 3.2,
+  "desc": "archaeological site in Pasco, Peru"
+ },
+ {
+  "name": "Gran Pajatén",
+  "lon": -77.4019,
+  "lat": -7.6548,
+  "q": "Q24114235",
+  "km": 25.1,
+  "desc": "the biosphere reserve is characterized by high altitudes and a pristine ecosystem"
+ },
+ {
+  "name": "Great Zimbabwe",
+  "lon": 30.9365,
+  "lat": -20.2693,
+  "q": "Q209217",
+  "km": 0.4,
+  "desc": "ruined city in the south-eastern hills of Zimbabwe near Lake Mutirikwe and the town of Masvingo, was once the capital of the Kingdom of Zimbabwe during the country's Late Iron Age"
+ },
+ {
+  "name": "Gülistan Yeraltı Şehri",
+  "lon": 35.5708,
+  "lat": 38.661,
+  "q": "Q139433303",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Güllühöyük",
+  "lon": 30.809,
+  "lat": 39.6123,
+  "q": "Q132182472",
+  "km": 0,
+  "desc": "archeological mound in Odunpazarı, Eskişehir, west-central Turkey"
+ },
+ {
+  "name": "Günyamaç Büyük Höyük",
+  "lon": 37.4376,
+  "lat": 39.8926,
+  "q": "Q134960867",
+  "km": 0,
+  "desc": "tell (archaeology) in Hafik District"
+ },
+ {
+  "name": "Hanoi",
+  "lon": 105.8442,
+  "lat": 21.0337,
+  "q": "Q1858",
+  "km": 1.1,
+  "desc": "capital of Vietnam"
+ },
+ {
+  "name": "Harman Yeri Yeraltı Şehri",
+  "lon": 35.5495,
+  "lat": 38.6795,
+  "q": "Q139421799",
+  "km": 1.2,
+  "desc": null
+ },
+ {
+  "name": "Harran",
+  "lon": 39.0299,
+  "lat": 36.8629,
+  "q": "Q1967756",
+  "km": 0.1,
+  "desc": "district of Şanlıurfa, southeastern Turkey"
+ },
+ {
+  "name": "Havuzköy Höyüğü",
+  "lon": 37.1142,
+  "lat": 39.2075,
+  "q": "Q134960868",
+  "km": 0,
+  "desc": "tell (archaeology) in Kangal District"
+ },
+ {
+  "name": "Hırka Höyüğü",
+  "lon": 35.4387,
+  "lat": 38.9593,
+  "q": "Q134960891",
+  "km": 0,
+  "desc": "tell (archaeology) in Kocasinan District"
+ },
+ {
+  "name": "Homs",
+  "lon": 36.7118,
+  "lat": 34.7299,
+  "q": "Q131301",
+  "km": 0.6,
+  "desc": "city in western Syria"
+ },
+ {
+  "name": "Hozat Höyüğü",
+  "lon": 31.3187,
+  "lat": 37.9438,
+  "q": "Q134960855",
+  "km": 0,
+  "desc": "tell (archaeology) in Şarkikaraağaç District"
+ },
+ {
+  "name": "Huaca Middendorf",
+  "lon": -77.0878,
+  "lat": -12.0641,
+  "q": "Q136030037",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Huaca Potosi",
+  "lon": -77.0817,
+  "lat": -12.0645,
+  "q": "Q136007777",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Huaca San Miguel",
+  "lon": -77.0815,
+  "lat": -12.0625,
+  "q": "Q136007736",
+  "km": 1,
+  "desc": null
+ },
+ {
+  "name": "Huaca Tres Palos",
+  "lon": -77.0841,
+  "lat": -12.0728,
+  "q": "Q136007739",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Huagil",
+  "lon": -76.0344,
+  "lat": -12.8642,
+  "q": "Q137205146",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Huamanmarca",
+  "lon": -75.7939,
+  "lat": -12.2769,
+  "q": "Q25044865",
+  "km": 12.9,
+  "desc": "archaeological site in the Lima Region, Peru"
+ },
+ {
+  "name": "Huánuco Viejo",
+  "lon": -76.8139,
+  "lat": -9.8606,
+  "q": "Q9005560",
+  "km": 7.6,
+  "desc": "cultural heritage site in Peru"
+ },
+ {
+  "name": "Huaynaquente",
+  "lon": -72.4525,
+  "lat": -13.2186,
+  "q": "Q17104503",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Huchuy qosqo",
+  "lon": -71.9439,
+  "lat": -13.3661,
+  "q": "Q372515",
+  "km": 0.1,
+  "desc": "human settlement"
+ },
+ {
+  "name": "Huiñay Huayna",
+  "lon": -72.5374,
+  "lat": -13.1906,
+  "q": "Q1585056",
+  "km": 0.3,
+  "desc": "cultural heritage site in Peru"
+ },
+ {
+  "name": "Idalion",
+  "lon": 33.4231,
+  "lat": 35.0159,
+  "q": "Q1656624",
+  "km": 0,
+  "desc": "ancient city in Cyprus"
+ },
+ {
+  "name": "Inkaraqay",
+  "lon": -72.5486,
+  "lat": -13.2928,
+  "q": "Q138809396",
+  "km": 15.6,
+  "desc": null
+ },
+ {
+  "name": "Intihuatana",
+  "lon": -72.2673,
+  "lat": -13.2541,
+  "q": "Q76737966",
+  "km": 31.8,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Intihuatana",
+  "lon": -72.1589,
+  "lat": -13.3114,
+  "q": "Q6057562",
+  "km": 35.9,
+  "desc": "archaeological site in the Pisac District, Calca Province, Cusco Region, Peru"
+ },
+ {
+  "name": "Intiwatana",
+  "lon": -71.7853,
+  "lat": -13.5693,
+  "q": "Q6057562",
+  "km": 18.4,
+  "desc": "archaeological site in the Pisac District, Calca Province, Cusco Region, Peru"
+ },
+ {
+  "name": "Iotape",
+  "lon": 32.2349,
+  "lat": 36.3214,
+  "q": "Q85769878",
+  "km": 0.2,
+  "desc": "ancient city of Cilicia in modern-day Turkey"
+ },
+ {
+  "name": "İsbağlar Höyük",
+  "lon": 33.8565,
+  "lat": 38.9148,
+  "q": "Q134960885",
+  "km": 0,
+  "desc": "tell (archaeology) in Ağaçören District"
+ },
+ {
+  "name": "Jericho",
+  "lon": 35.4442,
+  "lat": 31.8688,
+  "q": "Q5687",
+  "km": 2.3,
+  "desc": "city in West Bank, Palestine"
+ },
+ {
+  "name": "Juliopolis",
+  "lon": 31.6741,
+  "lat": 40.075,
+  "q": "Q1675450",
+  "km": 1.1,
+  "desc": "ancient city of Galatia, in modern-day Turkey"
+ },
+ {
+  "name": "Kadınca Höyük",
+  "lon": 34.2881,
+  "lat": 39.1062,
+  "q": "Q134960890",
+  "km": 0,
+  "desc": "tell (archaeology) in Mucur District"
+ },
+ {
+  "name": "Kalinören",
+  "lon": 32.8096,
+  "lat": 36.0939,
+  "q": "Q109388032",
+  "km": 1.3,
+  "desc": "mahalle (administrative quarter) in Anamur, Mersin, south-central Turkey"
+ },
+ {
+  "name": "Kamares Aqueduct",
+  "lon": 33.5977,
+  "lat": 34.9117,
+  "q": "Q2102612",
+  "km": 0.1,
+  "desc": "Aqueduct located in Larnaca, Cyprus"
+ },
+ {
+  "name": "Kaneš",
+  "lon": 35.6333,
+  "lat": 38.8496,
+  "q": "Q538605",
+  "km": 0,
+  "desc": "important Bronze Age administrative center in Turkey"
+ },
+ {
+  "name": "Karaburun Höyük",
+  "lon": 35.08,
+  "lat": 39.7101,
+  "q": "Q134960880",
+  "km": 0,
+  "desc": "tell (archaeology) in Sorgun District"
+ },
+ {
+  "name": "Karacaşar Höyük",
+  "lon": 34.5747,
+  "lat": 38.701,
+  "q": "Q134960879",
+  "km": 0,
+  "desc": "tell (archaeology) in Gülşehir District"
+ },
+ {
+  "name": "Karacukur",
+  "lon": 32.3971,
+  "lat": 36.4054,
+  "q": "Q6368919",
+  "km": 13.7,
+  "desc": "mahalle (administrative quarter) in Gazipaşa, Antalya, southwestern Turkey"
+ },
+ {
+  "name": "Karakorum",
+  "lon": 102.8489,
+  "lat": 47.2103,
+  "q": "Q62677",
+  "km": 2.4,
+  "desc": "first capital of the Mongol empire, established in 1220"
+ },
+ {
+  "name": "Kayalık Höyük",
+  "lon": 33.6362,
+  "lat": 39.4408,
+  "q": "Q134960872",
+  "km": 0,
+  "desc": "tell (archaeology) in Kaman District"
+ },
+ {
+  "name": "Keçiçayırı Höyüğü",
+  "lon": 30.7593,
+  "lat": 39.3002,
+  "q": "Q134960857",
+  "km": 0,
+  "desc": "tell (archaeology) in Seyitgazi District"
+ },
+ {
+  "name": "Kerar Kalesi",
+  "lon": 38.8163,
+  "lat": 38.2323,
+  "q": "Q131902314",
+  "km": 0,
+  "desc": "castle, fortress in Pütürge District"
+ },
+ {
+  "name": "Keşli",
+  "lon": 34.0748,
+  "lat": 36.4617,
+  "q": "Q10779178",
+  "km": 11.5,
+  "desc": "mahalle (administrative quarter) in Silifke, Mersin, south-central Turkey"
+ },
+ {
+  "name": "Kestros",
+  "lon": 32.3304,
+  "lat": 36.2354,
+  "q": "Q79584937",
+  "km": 0.1,
+  "desc": "ancient city of Cilicia in modern-day Turkey"
+ },
+ {
+  "name": "Khirbet al-Batrawy",
+  "lon": 36.0708,
+  "lat": 32.0872,
+  "q": "Q3814996",
+  "km": 0,
+  "desc": "ancient area in the city of Zarqa"
+ },
+ {
+  "name": "Khirbet Ibziq",
+  "lon": 35.3992,
+  "lat": 32.3678,
+  "q": "Q49354325",
+  "km": 0.2,
+  "desc": "hill in Palestine"
+ },
+ {
+  "name": "Kibyra Minor",
+  "lon": 31.8847,
+  "lat": 36.6929,
+  "q": "Q139428600",
+  "km": 19.4,
+  "desc": null
+ },
+ {
+  "name": "Kılaşan Tepesi",
+  "lon": 34.1273,
+  "lat": 39.7184,
+  "q": "Q139429464",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Knossos",
+  "lon": 25.1655,
+  "lat": 35.2897,
+  "q": "Q173527",
+  "km": 0.9,
+  "desc": "ancient Minoan through Roman administrative center and city"
+ },
+ {
+  "name": "Kömür Yeraltı Şehri",
+  "lon": 35.7508,
+  "lat": 38.4963,
+  "q": "Q139433311",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Korbrelkulling Rock",
+  "lon": 118.1846,
+  "lat": -31.6044,
+  "q": "Q21888777",
+  "km": 0,
+  "desc": "mountain in Australia"
+ },
+ {
+  "name": "Körmen Höyük",
+  "lon": 33.6989,
+  "lat": 39.3876,
+  "q": "Q134960875",
+  "km": 0,
+  "desc": "tell (archaeology) in Kaman District"
+ },
+ {
+  "name": "Köstütepesi",
+  "lon": 31.8166,
+  "lat": 39.3793,
+  "q": "Q130151463",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Kuşcağız Yeraltı Şehri",
+  "lon": 35.6813,
+  "lat": 38.5208,
+  "q": "Q139433309",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Kyiv",
+  "lon": 30.5241,
+  "lat": 50.45,
+  "q": "Q1899",
+  "km": 0,
+  "desc": "capital and largest city of Ukraine"
+ },
+ {
+  "name": "Lambaesa",
+  "lon": 6.256,
+  "lat": 35.4888,
+  "q": "Q1309744",
+  "km": 0,
+  "desc": "Roman fort"
+ },
+ {
+  "name": "Langshaw Marble Lime Works",
+  "lon": 153.0405,
+  "lat": -27.4683,
+  "q": "Q19875102",
+  "km": 0.1,
+  "desc": "historic site in Queensland, Australia"
+ },
+ {
+  "name": "Larissa",
+  "lon": 22.4161,
+  "lat": 39.6412,
+  "q": "Q178405",
+  "km": 0.4,
+  "desc": "city and capital of Thessaly region, Greece"
+ },
+ {
+  "name": "Las Brujas",
+  "lon": -75.3595,
+  "lat": -14.7958,
+  "q": "Q31534903",
+  "km": 3.7,
+  "desc": "cliff in Ica, Peru"
+ },
+ {
+  "name": "Levanto",
+  "lon": -77.8935,
+  "lat": -6.3067,
+  "q": "Q4271227",
+  "km": 0.6,
+  "desc": "town in Amazonas, Peru"
+ },
+ {
+  "name": "Levisa",
+  "lon": -75.5416,
+  "lat": 20.6791,
+  "q": "Q23794454",
+  "km": 2,
+  "desc": "river in the province of Holguín, Cuba"
+ },
+ {
+  "name": "Lineas de Nasca",
+  "lon": -75.1312,
+  "lat": -14.6986,
+  "q": "Q2620036",
+  "km": 0.4,
+  "desc": "large geoglyphs made in the soil of the Nazca Desert in Peru"
+ },
+ {
+  "name": "Lithostrotos",
+  "lon": 35.2336,
+  "lat": 31.7804,
+  "q": "Q591994",
+  "km": 0,
+  "desc": "place in Jerusalem and place of the trial of Jesus"
+ },
+ {
+  "name": "Luoyang",
+  "lon": 112.4539,
+  "lat": 34.6195,
+  "q": "Q10380436",
+  "km": 5.1,
+  "desc": "historical administrative division of China"
+ },
+ {
+  "name": "Luxor",
+  "lon": 32.65,
+  "lat": 25.6837,
+  "q": "Q130514",
+  "km": 1.5,
+  "desc": "city in southern Egypt"
+ },
+ {
+  "name": "Lycian Tomb",
+  "lon": 29.6367,
+  "lat": 36.2011,
+  "q": "Q38282175",
+  "km": 6.7,
+  "desc": "ancient monument on Kastelorizo island, Greece"
+ },
+ {
+  "name": "Makli Necropolis",
+  "lon": 67.9003,
+  "lat": 24.753,
+  "q": "Q155043",
+  "km": 0.9,
+  "desc": "necropolis in Sindh, Pakistan"
+ },
+ {
+  "name": "Makronissos Tombs",
+  "lon": 33.954,
+  "lat": 34.9811,
+  "q": "Q109590548",
+  "km": 0,
+  "desc": "cluster of burial chambers from Hellenistic and Roman periods at the coast of Ayia Napa, Cyprus"
+ },
+ {
+  "name": "Maltepesi Höyük",
+  "lon": 31.6468,
+  "lat": 39.7925,
+  "q": "Q132182503",
+  "km": 0,
+  "desc": "ancient settlement mound in Mihalıçcık District"
+ },
+ {
+  "name": "Manastır",
+  "lon": 20.9749,
+  "lat": 41.0685,
+  "q": "Q157246",
+  "km": 30.4,
+  "desc": "town and seat of Bitola Municipality, North Macedonia"
+ },
+ {
+  "name": "Mason's Landing",
+  "lon": 115.9362,
+  "lat": -32.0252,
+  "q": "Q21972605",
+  "km": 0.1,
+  "desc": "park in Cannington, Western Australia"
+ },
+ {
+  "name": "Medina",
+  "lon": 39.6111,
+  "lat": 24.4685,
+  "q": "Q35484",
+  "km": 0.2,
+  "desc": "city in Medina Province, Saudi Arabia"
+ },
+ {
+  "name": "Mezar Altı Höyük",
+  "lon": 34.2937,
+  "lat": 39.6441,
+  "q": "Q134960888",
+  "km": 0,
+  "desc": "tell (archaeology) in Çiçekdağı District"
+ },
+ {
+  "name": "Milvankale",
+  "lon": 34.9763,
+  "lat": 37.3085,
+  "q": "Q131902178",
+  "km": 0.1,
+  "desc": "castle, fortress in Karaisalı District"
+ },
+ {
+  "name": "Milyos",
+  "lon": 30.754,
+  "lat": 37.3034,
+  "q": "Q65073531",
+  "km": 0,
+  "desc": "inland town of ancient Pisidia near Asar, Turkey"
+ },
+ {
+  "name": "Mindos Kalesi",
+  "lon": 34.2648,
+  "lat": 37.381,
+  "q": "Q131901975",
+  "km": 0,
+  "desc": "castle, fortress in Halkapınar (Konya) District"
+ },
+ {
+  "name": "Minsk",
+  "lon": 27.5618,
+  "lat": 53.9025,
+  "q": "Q2280",
+  "km": 0,
+  "desc": "capital and largest city of Belarus"
+ },
+ {
+  "name": "Misthia",
+  "lon": 31.8997,
+  "lat": 37.66,
+  "q": "Q85785934",
+  "km": 15.4,
+  "desc": "ancient city of Lycaonia in modern-day Turkey"
+ },
+ {
+  "name": "Moscow",
+  "lon": 37.6209,
+  "lat": 55.7434,
+  "q": "Q649",
+  "km": 0.8,
+  "desc": "capital and most populous city of Russia"
+ },
+ {
+  "name": "Murzuk",
+  "lon": 13.9215,
+  "lat": 25.8321,
+  "q": "Q48239",
+  "km": 7.9,
+  "desc": "district of Libya"
+ },
+ {
+  "name": "Ñawpamarca",
+  "lon": -77.087,
+  "lat": -9.4008,
+  "q": "Q138587740",
+  "km": 17.8,
+  "desc": null
+ },
+ {
+  "name": "Nevali Çori",
+  "lon": 38.5833,
+  "lat": 37.5251,
+  "q": "Q1151606",
+  "km": 2.1,
+  "desc": "Early Neolithic settlement and archaeological site"
+ },
+ {
+  "name": "Niš",
+  "lon": 21.8973,
+  "lat": 43.3193,
+  "q": "Q129259",
+  "km": 0.1,
+  "desc": "city in southern Serbia"
+ },
+ {
+  "name": "Novgorod",
+  "lon": 31.2826,
+  "lat": 58.4725,
+  "q": "Q2235",
+  "km": 5.4,
+  "desc": "city in Novgorod Oblast, Russia"
+ },
+ {
+  "name": "Nyenschantz",
+  "lon": 30.407,
+  "lat": 59.9441,
+  "q": "Q384167",
+  "km": 0,
+  "desc": "Swedish fortress of 1611 on the Neva, named after the former town in St Petersburg, Russia"
+ },
+ {
+  "name": "Osaka",
+  "lon": 135.5271,
+  "lat": 34.6867,
+  "q": "Q122723",
+  "km": 0.7,
+  "desc": "prefecture of Japan"
+ },
+ {
+  "name": "Pacaymayo",
+  "lon": -72.4744,
+  "lat": -13.2044,
+  "q": "Q7121869",
+  "km": 0.5,
+  "desc": "tributary of the Urubamba River in Peru"
+ },
+ {
+  "name": "Pagan",
+  "lon": 94.8502,
+  "lat": 21.172,
+  "q": "Q29317",
+  "km": 1,
+  "desc": "ancient city in Myanmar"
+ },
+ {
+  "name": "Pambamarca",
+  "lon": -78.2083,
+  "lat": -0.0794,
+  "q": "Q7129059",
+  "km": 1.7,
+  "desc": "mountain in Ecuador"
+ },
+ {
+  "name": "Pampamarca",
+  "lon": -76.8861,
+  "lat": -9.5864,
+  "q": "Q527507",
+  "km": 24.1,
+  "desc": "district of Peru"
+ },
+ {
+  "name": "Parque Arqueologico Alto De Las Piedras",
+  "lon": -76.1995,
+  "lat": 2.0045,
+  "q": "Q23710484",
+  "km": 3.3,
+  "desc": "park in Huila Department, Colombia"
+ },
+ {
+  "name": "Pazar Hamamı",
+  "lon": 30.7067,
+  "lat": 36.8876,
+  "q": "Q131738865",
+  "km": 0,
+  "desc": "hammam in Muratpaşa District"
+ },
+ {
+  "name": "Phanagoria",
+  "lon": 36.9383,
+  "lat": 45.2563,
+  "q": "Q1344411",
+  "km": 3.7,
+  "desc": "ancient Greek settlement in Russia"
+ },
+ {
+  "name": "Piramides de Túcume",
+  "lon": -79.8417,
+  "lat": -6.5144,
+  "q": "Q1677131",
+  "km": 0.3,
+  "desc": "cultural heritage site in Peru"
+ },
+ {
+  "name": "Pisaq",
+  "lon": -71.8441,
+  "lat": -13.4076,
+  "q": "Q950398",
+  "km": 1.7,
+  "desc": "town in Peru"
+ },
+ {
+  "name": "Plovdiv",
+  "lon": 24.7485,
+  "lat": 42.15,
+  "q": "Q4365146",
+  "km": 0.8,
+  "desc": "municipality in Plovdiv oblast, Bulgaria"
+ },
+ {
+  "name": "Pozo de Yanayacu",
+  "lon": -77.8776,
+  "lat": -6.2275,
+  "q": "Q42790623",
+  "km": 0,
+  "desc": "cultural heritage site in Peru"
+ },
+ {
+  "name": "Prague",
+  "lon": 14.4205,
+  "lat": 50.0877,
+  "q": "Q1085",
+  "km": 0.1,
+  "desc": "capital city of the Czech Republic"
+ },
+ {
+  "name": "Pulur Höyük",
+  "lon": 41.1309,
+  "lat": 39.9073,
+  "q": "Q134960860",
+  "km": 0,
+  "desc": "tell (archaeology) in Aziziye District"
+ },
+ {
+  "name": "Pumpu",
+  "lon": -76.2802,
+  "lat": -10.9231,
+  "q": "Q111711879",
+  "km": 0.2,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Qasr Al-Abd",
+  "lon": 35.7519,
+  "lat": 31.9128,
+  "q": "Q7267043",
+  "km": 0,
+  "desc": "building in Iraq al-Amir, Jordan"
+ },
+ {
+  "name": "Qochapata",
+  "lon": -71.9714,
+  "lat": -13.5075,
+  "q": "Q139301321",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Quinaj",
+  "lon": -76.6454,
+  "lat": -10.0551,
+  "q": "Q134303419",
+  "km": 2.9,
+  "desc": "archaeological site in Huanuco, Peru"
+ },
+ {
+  "name": "Quito",
+  "lon": -78.5131,
+  "lat": -0.2166,
+  "q": "Q2900",
+  "km": 0.4,
+  "desc": "capital of Ecuador"
+ },
+ {
+  "name": "Rahua",
+  "lon": -77.1717,
+  "lat": -9.4964,
+  "q": "Q2697675",
+  "km": 18.4,
+  "desc": "district in Ancash, Peru"
+ },
+ {
+  "name": "Red Hands Cave",
+  "lon": 150.591,
+  "lat": -33.7823,
+  "q": "Q124306008",
+  "km": 0,
+  "desc": "Australian Aboriginal rock art site in New South Wales"
+ },
+ {
+  "name": "Regentville",
+  "lon": 150.6568,
+  "lat": -33.7809,
+  "q": "Q126103232",
+  "km": 1.1,
+  "desc": "government primary school in Regentville, NSW, Australia"
+ },
+ {
+  "name": "Robinson's Arch",
+  "lon": 35.2346,
+  "lat": 31.7758,
+  "q": "Q2906823",
+  "km": 0,
+  "desc": "monumental staircase in Jerusalem"
+ },
+ {
+  "name": "Ruinas de Macro",
+  "lon": -77.9172,
+  "lat": -6.3657,
+  "q": "Q21006698",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Ruinas de Minas",
+  "lon": -79.4,
+  "lat": -3.3167,
+  "q": "Q23877287",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Safalıhöyük",
+  "lon": 34.2954,
+  "lat": 39.6403,
+  "q": "Q134960887",
+  "km": 0,
+  "desc": "tell (archaeology) in Çiçekdağı District"
+ },
+ {
+  "name": "Saint Petersburg",
+  "lon": 30.2967,
+  "lat": 59.9436,
+  "q": "Q27621",
+  "km": 0.2,
+  "desc": "Russian federal state-owned higher education institution"
+ },
+ {
+  "name": "Salapunku",
+  "lon": -72.3931,
+  "lat": -13.2208,
+  "q": "Q135982848",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Saltworks",
+  "lon": 147.9995,
+  "lat": -42.307,
+  "q": "Q21956038",
+  "km": 1.1,
+  "desc": null
+ },
+ {
+  "name": "Sannai-Maruyama Site",
+  "lon": 140.6978,
+  "lat": 40.8103,
+  "q": "Q911970",
+  "km": 0.2,
+  "desc": "Jōmon period archaeological site and museum"
+ },
+ {
+  "name": "Sapantiana",
+  "lon": -71.9782,
+  "lat": -13.512,
+  "q": "Q138653194",
+  "km": 0.1,
+  "desc": "aqueduct in Cusco, Peru"
+ },
+ {
+  "name": "Sechín Bajo",
+  "lon": -78.2648,
+  "lat": -9.4646,
+  "q": "Q6123107",
+  "km": 0.1,
+  "desc": "Ancient stone plaza in Casma, Peru"
+ },
+ {
+  "name": "Sidon",
+  "lon": 35.3761,
+  "lat": 33.5602,
+  "q": "Q163490",
+  "km": 0,
+  "desc": "capital city of South Governorate, Lebanon"
+ },
+ {
+  "name": "Sidyma",
+  "lon": 29.1857,
+  "lat": 36.4092,
+  "q": "Q2282045",
+  "km": 0.7,
+  "desc": "ancient city of Lycia in modern-day Turkey"
+ },
+ {
+  "name": "Siete Huacas",
+  "lon": -78.1589,
+  "lat": -9.1092,
+  "q": "Q115916536",
+  "km": 4.1,
+  "desc": "Ancash Archaeological Museum"
+ },
+ {
+  "name": "Sítio Arqueológico Jacó Sá",
+  "lon": -67.4969,
+  "lat": -9.9631,
+  "q": "Q139619574",
+  "km": 0.3,
+  "desc": null
+ },
+ {
+  "name": "Sivas Kalesi",
+  "lon": 37.0153,
+  "lat": 39.7457,
+  "q": "Q131901851",
+  "km": 0.3,
+  "desc": "castle, fortress in Sivas District"
+ },
+ {
+  "name": "Sivrihisar Höyüğü",
+  "lon": 31.5395,
+  "lat": 39.4398,
+  "q": "Q134960921",
+  "km": 0,
+  "desc": "tell (archaeology) in Sivrihisar District"
+ },
+ {
+  "name": "Sıçan Höyük",
+  "lon": 36.948,
+  "lat": 39.0586,
+  "q": "Q134960916",
+  "km": 0,
+  "desc": "tell (archaeology) in Kangal District"
+ },
+ {
+  "name": "Solak Höyük",
+  "lon": 38.133,
+  "lat": 40.166,
+  "q": "Q134960869",
+  "km": 0,
+  "desc": "tell (archaeology) in Suşehri District"
+ },
+ {
+  "name": "Solomon's Stables",
+  "lon": 35.2371,
+  "lat": 31.7763,
+  "q": "Q2657964",
+  "km": 0,
+  "desc": "underground vaulted space within the Temple Mount of Jerusalem, currently as a Muslim prayer hall"
+ },
+ {
+  "name": "Šuppitaššu",
+  "lon": 36.9118,
+  "lat": 39.2847,
+  "q": "Q139436187",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Susupillo",
+  "lon": -76.693,
+  "lat": -9.4014,
+  "q": "Q17089203",
+  "km": 1,
+  "desc": "mountain in Peru"
+ },
+ {
+  "name": "Sydney",
+  "lon": 151.2048,
+  "lat": -33.8587,
+  "q": "Q3130",
+  "km": 1.1,
+  "desc": "capital city of New South Wales, Australia"
+ },
+ {
+  "name": "Tabureli",
+  "lon": 34.0324,
+  "lat": 36.6448,
+  "q": "Q7684868",
+  "km": 3.1,
+  "desc": "mahalle (administrative quarter) in Erdemli, Mersin, south-central Turkey"
+ },
+ {
+  "name": "Talasıra Yeraltı Şehri",
+  "lon": 35.6791,
+  "lat": 38.7431,
+  "q": "Q139433313",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Taljanky",
+  "lon": 30.5534,
+  "lat": 48.8084,
+  "q": "Q4450732",
+  "km": 0.2,
+  "desc": "village in Talne Raion, Cherkasy Oblast, Ukraine"
+ },
+ {
+  "name": "Tall Marjab",
+  "lon": 46.1575,
+  "lat": 30.8628,
+  "q": "Q26845883",
+  "km": 5.6,
+  "desc": "hill in Iraq"
+ },
+ {
+  "name": "Tambo Colorado",
+  "lon": -75.8289,
+  "lat": -13.7061,
+  "q": "Q1513848",
+  "km": 0.1,
+  "desc": "archaeological site"
+ },
+ {
+  "name": "Tarla Höyük",
+  "lon": 33.5448,
+  "lat": 39.4109,
+  "q": "Q134960874",
+  "km": 0,
+  "desc": "tell (archaeology) in Kaman District"
+ },
+ {
+  "name": "Tarmatambo",
+  "lon": -75.685,
+  "lat": -11.4751,
+  "q": "Q15949886",
+  "km": 0.2,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Taxila",
+  "lon": 72.7852,
+  "lat": 33.7458,
+  "q": "Q156093",
+  "km": 0.2,
+  "desc": "archaeological site of the ancient Indian subcontinent, at Taxila, Punjab, Pakistan"
+ },
+ {
+  "name": "Telandros",
+  "lon": 28.9164,
+  "lat": 36.6739,
+  "q": "Q139437155",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "Tell Abu Marya",
+  "lon": 42.5972,
+  "lat": 36.43,
+  "q": "Q106520011",
+  "km": 0,
+  "desc": "a locality in the Sinjar Mountains in northwestern Iraq that corresponds to the ancient Mesopotamian city of Apqu"
+ },
+ {
+  "name": "Tell al-Deylam",
+  "lon": 44.4669,
+  "lat": 32.2961,
+  "q": "Q1193666",
+  "km": 16.5,
+  "desc": "archaeological site in Iraq"
+ },
+ {
+  "name": "Tell Amarna",
+  "lon": 38.013,
+  "lat": 36.7456,
+  "q": "Q21081226",
+  "km": 0.1,
+  "desc": "archaeological Site in northern Syria"
+ },
+ {
+  "name": "Tell el-'Oueili",
+  "lon": 45.8854,
+  "lat": 31.2429,
+  "q": "Q22935755",
+  "km": 0,
+  "desc": "archaeological site in Iraq"
+ },
+ {
+  "name": "Tell ʿArāda",
+  "lon": 40.4013,
+  "lat": 37.004,
+  "q": "Q21589614",
+  "km": 0.1,
+  "desc": "mountain in Syria"
+ },
+ {
+  "name": "Temple of Bel",
+  "lon": 40.7258,
+  "lat": 34.7509,
+  "q": "Q3517541",
+  "km": 0,
+  "desc": "temple building located on the northwest side of Dura-Europos, Syria"
+ },
+ {
+  "name": "Templo de la Luna",
+  "lon": -71.9648,
+  "lat": -13.5058,
+  "q": "Q105177129",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Timbuktu",
+  "lon": -2.9986,
+  "lat": 16.683,
+  "q": "Q9427",
+  "km": 10,
+  "desc": "city in Mali"
+ },
+ {
+  "name": "Tlemcen",
+  "lon": -1.3176,
+  "lat": 34.8816,
+  "q": "Q185134",
+  "km": 0.2,
+  "desc": "city in Algeria"
+ },
+ {
+  "name": "Tont Kalesi",
+  "lon": 34.1685,
+  "lat": 37.4648,
+  "q": "Q131902130",
+  "km": 0.3,
+  "desc": "castle, fortress in Ereğli (Konya) District"
+ },
+ {
+  "name": "Torontoy",
+  "lon": -72.4515,
+  "lat": -13.2058,
+  "q": "Q135982855",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Tumbas Reales de Sipán",
+  "lon": -79.6002,
+  "lat": -6.8019,
+  "q": "Q136029705",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Tumibamba",
+  "lon": -72.2571,
+  "lat": -13.4639,
+  "q": "Q7129078",
+  "km": 0,
+  "desc": "archaeological site in Peru"
+ },
+ {
+  "name": "Türkmenuşağı",
+  "lon": 34.0489,
+  "lat": 36.4501,
+  "q": "Q15980665",
+  "km": 1.1,
+  "desc": "mahalle (administrative quarter) in Silifke, Mersin, south-central Turkey"
+ },
+ {
+  "name": "Tyumen",
+  "lon": 65.5333,
+  "lat": 57.15,
+  "q": "Q5815",
+  "km": 0,
+  "desc": "city in the Aziatic part of Russia"
+ },
+ {
+  "name": "Uruk",
+  "lon": 45.6372,
+  "lat": 31.3232,
+  "q": "Q731494",
+  "km": 0.1,
+  "desc": "archaeological culture"
+ },
+ {
+  "name": "Varanasi",
+  "lon": 82.9741,
+  "lat": 25.3309,
+  "q": "Q3630705",
+  "km": 2,
+  "desc": "Lok Sabha Constituency in Uttar Pradesh"
+ },
+ {
+  "name": "Vasada",
+  "lon": 31.9289,
+  "lat": 37.4851,
+  "q": "Q1779200",
+  "km": 1.7,
+  "desc": "archaeological site"
+ },
+ {
+  "name": "Vienna",
+  "lon": 16.4009,
+  "lat": 48.214,
+  "q": "Q1741",
+  "km": 2.2,
+  "desc": "capital of and state in Austria"
+ },
+ {
+  "name": "Vijayanagara",
+  "lon": 76.4651,
+  "lat": 15.3247,
+  "q": "Q1611788",
+  "km": 0,
+  "desc": "now ruins, previously the capital of Vijayanagara Empire founded in the 14th century"
+ },
+ {
+  "name": "Vyas Chhatri",
+  "lon": 70.9068,
+  "lat": 26.9224,
+  "q": "Q110894418",
+  "km": 0,
+  "desc": "group of cenotaphs in Jaisalmer, Rajasthan, India"
+ },
+ {
+  "name": "Wanakauri",
+  "lon": -71.9077,
+  "lat": -13.594,
+  "q": "Q139255081",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "Xanadu",
+  "lon": 116.1797,
+  "lat": 42.3559,
+  "q": "Q471765",
+  "km": 0.5,
+  "desc": "former summer capital of Kublai Khan's Yuan Dynasty"
+ },
+ {
+  "name": "Yanshi",
+  "lon": 112.7912,
+  "lat": 34.727,
+  "q": "Q1337479",
+  "km": 1.2,
+  "desc": "district in Henan, People's Republic of China"
+ },
+ {
+  "name": "Yarkan",
+  "lon": -76.9801,
+  "lat": -9.0862,
+  "q": "Q106702720",
+  "km": 0.6,
+  "desc": "mountain in Ancash, Peru"
+ },
+ {
+  "name": "Yaroslavl",
+  "lon": 39.8651,
+  "lat": 57.6217,
+  "q": "Q2417759",
+  "km": 1.1,
+  "desc": "governorate in Russian Empire and RSFSR"
+ },
+ {
+  "name": "Yaşçayır Höyük",
+  "lon": 33.5884,
+  "lat": 39.5648,
+  "q": "Q134960883",
+  "km": 0,
+  "desc": "tell (archaeology) in Keskin District"
+ },
+ {
+  "name": "Yelek Höyük",
+  "lon": 33.743,
+  "lat": 39.2742,
+  "q": "Q134960876",
+  "km": 0,
+  "desc": "tell (archaeology) in Kaman District"
+ },
+ {
+  "name": "Yonán",
+  "lon": -79.0906,
+  "lat": -7.2581,
+  "q": "Q6319824",
+  "km": 4.3,
+  "desc": "district in Cajamarca, Peru"
+ },
+ {
+  "name": "Yooroonah Tank Barrier",
+  "lon": 152.2808,
+  "lat": -30.4825,
+  "q": "Q55638108",
+  "km": 0.1,
+  "desc": "historic site in New South Wales, Australia"
+ },
+ {
+  "name": "Zanzibar",
+  "lon": 39.1989,
+  "lat": -6.1656,
+  "q": "Q2222874",
+  "km": 0.2,
+  "desc": "city in Tanzania"
+ },
+ {
+  "name": "Zernaki Tepe",
+  "lon": 43.3404,
+  "lat": 39.0473,
+  "q": "Q139432081",
+  "km": 1.3,
+  "desc": null
+ },
+ {
+  "name": "Zhangye",
+  "lon": 100.4529,
+  "lat": 38.9208,
+  "q": "Q197402",
+  "km": 1.6,
+  "desc": "prefecture-level city in Gansu, China"
+ },
+ {
+  "name": "Ծիծեռնակաբերդ",
+  "lon": 44.486,
+  "lat": 40.1882,
+  "q": "Q73387824",
+  "km": 0.2,
+  "desc": "hill in Yeravan, Armenia"
+ },
+ {
+  "name": "אום אל קנטיר",
+  "lon": 35.7378,
+  "lat": 32.85,
+  "q": "Q863958",
+  "km": 0,
+  "desc": "archaeological site in the Golan Heights"
+ },
+ {
+  "name": "אמת הביאר",
+  "lon": 35.1451,
+  "lat": 31.6562,
+  "q": "Q16132605",
+  "km": 0,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "בית המרחץ העתיק",
+  "lon": 35.3016,
+  "lat": 32.7062,
+  "q": "Q4752805",
+  "km": 0,
+  "desc": "Archaeological site in Israel"
+ },
+ {
+  "name": "בית כנסת",
+  "lon": 34.9347,
+  "lat": 31.656,
+  "q": "Q133839432",
+  "km": 48.3,
+  "desc": null
+ },
+ {
+  "name": "גן לאומי קיסריה",
+  "lon": 34.8943,
+  "lat": 32.507,
+  "q": "Q319242",
+  "km": 0.7,
+  "desc": "ancient Levantine city"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1026,
+  "lat": 31.7503,
+  "q": "Q1348441",
+  "km": 24.8,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 34.9978,
+  "lat": 31.3506,
+  "q": "Q2890586",
+  "km": 36.3,
+  "desc": "kibbutz in Israel"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1914,
+  "lat": 31.8358,
+  "q": "Q1348441",
+  "km": 35.9,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1957,
+  "lat": 31.8325,
+  "q": "Q1348441",
+  "km": 36.1,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1909,
+  "lat": 31.8082,
+  "q": "Q1348441",
+  "km": 34.7,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1856,
+  "lat": 31.8064,
+  "q": "Q1348441",
+  "km": 34.1,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.0622,
+  "lat": 31.725,
+  "q": "Q1348441",
+  "km": 20.6,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 34.8852,
+  "lat": 31.3575,
+  "q": "Q2890586",
+  "km": 31.2,
+  "desc": "kibbutz in Israel"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1864,
+  "lat": 31.8157,
+  "q": "Q1348441",
+  "km": 34.6,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1951,
+  "lat": 31.8252,
+  "q": "Q1348441",
+  "km": 35.8,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "גת",
+  "lon": 35.1842,
+  "lat": 31.8091,
+  "q": "Q1348441",
+  "km": 34.1,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "ח'רבת ג'ומג'ום",
+  "lon": 35.1019,
+  "lat": 31.6687,
+  "q": "Q12407261",
+  "km": 1.1,
+  "desc": "archeological site located at the western part of Gush Etzion"
+ },
+ {
+  "name": "חובלתא",
+  "lon": 35.1267,
+  "lat": 32.0072,
+  "q": "Q6588005",
+  "km": 0.1,
+  "desc": "archaeological site in the West Bank"
+ },
+ {
+  "name": "חורבת א-רפיד",
+  "lon": 35.6301,
+  "lat": 32.9564,
+  "q": "Q16132257",
+  "km": 0.2,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "חורבת בורגין",
+  "lon": 34.9692,
+  "lat": 31.6355,
+  "q": "Q7881627",
+  "km": 0.3,
+  "desc": "village in Mandatory Palestine"
+ },
+ {
+  "name": "חורבת כורכוש",
+  "lon": 35.1151,
+  "lat": 32.0874,
+  "q": "Q98454829",
+  "km": 0,
+  "desc": "Archaeological site in the West Bank, Palestine"
+ },
+ {
+  "name": "חירבת תיבנה",
+  "lon": 35.1079,
+  "lat": 32.0086,
+  "q": "Q17006899",
+  "km": 0.3,
+  "desc": "Archaeological site in Palestine"
+ },
+ {
+  "name": "חרותות סלע",
+  "lon": 34.7459,
+  "lat": 30.8243,
+  "q": "Q55252768",
+  "km": 0.4,
+  "desc": null
+ },
+ {
+  "name": "מבצר ארטבה",
+  "lon": 35.0744,
+  "lat": 31.9896,
+  "q": "Q104787089",
+  "km": 0,
+  "desc": "ancient ruin in Palestine"
+ },
+ {
+  "name": "מואה",
+  "lon": 35.1616,
+  "lat": 30.5412,
+  "q": "Q49004109",
+  "km": 3,
+  "desc": null
+ },
+ {
+  "name": "מנזר מרטיריוס",
+  "lon": 35.3005,
+  "lat": 31.7792,
+  "q": "Q2896173",
+  "km": 0,
+  "desc": "former monastery in the West Bank"
+ },
+ {
+  "name": "מצד אבירים",
+  "lon": 35.2849,
+  "lat": 33.0455,
+  "q": "Q6598901",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "מצד נקרות",
+  "lon": 35.0117,
+  "lat": 30.5752,
+  "q": "Q25489418",
+  "km": 0.5,
+  "desc": "archaeological site in Negev, Israel"
+ },
+ {
+  "name": "מצודת הונין",
+  "lon": 35.5443,
+  "lat": 33.2208,
+  "q": "Q6582250",
+  "km": 0.2,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "מצודת תפן",
+  "lon": 35.2559,
+  "lat": 32.9519,
+  "q": "Q20502968",
+  "km": 0,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "מקדש הנמרים",
+  "lon": 34.9701,
+  "lat": 29.9556,
+  "q": "Q6758842",
+  "km": 0,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "מקווה",
+  "lon": 35.0887,
+  "lat": 31.8111,
+  "q": "Q5749987",
+  "km": 13.8,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "מקווה",
+  "lon": 35.1303,
+  "lat": 31.6607,
+  "q": "Q5749987",
+  "km": 16,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "קבר בני ישראל",
+  "lon": 35.2682,
+  "lat": 31.8423,
+  "q": "Q7269662",
+  "km": 0.1,
+  "desc": "archaeological site in West Bank, State of Palestine"
+ },
+ {
+  "name": "קברות המכבים",
+  "lon": 34.9944,
+  "lat": 31.9286,
+  "q": "Q108538151",
+  "km": 0.2,
+  "desc": null
+ },
+ {
+  "name": "קתיסמה",
+  "lon": 35.2128,
+  "lat": 31.7392,
+  "q": "Q12406968",
+  "km": 0,
+  "desc": "5th-century Byzantine church in the Holy Land"
+ },
+ {
+  "name": "רוגם זוהר",
+  "lon": 35.2422,
+  "lat": 31.2353,
+  "q": "Q49004132",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "תל איילון",
+  "lon": 35.0236,
+  "lat": 31.8413,
+  "q": "Q6986308",
+  "km": 0,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "תל דודאים",
+  "lon": 34.9632,
+  "lat": 32.5107,
+  "q": "Q12178991",
+  "km": 0.2,
+  "desc": "mountain in Israel"
+ },
+ {
+  "name": "תל זריק",
+  "lon": 35.128,
+  "lat": 32.6347,
+  "q": "Q12058535",
+  "km": 0,
+  "desc": "mountain in Israel"
+ },
+ {
+  "name": "תל מפלסים",
+  "lon": 34.5446,
+  "lat": 31.4936,
+  "q": "Q26763566",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "תל עין הבשור",
+  "lon": 34.4889,
+  "lat": 31.3057,
+  "q": "Q85998264",
+  "km": 0.4,
+  "desc": null
+ },
+ {
+  "name": "תל עירא",
+  "lon": 34.9856,
+  "lat": 31.2331,
+  "q": "Q20971180",
+  "km": 0.1,
+  "desc": "archaeological site in Israel"
+ },
+ {
+  "name": "תל עירית",
+  "lon": 34.5504,
+  "lat": 31.501,
+  "q": "Q26763797",
+  "km": 0.7,
+  "desc": "hill in Southern District, Israel"
+ },
+ {
+  "name": "תל צפית",
+  "lon": 34.8474,
+  "lat": 31.702,
+  "q": "Q1348441",
+  "km": 0.3,
+  "desc": "ancient city and archaeological site mentioned in the Bible and in Akkadian sources"
+ },
+ {
+  "name": "תל קילא",
+  "lon": 35.0031,
+  "lat": 31.6139,
+  "q": "Q6523996",
+  "km": 6.4,
+  "desc": "archaeological site"
+ },
+ {
+  "name": "תל שוכה",
+  "lon": 34.9737,
+  "lat": 31.6822,
+  "q": "Q2776782",
+  "km": 0,
+  "desc": "biblical town in the south of Judah (Josh. 15:48)"
+ },
+ {
+  "name": "תל שילה",
+  "lon": 35.2898,
+  "lat": 32.0564,
+  "q": "Q112064161",
+  "km": 0.1,
+  "desc": "archaeological site in Palestine"
+ },
+ {
+  "name": "תל שרוחן",
+  "lon": 34.4827,
+  "lat": 31.282,
+  "q": "Q1548392",
+  "km": 0,
+  "desc": "archaeological site in Southern District, Israel"
+ },
+ {
+  "name": "آثار الحضر",
+  "lon": 42.7177,
+  "lat": 35.5883,
+  "q": "Q49004237",
+  "km": 0.1,
+  "desc": null
+ },
+ {
+  "name": "أعمدة الرجاجيل",
+  "lon": 40.2203,
+  "lat": 29.8124,
+  "q": "Q12179955",
+  "km": 0,
+  "desc": "Chalcolithic-period standing-stone site near Sakaka in Al Jawf Province, Saudi Arabia, dated to circa 4th millennium BC and sometimes called the Stonehenge of Saudi Arabia"
+ },
+ {
+  "name": "الكنيسة البيزنطية",
+  "lon": 34.9235,
+  "lat": 31.2938,
+  "q": "Q115049558",
+  "km": 47.8,
+  "desc": "archaeological site in Palestine"
+ },
+ {
+  "name": "تل الأبطخ",
+  "lon": 42.1622,
+  "lat": 36.2145,
+  "q": "Q26841096",
+  "km": 0.1,
+  "desc": "hill in Iraq"
+ },
+ {
+  "name": "تل الرماح",
+  "lon": 42.4491,
+  "lat": 36.2567,
+  "q": "Q195286",
+  "km": 15,
+  "desc": "archaeological site in Iraq"
+ },
+ {
+  "name": "خان التجار",
+  "lon": 35.2638,
+  "lat": 32.2193,
+  "q": "Q6400111",
+  "km": 0.2,
+  "desc": "caravanserai in Nablus, Palestine"
+ },
+ {
+  "name": "مسجد عمر بن الخطاب",
+  "lon": 39.8675,
+  "lat": 29.8119,
+  "q": "Q12242834",
+  "km": 0,
+  "desc": "early Islamic-era stone mosque in the Al-Darʿi quarter of Dumat al-Jandal, Saudi Arabia, with what is considered the earliest surviving minaret of its type in northern Arabia"
+ },
+ {
+  "name": "معصرة عبد النبي",
+  "lon": 35.1067,
+  "lat": 31.5263,
+  "q": "Q56400819",
+  "km": 0,
+  "desc": null
+ },
+ {
+  "name": "ウサクマイ遺跡群",
+  "lon": 141.5738,
+  "lat": 42.8091,
+  "q": "Q11288875",
+  "km": 0,
+  "desc": "archaeological site in Chitose, Japan"
+ },
+ {
+  "name": "ウサクマイ遺跡群",
+  "lon": 141.5738,
+  "lat": 42.8091,
+  "q": "Q11288875",
+  "km": 0,
+  "desc": "archaeological site in Chitose, Japan"
+ },
+ {
+  "name": "北斗遺跡",
+  "lon": 144.3266,
+  "lat": 43.0683,
+  "q": "Q103811894",
+  "km": 0.8,
+  "desc": "archaeological site in Kushiro, Hokkaido, Japan"
+ },
+ {
+  "name": "北斗遺跡",
+  "lon": 144.3266,
+  "lat": 43.0683,
+  "q": "Q103811894",
+  "km": 0.8,
+  "desc": "archaeological site in Kushiro, Hokkaido, Japan"
+ },
+ {
+  "name": "大森勝山遺跡",
+  "lon": 140.3582,
+  "lat": 40.6989,
+  "q": "Q48733884",
+  "km": 0,
+  "desc": "stone circle, settlement in Aomori, Japan"
+ },
+ {
+  "name": "大森勝山遺跡",
+  "lon": 140.3582,
+  "lat": 40.6989,
+  "q": "Q48733884",
+  "km": 0,
+  "desc": "stone circle, settlement in Aomori, Japan"
+ },
+ {
+  "name": "常呂遺跡",
+  "lon": 144.0491,
+  "lat": 44.1244,
+  "q": "Q11481334",
+  "km": 2.4,
+  "desc": "archaeological site in Kitami, Japan"
+ },
+ {
+  "name": "常呂遺跡",
+  "lon": 144.0491,
+  "lat": 44.1244,
+  "q": "Q11481334",
+  "km": 2.4,
+  "desc": "archaeological site in Kitami, Japan"
+ },
+ {
+  "name": "春採台地竪穴群",
+  "lon": 144.3995,
+  "lat": 42.975,
+  "q": "Q137673401",
+  "km": 0,
+  "desc": "archaeological site in Kushiro, Hokkaido of Japan"
+ },
+ {
+  "name": "春採台地竪穴群",
+  "lon": 144.3995,
+  "lat": 42.975,
+  "q": "Q137673401",
+  "km": 0,
+  "desc": "archaeological site in Kushiro, Hokkaido of Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.8136,
+  "lat": 43.3828,
+  "q": "Q11110966",
+  "km": 2.6,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.7521,
+  "lat": 43.387,
+  "q": "Q11110966",
+  "km": 2.5,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.7519,
+  "lat": 43.3914,
+  "q": "Q11110966",
+  "km": 2.5,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.6686,
+  "lat": 43.391,
+  "q": "Q11110966",
+  "km": 9.2,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.5055,
+  "lat": 43.2831,
+  "q": "Q11110966",
+  "km": 25.3,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.8136,
+  "lat": 43.3828,
+  "q": "Q11110966",
+  "km": 2.6,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.7521,
+  "lat": 43.387,
+  "q": "Q11110966",
+  "km": 2.5,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.7519,
+  "lat": 43.3914,
+  "q": "Q11110966",
+  "km": 2.5,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.6686,
+  "lat": 43.391,
+  "q": "Q11110966",
+  "km": 9.2,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "根室半島チャシ跡群",
+  "lon": 145.5055,
+  "lat": 43.2831,
+  "q": "Q11110966",
+  "km": 25.3,
+  "desc": "national historic site in Hokkaido, Japan"
+ },
+ {
+  "name": "湯舟沢環状列石",
+  "lon": 141.0975,
+  "lat": 39.7811,
+  "q": "Q132745289",
+  "km": 0,
+  "desc": "archaeological site in Takizawa, Iwate, Japan"
+ },
+ {
+  "name": "湯舟沢環状列石",
+  "lon": 141.0975,
+  "lat": 39.7811,
+  "q": "Q132745289",
+  "km": 0,
+  "desc": "archaeological site in Takizawa, Iwate, Japan"
+ },
+ {
+  "name": "西崎山環状列石",
+  "lon": 140.8465,
+  "lat": 43.1904,
+  "q": "Q132744756",
+  "km": 0,
+  "desc": "archaeological site in Yoichi, Hokkaido, Japan"
+ },
+ {
+  "name": "西崎山環状列石",
+  "lon": 140.8465,
+  "lat": 43.1904,
+  "q": "Q132744756",
+  "km": 0,
+  "desc": "archaeological site in Yoichi, Hokkaido, Japan"
+ },
+ {
+  "name": "釜石環状列石",
+  "lon": 140.9788,
+  "lat": 39.922,
+  "q": "Q17990182",
+  "km": 0,
+  "desc": "archaeological site in Hachimantai, Iwate, Japan"
+ },
+ {
+  "name": "釜石環状列石",
+  "lon": 140.9788,
+  "lat": 39.922,
+  "q": "Q17990182",
+  "km": 0,
+  "desc": "archaeological site in Hachimantai, Iwate, Japan"
+ }
+]
